@@ -1,0 +1,102 @@
+Linux version
+
+Using ReadLine
+
+Using default file location /N/soft/rhel6/mothur/reference_files/
+
+Running 64Bit Version
+
+mothur v.1.31.2
+Last updated: 6/13/2013
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+pschloss@umich.edu
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+Type 'quit()' to exit program
+Batch Mode
+
+
+mothur > make.contigs(file=WL.files, insert=30, deltaq=4, processors=32)
+
+Using 32 processors.
+Reading fastq data...
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+120000
+130000
+140000
+150000
+160000
+170000
+180000
+190000
+200000
+210000
+220000
+225719
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+120000
+130000
+140000
+150000
+160000
+170000
+180000
+190000
+200000
+209107
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+118035
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+102023
+10000

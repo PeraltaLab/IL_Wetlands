@@ -1,0 +1,2749 @@
+Linux version
+
+Using ReadLine
+
+Using default file location /N/soft/rhel6/mothur/reference_files/
+
+Running 64Bit Version
+
+mothur v.1.31.2
+Last updated: 6/13/2013
+
+by
+Patrick D. Schloss
+
+Department of Microbiology & Immunology
+University of Michigan
+pschloss@umich.edu
+http://www.mothur.org
+
+When using, please cite:
+Schloss, P.D., et al., Introducing mothur: Open-source, platform-independent, community-supported software for describing and comparing microbial communities. Appl Environ Microbiol, 2009. 75(23):7537-41.
+
+Distributed under the GNU General Public License
+
+Type 'help()' for information on the commands that are available
+
+Type 'quit()' to exit program
+Batch Mode
+
+
+mothur > make.contigs(file=WL.files, insert=30, deltaq=4, processors=32)
+
+Using 32 processors.
+Reading fastq data...
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A1-ss1_S1_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+120000
+130000
+140000
+150000
+160000
+170000
+180000
+190000
+200000
+210000
+220000
+225719
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A1-ss2_S2_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+120000
+130000
+140000
+150000
+160000
+170000
+180000
+190000
+200000
+209107
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A1-ss3_S3_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+118035
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A1-ss4_S4_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+102023
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A1-ss5_S5_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+120000
+130000
+140000
+150000
+160000
+170000
+180000
+190000
+192701
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A2-ss1_S6_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+120000
+130000
+140000
+150000
+160000
+170000
+180000
+190000
+193943
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A2-ss2_S7_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+110223
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A2-ss3_S8_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+120000
+130000
+140000
+150000
+160000
+170000
+180000
+190000
+200000
+207598
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A2-ss4_S9_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+120000
+130000
+140000
+150000
+160000
+170000
+180000
+190000
+200000
+210000
+212728
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A2-ss5_S10_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+88376
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A3-ss1_S11_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+120000
+129369
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A3-ss2_S12_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+108552
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A3-ss3_S13_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+120000
+120084
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A3-ss4_S14_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+108050
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-A3-ss5_S15_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+102842
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-B1-ss1_S16_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+102002
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-B1-ss2_S17_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+109804
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-B1-ss3_S18_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+93318
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.0ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.0rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.0fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.0rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.1ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.1rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.1fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.1rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.2ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.2rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.2fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.2rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.3ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.3rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.3fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.3rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.4ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.4rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.4fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.4rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.5ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.5rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.5fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.5rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.6ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.6rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.6fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.6rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.7ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.7rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.7fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.7rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.8ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.8rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.8fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.8rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.9ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.9rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.9fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.9rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.10ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.10rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.10fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.10rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.11ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.11rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.11fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.11rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.12ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.12rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.12fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.12rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.13ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.13rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.13fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.13rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.14ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.14rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.14fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.14rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.15ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.15rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.15fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.15rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.16ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.16rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.16fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.16rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.17ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.17rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.17fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.17rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.18ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.18rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.18fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.18rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.19ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.19rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.19fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.19rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.20ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.20rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.20fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.20rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.21ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.21rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.21fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.21rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.22ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.22rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.22fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.22rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.23ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.23rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.23fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.23rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.24ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.24rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.24fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.24rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.25ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.25rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.25fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.25rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.26ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.26rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.26fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.26rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.27ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.27rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.27fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.27rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.28ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.28rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.28fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.28rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.29ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.29rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.29fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.29rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.30ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.30rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.30fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.30rqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.31ffastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.31rfastatemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R1_001.31fqualtemp
+[ERROR]: Could not open HC-B1-ss4_S19_L001_R2_001.31rqualtemp
+10000
+20000
+30000
+40000
+50000
+60000
+70000
+80000
+90000
+100000
+110000
+120000
+130000
+140000
+150000
+160000
+170000
+180000
+190000
+200000
+207411
