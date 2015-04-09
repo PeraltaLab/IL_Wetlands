@@ -16,5 +16,5 @@ summary.seqs(fasta=WL.trim.contigs.good.unique.good.filter.fasta,count=WL.trim.c
 unique.seqs(fasta=WL.trim.contigs.good.unique.good.filter.fasta, count=WL.trim.contigs.good.good.count_table)
 summary.seqs(fasta=WL.trim.contigs.good.unique.good.filter.unique.fasta, count=WL.trim.contigs.good.unique.good.filter.count_table, processors=10)
 pre.cluster(fasta=WL.trim.contigs.good.unique.good.filter.unique.fasta, count=WL.trim.contigs.good.unique.good.filter.count_table, diffs=2, processors=1)
-summary.seqs(fasta=WL.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=WL.trim.contigs.good.unique.filter.unique.precluster.count_table, processors=10)
-chimera.uchime(fasta=WL.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=WL.trim.contigs.good.unique.good.filter.precluster.count_table, processors=10)
+summary.seqs(fasta=WL.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=WL.trim.contigs.good.unique.good.filter.unique.precluster.count_table, processors=10)
+chimera.uchime(fasta=WL.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=WL.trim.contigs.good.unique.good.filter.unique.precluster.count_table, processors=10)
