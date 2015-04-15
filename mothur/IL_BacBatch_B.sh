@@ -7,4 +7,4 @@
 cd /N/dc2/projects/Lennon_Sequences/Peralta_IL_Wetlands
 module load gcc
 module load mothur/1.32.1
-mothur IL_mothur_A.batch
+mothur IL_mothur_B.batch
