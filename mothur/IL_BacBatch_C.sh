@@ -5,6 +5,6 @@
 #PBS -m abe
 #PBS -j oe
 cd /N/dc2/projects/Lennon_Sequences/Peralta_IL_Wetlands
-module load gcc/4.9.2
-module load mothur/1.36.1
+module load gcc
+PATH=$PATH:/N/dc2/projects/Lennon_Sequences/mothur/mothur-1.35.1/source
 mothur IL_mothur_B.batch
