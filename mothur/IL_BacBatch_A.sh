@@ -8,3 +8,4 @@ cd /N/dc2/projects/Lennon_Sequences/Peralta_IL_Wetlands
 module load gcc/4.9.2
 module load mothur/1.36.1
 mothur IL_mothur_A.batch
+qsub IL_BacBatch_B.sh
