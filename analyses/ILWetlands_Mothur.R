@@ -29,8 +29,8 @@
 
 # Setup Work Environment
 rm(list=ls())
-setwd("~/GitHub/IL_Wetlands/analyses")
-source("../bin/MothurTools.R")
+setwd("~/GitHub/IL_Wetlands/")
+source("./bin/MothurTools.R")
 require("vegan")
 se <- function(x, ...){sd(x, ...)/sqrt(length(na.omit(x)))}
 
@@ -38,7 +38,7 @@ se <- function(x, ...){sd(x, ...)/sqrt(length(na.omit(x)))}
 # Design = general design file for experiment
 # shared = OTU table from mothur with sequence similarity clustering
 # design <- ""
-shared <- "../mothur/ILWetlands.final.shared"
+shared <- "./data/WL.final.shared"
 
 # Import Design
 # design <- read.delim(design, header=T, row.names=1)
@@ -56,7 +56,7 @@ summary(coverage)
 # Make Presence Absence Matrices
 OTUsPA <- (OTUs > 0) * 1
 
-rich <- rowSums(OTUs)
+rich <- rowSums(OTUsPA)
 summary(rich)
 
 # Make Relative Abundence Matrices
