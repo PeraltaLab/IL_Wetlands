@@ -24,7 +24,11 @@ require("reshape")
 require("BiodiversityR")
 require("ecodist")
 
-# Import Data
+#################
+# Import OTU data
+#################
+
+# Import Raw Data
 WLdata.in <- read.otu("./data/WL.final.shared")
 
 # Remove Mock Community
@@ -39,6 +43,16 @@ for(i in 1:dim(WLdata)[1]){
   WLdataREL[i,] <- WLdata[i,]/sum(WLdata[i,])
 }
 
+###########################
+# Import Environmental Data
+###########################
+
+design <- read.csv("./data/WL.design.csv", row.names = 1)
+treatments <- design$Treatment
+levels(treatments) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
+# levels(new.data$Treatment) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
+
+
 # write.table(OTUsREL, file = "WLbact_STDnew.csv", sep = ",", col.names = NA)
 # read.table("./data/WLbact_new.csv", header = TRUE, sep = ",", row.names = 1)
 
@@ -46,41 +60,37 @@ for(i in 1:dim(WLdata)[1]){
 
 new.data <- read.csv("./data/WLbact_new.csv", header=TRUE, row.names=1)
 
-#rows,col
-adonis = adonis(new.data[,-c(1:6)] ~ Treatment, method = "bray", data = new.data, perm=1000)
+
+###########################
+# Simple Hypothesis Testing
+###########################
+
+adonis = adonis(WLdataREL ~ treatments, method = "bray", data = new.data, perm=1000)
 adonis
 
-
-
-Simper <- simper(sampleREL.dist, group = Treatment)
+Simper <- simper(WLdataREL, group = treatments)
 summary(Simper)
 
 
 library(ggplot2)
-df <- new.data[,-c(1:6)]	# bacteria
-df.env <- new.data[,c(1:6)]	# ENV
+df <- WLdataREL	# bacteria
+df.env <- design	# ENV
 df.mds <- metaMDS(df, k=2, trymax=50, zerodist="add")
-
-treatments <- new.data$Treatment
-levels(treatments) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
 
 points <- cbind(as.data.frame(df.mds$points), treatments)
 L.centroids <- melt(points, id="treatments", measure.vars = c("MDS1", "MDS2"))
 centroids <- cast(L.centroids, variable ~ treatments, mean)
 
 
-df <- data.frame(new.data[,3],new.data[,2], df.mds$points[,1], df.mds$points[,2])
+df <- data.frame(design[,3],design[,2], df.mds$points[,1], df.mds$points[,2])
 str(df)
-
-levels(new.data$Treatment) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
-
 names(df) <- c("Treatment", "Plot", "Axis1", "Axis2")
 df$Treatment <- factor(df$Treatment, levels=c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference"))
 myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#339933", "#336633", "#FF9933") #pick new
 names(myColors) <- levels(df$Treatment)
 colScale <- scale_colour_manual(values = myColors)
 p1<-ggplot(df,aes(x=Axis1,y=Axis2,label=TRUE))
-p2 <- p1+geom_point(aes(colour=Treatment), size=5)
+p2 <- p1+geom_point(aes(colour=treatments), size=5)
 # p3 <-p2 + geom_text(aes(label=new.data$taxon), size=4) #added labels
 # p3 + colScale
 p2 + colScale
