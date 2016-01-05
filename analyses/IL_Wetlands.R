@@ -1,13 +1,13 @@
 ################################################################################
 #                                                                              #
-#	Henry County Mitigation Project 2013 : Microbial Community Charactorization               #
+#	Henry County Mitigation Project 2013: Microbial Community Charactorization   #
 #                                                                              #
 ################################################################################
 #                                                                              #
-#	Written by: Jay Lennon (2014/02/03)                                        #
-# Modified by: M. Muscarella (2014/02/03)                                      #
+#	Written by: Jay Lennon (2014/02/03)                                          #
+# Modified by: Mario Muscarella (2014/02/03)                                   #
 # Modified by: Ariane Peralta                                                  #
-#	Last update: 2014/02/04                                                    #
+#	Last update: 2014/02/04                                                      #
 #                                                                              #
 ################################################################################
 
@@ -17,18 +17,34 @@ setwd("~/GitHub/IL_Wetlands")
 se <- function(x){sd(x)/sqrt(length(x))}
 
 # Code Dependencies
-source("DiversityFunctions.r")  
-require(vegan)                               
-require(reshape)
-require(BiodiversityR)
+# source("./bin/DiversityFunctions.R")
+source("./bin/MothurTools.R")
+require("vegan")
+require("reshape")
+require("BiodiversityR")
 require("ecodist")
 
-write.table(OTUsREL, file = "WLbact_STDnew.csv", sep = ",", col.names = NA)
-read.table("WLbact_STDnew.csv", header = TRUE, sep = ",", row.names = 1)
+# Import Data
+WLdata.in <- read.otu("./data/WL.final.shared")
+
+# Remove Mock Community
+WLdata <- WLdata.in[which(rownames(WLdata.in) != "Mock"), ]
+
+# Make Presence Absence Matrix
+WLdataPA <- (WLdata > 0) * 1
+
+# Make Relative Abundence Matrices
+WLdataREL <- WLdata
+for(i in 1:dim(WLdata)[1]){
+  WLdataREL[i,] <- WLdata[i,]/sum(WLdata[i,])
+}
+
+# write.table(OTUsREL, file = "WLbact_STDnew.csv", sep = ",", col.names = NA)
+# read.table("./data/WLbact_new.csv", header = TRUE, sep = ",", row.names = 1)
 
 #I'm not sure why the OTUsREL didn't get standardized - so the WLbact_STDnew.csv isn't standardized. Please help :)
 
-new.data <- read.csv("./data/WLbact_STDnew.csv", header=TRUE)
+new.data <- read.csv("./data/WLbact_new.csv", header=TRUE, row.names=1)
 
 #rows,col
 adonis = adonis(new.data[,-c(1:6)] ~ Treatment, method = "bray", data = new.data, perm=1000)
@@ -49,7 +65,7 @@ treatments <- new.data$Treatment
 levels(treatments) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
 
 points <- cbind(as.data.frame(df.mds$points), treatments)
-L.centroids <- melt(points, id="treatments", measure.vars = c("MDS1", "MDS2")) 
+L.centroids <- melt(points, id="treatments", measure.vars = c("MDS1", "MDS2"))
 centroids <- cast(L.centroids, variable ~ treatments, mean)
 
 
@@ -102,56 +118,56 @@ samplePA.dist <- vegdist(t(dataPA),method="bray")
 sampleREL.dist <- vegdist(t(dataREL),method="bray")
 
 # Principal Coordinates Analysis
-EC_pcoa <- cmdscale(sampleREL.dist,k=3,eig=TRUE,add=FALSE) 
+EC_pcoa <- cmdscale(sampleREL.dist,k=3,eig=TRUE,add=FALSE)
   # Classical (Metric) Multidimensional Scaling; returns PCoA coordinates
   # eig=TRUE returns eigenvalues; k = # of dimensions to calculate
 
-# Responder Analysis Based on PCoA 
+# Responder Analysis Based on PCoA
 pcoaS <- add.spec.scores(EC_pcoa,t(dataREL),method="cor.scores",Rscale=TRUE,
-  scaling=1,multi=1) 
-  # retrieves correlation coefficient for each taxon's relative 
+  scaling=1,multi=1)
+  # retrieves correlation coefficient for each taxon's relative
   # abudnace with respect to PCoA coordinates (k = 3)
-  
+
 # PCoA Axis 1 Responders
-cor_spp_a1 <- cbind(EC_tax[,3],pcoaS$cproj[,1]) 
+cor_spp_a1 <- cbind(EC_tax[,3],pcoaS$cproj[,1])
   # creates matrix of taxonomy and correlations (r)
-colnames(cor_spp_a1)[7] <- "Corr" 
+colnames(cor_spp_a1)[7] <- "Corr"
   # renames correlation column name
-cor_spp_a1 <- cor_spp_a1[order(cor_spp_a1[,7],decreasing=TRUE),] 
+cor_spp_a1 <- cor_spp_a1[order(cor_spp_a1[,7],decreasing=TRUE),]
   # sorts based on r
-responders_a1 <- cor_spp_a1[a1 <- abs(cor_spp_a1[,7])>0.7,] 
-  # subset based on r > |0.7| 
+responders_a1 <- cor_spp_a1[a1 <- abs(cor_spp_a1[,7])>0.7,]
+  # subset based on r > |0.7|
 
 # PCoA Axis 2 Responders
-cor_spp_a2 <- cbind(EC_tax[,3],pcoaS$cproj[,2]) 
+cor_spp_a2 <- cbind(EC_tax[,3],pcoaS$cproj[,2])
   # creates matrix of taxonomy and correlations(r) axis 2
-colnames(cor_spp_a2)[7] <- "Corr" 
+colnames(cor_spp_a2)[7] <- "Corr"
   # renames correlation column name
-cor_spp_a2 < -cor_spp_a2[order(cor_spp_a1[,7],decreasing=TRUE),] 
+cor_spp_a2 < -cor_spp_a2[order(cor_spp_a1[,7],decreasing=TRUE),]
   # sorts based on r
-responders_a2 <- cor_spp_a2[a2 <- abs(cor_spp_a2[,7])>0.7,] 
-  # subset based on r > |0.7| 
+responders_a2 <- cor_spp_a2[a2 <- abs(cor_spp_a2[,7])>0.7,]
+  # subset based on r > |0.7|
 
-# Percent Variacne Explained Using PCoA 
-Eig_sum <- sum(pcoaS$eig) 
+# Percent Variacne Explained Using PCoA
+Eig_sum <- sum(pcoaS$eig)
   # sum of k eigenvalues
-eig1 <- pcoaS$eig[1] 
+eig1 <- pcoaS$eig[1]
   # eigenvalue for PCoA 1
-explainvar1 <- pcoaS$eig[1]/Eig_sum 
+explainvar1 <- pcoaS$eig[1]/Eig_sum
   # eigenvalue for PCoA 1 divided by sum of k eigenvalues
-explainvar1 
+explainvar1
   # percent variance explained by PCoA 1
-eig2 <- pcoaS$eig[2] 
+eig2 <- pcoaS$eig[2]
   # eigenvalue for PCoA 2
-explainvar2 <- pcoaS$eig[2]/Eig_sum 
+explainvar2 <- pcoaS$eig[2]/Eig_sum
   # eigenvalue for PCoA 2 divided by sum of k eigenvalues
-explainvar2 
+explainvar2
   # percent variance explained by PCoA 2
-eig3 <- pcoaS$eig[3] 
+eig3 <- pcoaS$eig[3]
   # eigenvalue for PCoA 3
-explainvar3 <- pcoaS$eig[3]/Eig_sum 
+explainvar3 <- pcoaS$eig[3]/Eig_sum
   # eigenvalue for PCoA 3 divided by sum of k eigenvalues
-explainvar3 
+explainvar3
   # percent variance explained by PCoA 3
 
 ## PCoA Plots ##################################################################
@@ -159,7 +175,7 @@ explainvar3
 
 # Organize Samples for Plotting
 # Plot Codes:
-# "St" = station; 1 and 2 = African (dry) slope; 5 and 6 = European (wet) slope 
+# "St" = station; 1 and 2 = African (dry) slope; 5 and 6 = European (wet) slope
 # "Loc" = locations; 10 replicate plots on each station, identified (1, 2, 5, 6)
 
 # Stripping PCoA Loadings out of cmdscale Output
@@ -177,46 +193,46 @@ pcoap <- cbind(pcoap, site)
 
 #--> AF: Station 1 - DNA
 AF1_DNA_1 <- pcoap[c(1,3,5,7,9,11,13,15,17,19),1]             #PCoA 1 scores
-AF1_DNA_2 <- pcoap[c(1,3,5,7,9,11,13,15,17,19),2]             #PCoA 2 scores 
+AF1_DNA_2 <- pcoap[c(1,3,5,7,9,11,13,15,17,19),2]             #PCoA 2 scores
 #--> AF: Station 2 - DNA
-AF2_DNA_1 <- pcoap[c(21,23,24,25,27,29,31,33,35),1]           #PCoA 1 scores  
-AF2_DNA_2 <- pcoap[c(21,23,24,25,27,29,31,33,35),2]           #PCoA 2 scores 
+AF2_DNA_1 <- pcoap[c(21,23,24,25,27,29,31,33,35),1]           #PCoA 1 scores
+AF2_DNA_2 <- pcoap[c(21,23,24,25,27,29,31,33,35),2]           #PCoA 2 scores
 #--> EU: Station 5 - DNA
 EU1_DNA_1 <- pcoap[c(37,39,41,43,45,47,49,51,53,55),1]           #PCoA 1 scores
-EU1_DNA_2 <- pcoap[c(37,39,41,43,45,47,49,51,53,55),2]           #PCoA 2 scores 
+EU1_DNA_2 <- pcoap[c(37,39,41,43,45,47,49,51,53,55),2]           #PCoA 2 scores
 #--> EU: Station 6 - DNA
 EU2_DNA_1 <- pcoap[c(57,59,61,63,65,67,69,71,73,75),1]        #PCoA 1 scores
-EU2_DNA_2 <- pcoap[c(57,59,61,63,65,67,69,71,73,75),2]        #PCoA 2 scores 
+EU2_DNA_2 <- pcoap[c(57,59,61,63,65,67,69,71,73,75),2]        #PCoA 2 scores
 #--> AF: Station 1 - RNA
 AF1_RNA_1 <- pcoap[c(2,4,6,8,10,12,14,16,18,20),1]            #PCoA 1 scores
-AF1_RNA_2 <- pcoap[c(2,4,6,8,10,12,14,16,18,20),2]            #PCoA 2 scores 
+AF1_RNA_2 <- pcoap[c(2,4,6,8,10,12,14,16,18,20),2]            #PCoA 2 scores
 #--> AF: Station 2 - RNA
-AF2_RNA_1 <- pcoap[c(22,26,28,30,32,34,36),1]                 #PCoA 1 scores  
-AF2_RNA_2 <- pcoap[c(22,26,28,30,32,34,36),2]                 #PCoA 2 scores  
+AF2_RNA_1 <- pcoap[c(22,26,28,30,32,34,36),1]                 #PCoA 1 scores
+AF2_RNA_2 <- pcoap[c(22,26,28,30,32,34,36),2]                 #PCoA 2 scores
 #--> EU: Station 5 - RNA
-EU1_RNA_1 <- pcoap[c(38,40,42,44,46,48,50,52,54,56),1]        #PCoA 1 scores 
-EU1_RNA_2 <- pcoap[c(38,40,42,44,46,48,50,52,54,56),2]        #PCoA 2 scores   
+EU1_RNA_1 <- pcoap[c(38,40,42,44,46,48,50,52,54,56),1]        #PCoA 1 scores
+EU1_RNA_2 <- pcoap[c(38,40,42,44,46,48,50,52,54,56),2]        #PCoA 2 scores
 #--> EU: Station 6 - RNA
-EU2_RNA_1 <- pcoap[c(58,60,62,64,66,68,70,72,74,76),1]        #PCoA 1 scores 
-EU2_RNA_2 <- pcoap[c(58,60,62,64,66,68,70,72,74,76),2]        #PCoA 2 scores  
+EU2_RNA_1 <- pcoap[c(58,60,62,64,66,68,70,72,74,76),1]        #PCoA 1 scores
+EU2_RNA_2 <- pcoap[c(58,60,62,64,66,68,70,72,74,76),2]        #PCoA 2 scores
 
 # Plot Parameters
-par(mfrow=c(1,1), mar=c(5,5,1,1)) 
+par(mfrow=c(1,1), mar=c(5,5,1,1))
 x <- c(min(pcoap[,2])+min(pcoap[,2])*0.25,max(pcoap[,2])+max(pcoap[,2])*0.1)
 y <- c(min(pcoap[,1])+min(pcoap[,1])*0.1,max(pcoap[,1])+max(pcoap[,1])*0.1)
 
 # Initiate Plot
-plot(pcoap[,2], pcoap[,1], xlab="PCoA Axis 2", ylab="PCoA Axis 1", 
-  xlim=rev(range(x)),ylim= y, pch=16, cex=2.0, type='n',xaxt="n",yaxt="n", 
-  cex.lab=1.5, cex.axis=1.2) 
-    # Creates PCoA byplot for PCoA axis 1 and PCoA axis 2; adds axes labels, 
+plot(pcoap[,2], pcoap[,1], xlab="PCoA Axis 2", ylab="PCoA Axis 1",
+  xlim=rev(range(x)),ylim= y, pch=16, cex=2.0, type='n',xaxt="n",yaxt="n",
+  cex.lab=1.5, cex.axis=1.2)
+    # Creates PCoA byplot for PCoA axis 1 and PCoA axis 2; adds axes labels,
     # Adjusts axes lengths and size
-    
+
   axis(side=1,at=c(-0.4,-0.2,0,0.2), las=1)    # adds x-axis ticks
   axis(side=2,at=c(-0.2,0,0.2,0.4), las=1)     # adds y-axis ticks
   segments(-1500, -0, 1500, 0, lty="dotted")   # adds horizontal reference line
   segments(0, -1500, 0, 1500, lty="dotted")    # adds vertical reference line
-  
+
   points(AF1_DNA_2,AF1_DNA_1,pch=21,cex=2.0,col="black",bg="brown3",lwd=2)
   points(AF2_DNA_2,AF2_DNA_1,pch=21,cex=2.0,col="black",bg="brown3",lwd=2)
   points(EU1_DNA_2,EU1_DNA_1,pch=21,cex=2.0,col="black",bg="green3",lwd=2)
@@ -226,10 +242,10 @@ plot(pcoap[,2], pcoap[,1], xlab="PCoA Axis 2", ylab="PCoA Axis 1",
   points(EU1_RNA_2,EU1_RNA_1,pch=22,cex=2.0,col="black",bg="green3",lwd=2)
   points(EU2_RNA_2,EU2_RNA_1,pch=22,cex=2.0,col="black",bg="green3",lwd=2)
     # adds PCoA scores for each to existing graph
-  
+
   ordiellipse(cbind(pcoap[,2], pcoap[,1]), pcoap$site, kind="sd", conf=0.95,
-    lwd=2, lty=3, draw = "lines", col = "black", label=FALSE)  
-  #legend(-0.25, -0.08,"AF-1-DNA", cex=2.0,col="red",pch=16,bty="n")  
+    lwd=2, lty=3, draw = "lines", col = "black", label=FALSE)
+  #legend(-0.25, -0.08,"AF-1-DNA", cex=2.0,col="red",pch=16,bty="n")
   #legend(-0.25, -0.12,"AF-2-DNA", cex=2.0,col="pink",pch=16,bty="n")
   #legend(-0.25, -0.12,"EU-1-DNA", cex=1.5,col="darkgreen",pch=16,bty="n")
   #legend(-0.25, -0.12,"EU-2-DNA", cex=1,col="chartreuse4",pch=16,bty="n")
@@ -264,7 +280,7 @@ molecule[c(1,3,5,7,9,11,13,15,17,19,21,23,24,25,27,29,31,33,35,
   37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75)] <- "DNA"
 molecule[c(2,4,6,8,10,12,14,16,18,20,22,26,28,30,32,34,36,
   38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76)] <- "RNA"
-  
+
 slope <- rep(NA, 76)
 slope[1:36] <- "AF"
 slope[37:76] <- "EU"
@@ -314,6 +330,5 @@ summary(sim)
 
 simper(comm, group,  ...)
 ## S3 method for class 'simper'
-summary(object, ordered = TRUE, 
+summary(object, ordered = TRUE,
      digits = max(3, getOption("digits") - 3), ...)
-     
