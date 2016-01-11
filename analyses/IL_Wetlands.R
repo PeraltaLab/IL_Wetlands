@@ -28,13 +28,14 @@ read.table("WLbact_STDnew.csv", header = TRUE, sep = ",", row.names = 1)
 
 #I'm not sure why the OTUsREL didn't get standardized - so the WLbact_STDnew.csv isn't standardized. Please help :)
 
-new.data <- read.csv("./data/WLbact_STDnew.csv", header=TRUE)
+new.data <- read.csv("./WLbact_STDnew.csv", header=TRUE)
+df.env <- read.csv("./data/WL_plant_soil.csv", header=TRUE)
+
+new.data.env <- merge(df.env, new.data) #but we need to get rid of the ID column in the new.data dataframe
 
 #rows,col
-adonis = adonis(new.data[,-c(1:6)] ~ Treatment, method = "bray", data = new.data, perm=1000)
+adonis = adonis(new.data.env[,-c(1:17)] ~ Treatment, method = "bray", data = new.data, perm=1000)
 adonis
-
-
 
 Simper <- simper(sampleREL.dist, group = Treatment)
 summary(Simper)
