@@ -1,4 +1,3 @@
-################################################################################
 #                                                                              #
 #	Henry County Mitigation Project 2013: Microbial Community Charactorization   #
 #                                                                              #
@@ -23,6 +22,7 @@ require("vegan")
 require("reshape")
 require("BiodiversityR")
 require("ecodist")
+require("ggplot2")
 
 #################
 # Import OTU data
@@ -43,6 +43,10 @@ for(i in 1:dim(WLdata)[1]){
   WLdataREL[i,] <- WLdata[i,]/sum(WLdata[i,])
 }
 
+# Import Taxonomy File
+
+
+
 ###########################
 # Import Environmental Data
 ###########################
@@ -50,29 +54,23 @@ for(i in 1:dim(WLdata)[1]){
 design <- read.csv("./data/WL.design.csv", row.names = 1)
 treatments <- design$Treatment
 levels(treatments) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
-# levels(new.data$Treatment) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
-
-
-# write.table(OTUsREL, file = "WLbact_STDnew.csv", sep = ",", col.names = NA)
-# read.table("./data/WLbact_new.csv", header = TRUE, sep = ",", row.names = 1)
-
-#I'm not sure why the OTUsREL didn't get standardized - so the WLbact_STDnew.csv isn't standardized. Please help :)
-
-new.data <- read.csv("./data/WLbact_new.csv", header=TRUE, row.names=1)
-
 
 ###########################
 # Simple Hypothesis Testing
 ###########################
 
-adonis = adonis(WLdataREL ~ treatments, method = "bray", data = new.data, perm=1000)
-adonis
+WL.adonis <- adonis(WLdataREL ~ treatments, method = "bray", perm=1000)
+WL.adonis
 
-Simper <- simper(WLdataREL, group = treatments)
-summary(Simper)
+WL.simper <- simper(WLdataREL, group = treatments)
+summary(WL.simper)
 
+#############
+# Ordinations
+#############
 
-library(ggplot2)
+# nMDS Plot
+
 df <- WLdataREL	# bacteria
 df.env <- design	# ENV
 df.mds <- metaMDS(df, k=2, trymax=50, zerodist="add")
@@ -95,48 +93,28 @@ p2 <- p1+geom_point(aes(colour=treatments), size=5)
 # p3 + colScale
 p2 + colScale
 
+# Identify the outliers
 which(df$Axis1 > 0.05)
 #[1] 11 42 49 56
 
-
-library(ggplot2)
-df <- new.data[,-c(1:8)]	# bacteria
-df.env <- new.data[,c(1:8)]	# ENV
-df.mds <- metaMDS(df, k=2, trymax=50, zerodist="add")
-df <- data.frame(new.data[,5],new.data[,4], df.mds$points[,1], df.mds$points[,2])
-str(df)
-
-levels(new.data$Treatment) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
-
-names(df) <- c("Treatment", "Plot", "Axis1", "Axis2")
-df$Treatment <- factor(df$Treatment, levels=c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference"))
-myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#339933", "#336633", "#FF9933") #pick new
-names(myColors) <- levels(df$Treatment)
-colScale <- scale_colour_manual(values = myColors)
-p1<-ggplot(df,aes(x=Axis1,y=Axis2,label=TRUE))
-p2 <- p1+geom_point(aes(colour=Treatment), size=5)
-#p3 <-p2 + geom_text(aes(label=new.data$RunID), size=4) #added labels
-#p3 + colScale
-p2 + colScale
-
-#to figure out outliers
-which(df$Axis1 > 0.05)
-#[1] 11 12 13 45 53 61
+# Principal Coordinates Ordination
 
 # Create Distance Matrix
-samplePA.dist <- vegdist(t(dataPA),method="bray")
-sampleREL.dist <- vegdist(t(dataREL),method="bray")
+samplePA.dist <- vegdist(WLdataPA, method="bray")
+sampleREL.dist <- vegdist(WLdataREL, method="bray")
 
 # Principal Coordinates Analysis
-EC_pcoa <- cmdscale(sampleREL.dist,k=3,eig=TRUE,add=FALSE)
+WL_pcoa <- cmdscale(sampleREL.dist, k=3, eig=TRUE, add=FALSE)
   # Classical (Metric) Multidimensional Scaling; returns PCoA coordinates
   # eig=TRUE returns eigenvalues; k = # of dimensions to calculate
 
 # Responder Analysis Based on PCoA
-pcoaS <- add.spec.scores(EC_pcoa,t(dataREL),method="cor.scores",Rscale=TRUE,
+pcoaS <- add.spec.scores(WL_pcoa, WLdataREL, method="cor.scores",Rscale=TRUE,
   scaling=1,multi=1)
   # retrieves correlation coefficient for each taxon's relative
   # abudnace with respect to PCoA coordinates (k = 3)
+
+# Mario's Stopping Point 1/13/16
 
 # PCoA Axis 1 Responders
 cor_spp_a1 <- cbind(EC_tax[,3],pcoaS$cproj[,1])
