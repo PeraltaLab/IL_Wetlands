@@ -20,8 +20,8 @@ se <- function(x){sd(x)/sqrt(length(x))}
 source("./bin/MothurTools.R")
 require("vegan")
 require("reshape")
-require("BiodiversityR")
-require("ecodist")
+#require("BiodiversityR")
+# require("ecodist")
 require("ggplot2")
 
 #################
@@ -53,7 +53,8 @@ for(i in 1:dim(WLdata)[1]){
 
 design <- read.csv("./data/WL.design.csv", row.names = 1)
 treatments <- design$Treatment
-levels(treatments) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
+levels(treatments) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", 
+                        "Seedbank", "Reference")
 
 ###########################
 # Simple Hypothesis Testing
@@ -83,7 +84,8 @@ centroids <- cast(L.centroids, variable ~ treatments, mean)
 df <- data.frame(design[,2],design[,1], df.mds$points[,1], df.mds$points[,2])
 str(df)
 names(df) <- c("Treatment", "Plot", "Axis1", "Axis2")
-df$Treatment <- factor(df$Treatment, levels=c("BallBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference"))
+df$Treatment <- factor(df$Treatment, levels=c("BallBurlapped", "Bareroot", 
+                       "Seedling", "Acorn", "Seedbank", "Reference"))
 myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#339933", "#336633", "#FF9933") #pick new
 names(myColors) <- levels(df$Treatment)
 colScale <- scale_colour_manual(values = myColors)
@@ -113,6 +115,9 @@ pcoaS <- add.spec.scores(WL_pcoa, WLdataREL, method="cor.scores",Rscale=TRUE,
   scaling=1,multi=1)
   # retrieves correlation coefficient for each taxon's relative
   # abudnace with respect to PCoA coordinates (k = 3)
+
+pcoaS <- wascores(WL_pcoa$points, WLdataREL, expand=T)
+
 
 # Mario's Stopping Point 1/13/16
 
