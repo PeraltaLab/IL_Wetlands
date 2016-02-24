@@ -4,16 +4,17 @@
 ################################################################################
 #                                                                              #
 #	Written by: Jay Lennon (2014/02/03)                                          #
-# Modified by: Mario Muscarella (2014/02/03)                                   #
+# Modified by: Mario Muscarella                                 #
 # Modified by: Ariane Peralta                                                  #
-#	Last update: 2014/02/04                                                      #
+#	Last update: 2016/02/24                                                      #
 #                                                                              #
 ################################################################################
 
 # Setup Work Environment
 rm(list=ls())
 setwd("~/GitHub/IL_Wetlands")
-se <- function(x){sd(x)/sqrt(length(x))}
+se <- function(x, ...){sd(x, na.rm = TRUE)/sqrt(length(na.omit(x)))}
+ci <- function(x, ...){1.96 * sd(x,na.rm = TRUE)}
 
 # Code Dependencies
 # source("./bin/DiversityFunctions.R")
@@ -32,7 +33,10 @@ require("ggplot2")
 WLdata.in <- read.otu("./data/WL.final.shared")
 
 # Remove Mock Community
-WLdata <- WLdata.in[which(rownames(WLdata.in) != "Mock"), ]
+WLdata.in2 <- WLdata.in[which(rownames(WLdata.in) != "Mock"), ]
+
+# Remove OTUs with less than two occurences across all sites
+WLdata <- WLdata.in2[, which(colSums(WLdata.in2) >= 2)]
 
 # Make Presence Absence Matrix
 WLdataPA <- (WLdata > 0) * 1
@@ -42,6 +46,9 @@ WLdataREL <- WLdata
 for(i in 1:dim(WLdata)[1]){
   WLdataREL[i,] <- WLdata[i,]/sum(WLdata[i,])
 }
+
+# Log Transform Relative Abundances
+WLdataREL.log <- decostand(WLdataREL, method="log")
 
 # Import Taxonomy File
 WL.tax <- read.tax(taxonomy = "./data/WL.final.0.03.taxonomy")
@@ -56,6 +63,8 @@ treatments <- design$Treatment
 levels(treatments) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", 
                         "Seedbank", "Reference")
 
+
+
 ###########################
 # Simple Hypothesis Testing
 ###########################
@@ -69,46 +78,132 @@ summary(WL.simper)
 #############
 # Ordinations
 #############
-# 
-# # nMDS Plot
-# 
-# df <- WLdataREL	# bacteria
-# df.env <- design	# ENV
-# df.mds <- metaMDS(df, k=2, trymax=50, zerodist="add")
-# 
-# points <- cbind(as.data.frame(df.mds$points), treatments)
-# L.centroids <- melt(points, id="treatments", measure.vars = c("MDS1", "MDS2"))
-# centroids <- cast(L.centroids, variable ~ treatments, mean)
-# 
-# 
-# df <- data.frame(design[,2],design[,1], df.mds$points[,1], df.mds$points[,2])
-# str(df)
-# names(df) <- c("Treatment", "Plot", "Axis1", "Axis2")
-# df$Treatment <- factor(df$Treatment, levels=c("BallBurlapped", "Bareroot", 
-#                        "Seedling", "Acorn", "Seedbank", "Reference"))
-# myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#339933", "#336633", "#FF9933") #pick new
-# names(myColors) <- levels(df$Treatment)
-# colScale <- scale_colour_manual(values = myColors)
-# p1<-ggplot(df,aes(x=Axis1,y=Axis2,label=TRUE))
-# p2 <- p1+geom_point(aes(colour=treatments), size=5)
-#  p3 <-p2 + geom_text(aes(label=row.names(df)), size=4) #added labels
-#  p3 + colScale
-# #p2 + colScale
-# 
-# # Identify the outliers
-# which(df$Axis1 > 0.05)
-# #[1] 11 42 49 56
 
+# nMDS Plot
+
+df.bac <- WLdataREL.log	# bacteria
+df.env <- design	# ENV
+df.mds <- metaMDS(df.bac, k=2, trymax=50, zerodist="add")
+
+# Remove Odd sites
+WLdataREL.log2 <- WLdataREL.log[c(df.mds$points[, 1] < 0.25), ]
+design2 <- design[c(df.mds$points[, 1] < 0.25), ]
+treatments <- design2$Treatment
+
+# Rerun
+df.bac <- WLdataREL.log2	# bacteria
+df.env <- design2	# ENV
+df.mds <- metaMDS(df.bac, k=2, trymax=50, zerodist="add")
+
+points <- cbind(as.data.frame(df.mds$points), treatments)
+L.centroids <- melt(points, id="treatments", measure.vars = c("MDS1", "MDS2"))
+centroids <- cast(L.centroids, variable ~ treatments, mean)
+
+
+df <- data.frame(design2[,2],design2[,1], df.mds$points[,1], df.mds$points[,2])
+str(df)
+names(df) <- c("Treatment", "Plot", "Axis1", "Axis2")
+df$Treatment <- factor(df$Treatment, levels=c("BallBurlapped", "Bareroot", 
+                       "Seedling", "Acorn", "Seedbank", "Reference"))
+myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#339933", "#336633", "#FF9933") #pick new
+names(myColors) <- levels(df$Treatment)
+colScale <- scale_colour_manual(values = myColors)
+p1<-ggplot(df,aes(x=Axis1,y=Axis2,label=TRUE))
+p2 <- p1+geom_point(aes(colour=treatments), size=5)
+ p3 <-p2 + geom_text(aes(label=row.names(df)), size=4) #added labels
+ p3 + colScale
+#p2 + colScale
+
+# Identify the outliers
+which(df$Axis1 > 0.05)
+#[1] 11 42 49 56
+
+##################################
 # Principal Coordinates Ordination
+##################################
 
 # Create Distance Matrix
-samplePA.dist <- vegdist(WLdataPA, method="bray")
 sampleREL.dist <- vegdist(WLdataREL, method="bray")
 
 # Principal Coordinates Analysis
 WL_pcoa <- cmdscale(sampleREL.dist, k=3, eig=TRUE, add=FALSE)
   # Classical (Metric) Multidimensional Scaling; returns PCoA coordinates
   # eig=TRUE returns eigenvalues; k = # of dimensions to calculate
+
+# Remove Odd Sites
+WLdataREL.2 <- WLdataREL[c(abs(WL_pcoa$points[, 1]) < 0.3), ]
+design2 <- design[c(abs(WL_pcoa$points[, 1]) < 0.3), ]
+treatments <- design2$Treatment
+
+# Create Distance Matrix
+sampleREL.dist2 <- vegdist(WLdataREL.2, method="bray")
+
+# Principal Coordinates Analysis
+WL_pcoa <- cmdscale(sampleREL.dist2, k=2, eig=TRUE, add=FALSE)
+# Classical (Metric) Multidimensional Scaling; returns PCoA coordinates
+# eig=TRUE returns eigenvalues; k = # of dimensions to calculate
+
+explainvar1 <- round(WL_pcoa$eig[1] / sum(WL_pcoa$eig), 3) * 100
+explainvar2 <- round(WL_pcoa$eig[2] / sum(WL_pcoa$eig), 3) * 100
+sum.eig <- sum(explainvar1, explainvar2)
+
+# Plot
+points <- cbind(as.data.frame(WL_pcoa$points), treatments)
+L.centroids <- melt(points, id="treatments", measure.vars = c("V1", "V2"))
+centroids <- cast(L.centroids, variable ~ treatments, mean)
+centroids.se <- cast(L.centroids, variable ~ treatments, se)
+centroids.sd <- cast(L.centroids, variable ~ treatments, sd)
+
+cent.dataframe <- t(data.frame(rbind(centroids[1,-1], centroids[2,-1],
+                             centroids.sd[1,-1],centroids.sd[2,-1])))
+colnames(cent.dataframe) <- c("V1", "V2", "V1e", "V2e")
+cent.treats <- rownames(cent.dataframe)
+
+myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#000000", "#336633", "#FF9933") #pick new
+names(myColors) <- levels(cent.treats)
+colScale <- scale_colour_manual(values = myColors)
+
+# Define Plot Parameters
+par(mar = c(5, 5.5, 1, 1) + 0.1)
+
+plot(cent.dataframe[,1], cent.dataframe[,2], type = 'n', las = 1,
+     xlim = c(-0.1, 0.15), ylim = c(-0.1, 0.1),
+     xaxt = "n", xlab = "", yaxt = "n", ylab="")
+arrows(x0 = cent.dataframe[,1], 
+       y1 = cent.dataframe[,2] - cent.dataframe[,4], 
+       y0 = cent.dataframe[,2] + cent.dataframe[,4],
+       angle = 90,
+       length=0.1, lwd = 2, code = 3)
+arrows(y0 = cent.dataframe[,2], 
+       x1 = cent.dataframe[,1] - cent.dataframe[,3], 
+       x0 = cent.dataframe[,1] + cent.dataframe[,3],
+       angle = 90,
+       length=0.1, lwd = 2, code = 3)
+points(cent.dataframe[,1], cent.dataframe[,2], 
+       cex = 1.5, col = myColors, pch = 15)
+legend("topright", legend = cent.treats, col = myColors, 
+       pch = 15, cex = 0.75, bty = 'n')
+
+axis(side = 1, labels = T, las = 1, lwd.ticks = 2)
+axis(side = 2, labels = T, las = 1, lwd.ticks = 2)
+axis(side=1, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side=3, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side=1, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+axis(side=3, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+axis(side = 2, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side = 4, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side = 2, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+axis(side = 4, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+
+mtext(paste("PCoA 1 (", explainvar1, "%)", sep = ""), side = 1, line = 3, cex = 1.5)
+mtext(paste("PCoA 2 (", explainvar2, "%)", sep = ""), side = 2, line = 3.5, cex = 1.5)
+      
+box(lwd = 2)
+
+
+
+
+
 
 # Responder Analysis Based on PCoA
 # pcoaS <- add.spec.scores(WL_pcoa, WLdataREL, method="cor.scores",Rscale=TRUE,
@@ -215,6 +310,69 @@ text(WL.pcoa$points[ ,1], WL.pcoa$points[ ,2], design$Plot)
 
 
 names(which(WL.pcoa$points[, 1] > 0.3))
+
+test <- which(WL.pcoa$points[, 1] > 0.3)
+
+###
+# Plot with odd samples removed
+###
+WLdataREL2 <- WLdataREL[c(WL.pcoa$points[, 1] < 0.3), ]
+design2 <- design[-which(WL.pcoa$points[, 1] > 0.3), ]
+sampleREL.dist2 <- vegdist(WLdataREL2, method="bray")
+
+
+WL.pcoa <- cmdscale(sampleREL.dist2, eig = TRUE, k = 3) 
+explainvar1 <- round(WL.pcoa$eig[1] / sum(WL.pcoa$eig), 3) * 100
+explainvar2 <- round(WL.pcoa$eig[2] / sum(WL.pcoa$eig), 3) * 100
+explainvar3 <- round(WL.pcoa$eig[3] / sum(WL.pcoa$eig), 3) * 100
+sum.eig <- sum(explainvar1, explainvar2, explainvar3)
+
+# Define Plot Parameters
+par(mar = c(5, 5, 1, 1) + 0.1)
+
+# Define Plot Symbols
+WL.pch <- rep(NA, length(design$Treatment))
+for (i in 1:length(design$Treatment)){
+  
+}
+
+WL.pch <- rep(17, length(design2$Treatment))
+
+# Initiate Plot
+plot(WL.pcoa$points[ ,1], WL.pcoa$points[ ,2], 
+     # ylim = c(-0.31, 0.25), xlim = c(-0.3, 0.6), 
+     xlab = paste("PCoA 1 (", explainvar1, "%)", sep = ""),
+     ylab = paste("PCoA 2 (", explainvar2, "%)", sep = ""),
+     pch = WL.pch, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+     axes = FALSE)
+
+# Add Axes
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1, las = 1)
+axis(side = 3, labels = F, lwd.ticks = 2, cex.axis = 1, las = 1, tck=-0.02)
+axis(side = 4, labels = F, lwd.ticks = 2, cex.axis = 1, las = 1, tck=-0.02)
+axis(side = 1, labels = F, lwd.ticks = 2, cex.axis = 1, las = 1, tck=0.01)
+axis(side = 2, labels = F, lwd.ticks = 2, cex.axis = 1, las = 1, tck=0.01)
+axis(side = 3, labels = F, lwd.ticks = 2, cex.axis = 1, las = 1, tck=0.01)
+axis(side = 4, labels = F, lwd.ticks = 2, cex.axis = 1, las = 1, tck=0.01)
+abline(h = 0, v = 0, lty = 3)
+box(lwd = 2)
+
+# Add Points & Labels
+points(WL.pcoa$points[ ,1], WL.pcoa$points[ ,2],
+       pch = WL.pch, cex = 1.25, bg = "gray", col = "gray")
+
+ordiellipse(cbind(WL.pcoa$points[ ,1], WL.pcoa$points[ ,2]),
+            design2$Treatment, kind="se", conf=0.95,
+            lwd=2, draw = "polygon", col="gray", border = "black", label=TRUE, 
+            cex=1, bty = 'n')
+
+text(WL.pcoa$points[ ,1], WL.pcoa$points[ ,2], design2$Plot)
+
+
+
+
+
 
 # 
 # 
