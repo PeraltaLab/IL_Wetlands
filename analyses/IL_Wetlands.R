@@ -81,7 +81,7 @@ summary(WL.simper)
 
 # nMDS Plot
 
-df.bac <- WLdataREL.log	# bacteria
+df.bac <- WLdataREL	# bacteria
 df.env <- design	# ENV
 df.mds <- metaMDS(df.bac, k=2, trymax=50, zerodist="add")
 
@@ -182,7 +182,8 @@ arrows(y0 = cent.dataframe[,2],
 points(cent.dataframe[,1], cent.dataframe[,2], 
        cex = 1.5, col = myColors, pch = 15)
 legend("topright", legend = cent.treats, col = myColors, 
-       pch = 15, cex = 0.75, bty = 'n')
+       pch = 15, cex = 0.75, bty = 'n', inset = c(0.1, 0.05),
+       y.intersp = 1.25)
 
 axis(side = 1, labels = T, las = 1, lwd.ticks = 2)
 axis(side = 2, labels = T, las = 1, lwd.ticks = 2)
