@@ -180,7 +180,7 @@ arrows(y0 = cent.dataframe[,2],
        angle = 90,
        length=0.1, lwd = 2, code = 3)
 points(cent.dataframe[,1], cent.dataframe[,2], 
-       cex = 1.5, col = myColors, pch = 15)
+       cex = 2.5, col = myColors, pch = 15)
 legend("topright", legend = cent.treats, col = myColors, 
        pch = 15, cex = 0.75, bty = 'n', inset = c(0.1, 0.05),
        y.intersp = 1.25)
