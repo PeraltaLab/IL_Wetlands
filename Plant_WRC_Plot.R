@@ -14,12 +14,10 @@
 # Setup Work Environment
 rm(list=ls())
 setwd("~/GitHub/IL_Wetlands")
-se <- function(x, ...){sd(x, na.rm = TRUE)/sqrt(length(na.omit(x)))}
-library(vegan)
+#setwd("~/Dropbox/WRC_Project_Writing/Manuscript_WRC_Plant_Ecology")
+opar <- par(no.readonly = TRUE)  # Saves plot defaults
 
-# Setup Work Environment
-rm(list=ls())
-setwd("~/Dropbox/WRC_Project_Writing/Manuscript_WRC_Plant_Ecology")
+# Add Summary Functions
 se <- function(x, ...){sd(x, na.rm = TRUE)/sqrt(length(na.omit(x)))}
 ci <- function(x, ...){1.96 * sd(x,na.rm = TRUE)}
 
@@ -31,12 +29,12 @@ library(vegan)
 library(reshape)
 library(lme4)
 library(ggplot2)
+require("png")
+require("grid")
 
 
-se <- function(x){sd(x)/sqrt(length(x))}
 
-
-
+# Import Data
 PCC <- read.csv ("./WRC_Importance_final.csv", header=TRUE)
 labels(PCC)
 #soil <- read.csv("~/Dropbox/WRC_Project_Writing/Manuscript_WRC_Plant_Ecology/data_original/WRC_Soil_Data.csv", header=TRUE)
@@ -50,19 +48,19 @@ levels(treatments) <- c("UM/UF", "UM/F", "M/UF", "M/F")
 # Simple Hypothesis Testing
 ###########################
 
-adonis = adonis(PCC[,-c(1:9)] ~ Fertilizer*Mowing*Year, method = "bray", data = PCC, perm=1000)
-adonis
-
-adonis = adonis(PCC[,-c(1:9)] ~ Fertilizer*Mowing*Year, strata = PCC$BLOCK, method = "bray", data = PCC, perm=1000)
-adonis
-
-adonis2 = adonis(PCC[,-c(1:9)] ~ Fertilizer*Mowing*Year+(1|BLOCK/QUADRAT..), method = "bray", data = PCC, perm=1000)
-adonis2
-#adonis1 and adonis2 models were the same
-
-WL.simper <- simper(PCC[,-c(1:9)], group = PCC$treatment)
-simper <- summary(WL.simper)
-simper
+# adonis = adonis(PCC[,-c(1:9)] ~ Fertilizer*Mowing*Year, method = "bray", data = PCC, perm=1000)
+# adonis
+# 
+# adonis = adonis(PCC[,-c(1:9)] ~ Fertilizer*Mowing*Year, strata = PCC$BLOCK, method = "bray", data = PCC, perm=1000)
+# adonis
+# 
+# adonis2 = adonis(PCC[,-c(1:9)] ~ Fertilizer*Mowing*Year+(1|BLOCK/QUADRAT..), method = "bray", data = PCC, perm=1000)
+# adonis2
+# #adonis1 and adonis2 models were the same
+# 
+# WL.simper <- simper(PCC[,-c(1:9)], group = PCC$treatment)
+# simper <- summary(WL.simper)
+# simper
 
 #adonis(formula = PCC[, -c(1:9)] ~ Fertilizer * Mowing * Year,      data = PCC, permutations = 1000, method = "bray") 
 
@@ -114,22 +112,26 @@ centroids <- cast(L.centroids, ... ~ variable, fun.aggregate=c(mean,se))
 #write.csv(centroids, file="newdataClassified_genus_OTUsP.centroids.csv")
 
 ------------------------------------------------------------------------
-
+####  
+  
+png(filename="./figures/Plant_PCoA.png",
+      width = 1200, height = 1200, res = 96*2, bg = "white")
+par(opar)
 layout(matrix(1:4, 2))
   
-par(mar=c(1,1,1,1), oma=c(4,4,1,1)+0.1 )
-x.dim <- c(min(centroids$V1_mean)-(max(centroids$V1_mean)*0.1) ,
-           max(centroids$V1_mean)+(max(centroids$V1_mean)*0.1))
+par(mar=c(0.5,1,1,0.5), oma=c(5,5,1,1)+0.1)
+x.dim <- c((min(centroids$V1_mean)-(max(centroids$V1_mean)*0.15)) ,
+           (max(centroids$V1_mean)+(max(centroids$V1_mean)*0.15)))
 
-y.dim <- c(min(centroids$V2_mean)-(max(centroids$V2_mean*0.1) ,   
-           max(centroids$V2_mean)+(max(centroids$V2_mean)*0.1) )   
+y.dim <- c((min(centroids$V2_mean)-(max(centroids$V2_mean*0.15))),   
+           (max(centroids$V2_mean)+(max(centroids$V2_mean)*0.15)+0.025))
            
            
 plot(pcoap$V1, pcoap$V2, xlab="", 
      ylab="", 
      xlim=x.dim, ylim=y.dim, pch=16, cex=2.0, type="n",xaxt="n",yaxt="n", 
      cex.lab=1.5, cex.axis=1.2) 
-axis(side=1, las=1, cex = 0.8)
+axis(side=1, labels = F, las=1, cex = 0.8)
 axis(side=2, las=1, cex = 0.8)
 abline(h=0, lty="dotted")
 abline(v=0, lty="dotted")
@@ -154,8 +156,8 @@ text(centroids[which(centroids$treatments == "UM/UF"), ]$V1_mean,
        centroids[which(centroids$treatments == "UM/UF"), ]$V2_se, 
      labels=centroids[which(centroids$treatments == "UM/UF"), ]$year, 
      pos=3, cex = 0.6, srt = 45, offset = 0.75)
-rect(-0.1, 0.3, 0.22, 0.4, col = "white", border = NA)
-legend("topright", "Unmowed/Unfertilized", bty = "n", inset = c(0.16, 0))
+rect(-0.13, 0.14, 0.22, 0.185, col = "white", border = NA)
+text(-0.13, 0.16, "Unmowed/Unfertilized", adj = 0)
 
 
 plot(pcoap$V1, pcoap$V2, xlab="", 
@@ -187,8 +189,8 @@ text(centroids[which(centroids$treatments == "UM/F"), ]$V1_mean,
       centroids[which(centroids$treatments == "UM/F"), ]$V2_se, 
     labels=centroids[which(centroids$treatments == "UM/F"), ]$year, 
     pos=3, cex = 0.6, srt = 45, offset = 0.75)
-rect(-0.1, 0.3, 0.22, 0.4, col = "white", border = NA)
-legend("topright", "Unmowed/Fertilized", bty = "n", inset = c(0.16, 0))
+rect(-0.13, 0.14, 0.22, 0.185, col = "white", border = NA)
+text(-0.13, 0.16, "Unmowed/Fertilized", adj = 0)
 
 
 
@@ -197,8 +199,8 @@ plot(pcoap$V1, pcoap$V2, xlab="",
     ylab="", 
     xlim=x.dim, ylim=y.dim, pch=16, cex=2.0, type="n",xaxt="n",yaxt="n", 
     cex.lab=1.5, cex.axis=1.2)
-axis(side=1, las=1, cex = 0.8)
-axis(side=2, las=1, cex = 0.8)
+axis(side=1, labels = F, las=1, cex = 0.8)
+axis(side=2, labels = F, las=1, cex = 0.8)
 abline(h=0, lty="dotted")
 abline(v=0, lty="dotted")
 box(lwd=2)
@@ -222,8 +224,8 @@ text(centroids[which(centroids$treatments == "M/UF"), ]$V1_mean,
       centroids[which(centroids$treatments == "M/UF"), ]$V2_se, 
     labels=centroids[which(centroids$treatments == "M/UF"), ]$year, 
     pos=3, cex = 0.6, srt = 45, offset = 0.75)
-rect(-0.1, 0.3, 0.22, 0.4, col = "white", border = NA)
-legend("topright", "Mowed/Unfertilized", bty = "n", inset = c(0.16, 0))
+rect(-0.13, 0.14, 0.22, 0.185, col = "white", border = NA)
+text(-0.13, 0.16, "Mowed/Unfertilized", adj = 0)
            
 
 
@@ -232,7 +234,7 @@ plot(pcoap$V1, pcoap$V2, xlab="",
     xlim=x.dim, ylim=y.dim, pch=16, cex=2.0, type="n",xaxt="n",yaxt="n", 
     cex.lab=1.5, cex.axis=1.2)
 axis(side=1, las=1, cex = 0.8)
-axis(side=2, las=1, cex = 0.8)
+axis(side=2, labels = F, las=1, cex = 0.8)
 abline(h=0, lty="dotted")
 abline(v=0, lty="dotted")
 box(lwd=2)
@@ -256,21 +258,26 @@ text(centroids[which(centroids$treatments == "M/F"), ]$V1_mean,
       centroids[which(centroids$treatments == "M/F"), ]$V2_se, 
     labels=centroids[which(centroids$treatments == "M/F"), ]$year, 
     pos=3, cex = 0.6, srt = 45, offset = 0.75)
-rect(-0.1, 0.3, 0.22, 0.4, col = "white", border = NA)
-legend("topright", "Mowed/Fertilized", bty = "n", inset = c(0.16, 0))
+rect(-0.13, 0.14, 0.22, 0.185, col = "white", border = NA)
+text(-0.13, 0.16, "Mowed/Fertilized", adj = 0)
            
 
 
 
 mtext(paste("PCoA Axis 1 (",explainvar1, "%)", sep=""), side = 1, 
-      line = 2, outer = T, cex = 1.5)
+      line = 2.5, outer = T, cex = 1.5)
       
 mtext(paste("PCoA Axis 2 (",explainvar2, "%)", sep=""), side = 2, 
-      line = 2, outer = T, cex = 1.5)
+      line = 2.5, outer = T, cex = 1.5)
+
+dev.off() # this writes plot to folder
+graphics.off() # shuts down open devices
+
+img <- readPNG("./figures/Plant_PCoA.png")
+grid.raster(img)
 
 
-
-
+#####
 
 
 ordiellipse(cbind(pcoap$V1, pcoap$V2), pcoap$y, kind="se", conf=0.95, lwd=2, draw = "polygon", col="gray", border = "black", label=TRUE, cex=2)
