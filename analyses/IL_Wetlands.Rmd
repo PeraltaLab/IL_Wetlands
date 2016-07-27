@@ -6,7 +6,7 @@ header-includes:
   - \usepackage{array}
 - \usepackage{graphics}
 output: 
-  pdf_document:
+  html_document:
   fig_caption: true
 ---
 
