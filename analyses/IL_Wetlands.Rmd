@@ -6,7 +6,7 @@ header-includes:
   - \usepackage{array}
   - \usepackage{graphics}
 output: 
-  html_document:
+  pdf_document:
   fig_caption: true
 ---
 
@@ -27,6 +27,8 @@ require("reshape")
 #require("BiodiversityR")
 # require("ecodist")
 require("ggplot2")
+require("ade4")
+require("grid"); require("png")
 ```
 
 # Microbial Data
@@ -59,8 +61,12 @@ WL.tax <- read.tax(taxonomy = "../data/WL.final.0.03.taxonomy")
 
 # Plant Data
 ```{r}
+WL.plant <- read.csv("../data/IL_Wetlands_Plants/IL_Wetlands_HC_Plants.csv", row.names = 1)
 
+# The plant data is already relativized
+# But it might be useful to have it as PA
 
+WL.plant.PA <- (WL.plant > 0) * 1
 ```
 
 
@@ -76,11 +82,20 @@ levels(treatments) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn",
 
 # Simple Hypothesis Testing
 ```{r}
-WL.adonis <- adonis(WLdataREL ~ treatments, method = "bray", perm=1000)
-WL.adonis
+# Check that Bac and Plant data have same structure as design
+row.names(WLdataREL) == row.names(design)
+row.names(WL.plant) == row.names(design) # Same info seem to be inside
 
-WL.simper <- simper(WLdataREL, group = treatments)
-summary(WL.simper)
+# PERMANOVA
+WL.bac.adonis <- adonis(WLdataREL ~ treatments, method = "bray", perm=99)
+WL.bac.adonis
+
+WL.plant.adonis <- adonis(WL.plant ~ treatments, method = "bray", perm=99)
+WL.plant.adonis
+
+# Is this really needed?
+#WL.simper <- simper(WLdataREL, group = treatments)
+#summary(WL.simper)
 ```
 
 # Microbial Ordinations
@@ -127,6 +142,8 @@ which(df$Axis1 > 0.05)
 
 ## Principal Coordinates Ordination
 ```{r}
+png(filename="../figures/WL.bac.PCoA.png",
+    width = 1200, height = 800, res = 96*2)
 # Create Distance Matrix
 sampleREL.dist <- vegdist(WLdataREL, method="bray")
 
@@ -136,6 +153,10 @@ WL_pcoa <- cmdscale(sampleREL.dist, k=3, eig=TRUE, add=FALSE)
   # eig=TRUE returns eigenvalues; k = # of dimensions to calculate
 
 # Remove Odd Sites
+odd.sites <- row.names(WLdataREL[c(abs(WL_pcoa$points[, 1]) > 0.3), ])
+odd.sbys <- WLdataREL[c(abs(WL_pcoa$points[, 1]) > 0.3), ]
+mean(rowSums((WLdataREL > 0) * 1))
+rowSums((odd.sbys > 0) * 1)
 WLdataREL.2 <- WLdataREL[c(abs(WL_pcoa$points[, 1]) < 0.3), ]
 design2 <- design[c(abs(WL_pcoa$points[, 1]) < 0.3), ]
 treatments <- design2$Treatment
@@ -170,9 +191,10 @@ colScale <- scale_colour_manual(values = myColors)
 
 # Define Plot Parameters
 par(mar = c(5, 5.5, 1, 1) + 0.1)
+layout(matrix(1:2, 1, 2), widths = c(4,2))
 
 plot(cent.dataframe[,1], cent.dataframe[,2], type = 'n', las = 1,
-     xlim = c(-0.1, 0.15), ylim = c(-0.1, 0.1),
+     xlim = c(-0.1, 0.1), ylim = c(-0.1, 0.1),
      xaxt = "n", xlab = "", yaxt = "n", ylab="")
 arrows(x0 = cent.dataframe[,1], 
        y1 = cent.dataframe[,2] - cent.dataframe[,4], 
@@ -186,9 +208,6 @@ arrows(y0 = cent.dataframe[,2],
        length=0.1, lwd = 2, code = 3)
 points(cent.dataframe[,1], cent.dataframe[,2], 
        cex = 2.5, col = myColors, pch = 15)
-legend("topright", legend = cent.treats, col = myColors, 
-       pch = 15, cex = 0.75, bty = 'n', inset = c(0.1, 0.05),
-       y.intersp = 1.25)
 
 axis(side = 1, labels = T, las = 1, lwd.ticks = 2)
 axis(side = 2, labels = T, las = 1, lwd.ticks = 2)
@@ -205,6 +224,23 @@ mtext(paste("PCoA 1 (", explainvar1, "%)", sep = ""), side = 1, line = 3, cex = 
 mtext(paste("PCoA 2 (", explainvar2, "%)", sep = ""), side = 2, line = 3.5, cex = 1.5)
       
 box(lwd = 2)
+
+par(mar = c(5, 0, 1, 1) + 0.1)
+plot.new()
+
+legend(0, 1, legend = cent.treats, col = myColors, 
+       pch = 15, cex = 0.9, bty = 'n', inset = c(0.1, 0.05),
+       y.intersp = 1.25)
+
+
+# Close Plot Device
+dev.off()
+graphics.off()
+#```
+## Show Plot
+#```{r}
+img <- readPNG("../figures/WL.bac.PcoA.png")
+grid.raster(img)
 ```
 
 ## Microbial Phylogenetic Ordination 
@@ -215,9 +251,130 @@ box(lwd = 2)
 ```
 
 # Plant Ordinations
+## Principal Coordinates Ordination
+```{r}
+png(filename="../figures/WL.plant.PCoA.png",
+    width = 1200, height = 800, res = 96*2)
+# Create Distance Matrix
+WL.plant2 <- WL.plant[which(design$Treatment != "Bareroot"), ]
+treatments <- design$Treatment[design$Treatment != "Bareroot"]
+samplePlant.dist <- vegdist(WL.plant2, method="bray")
+
+# Principal Coordinates Analysis
+WLplant_pcoa <- cmdscale(samplePlant.dist, k=3, eig=TRUE, add=FALSE)
+  # Classical (Metric) Multidimensional Scaling; returns PCoA coordinates
+  # eig=TRUE returns eigenvalues; k = # of dimensions to calculate
+
+# # Remove Odd Sites
+# odd.sites <- row.names(WLdataREL[c(abs(WL_pcoa$points[, 1]) > 0.3), ])
+# odd.sbys <- WLdataREL[c(abs(WL_pcoa$points[, 1]) > 0.3), ]
+# mean(rowSums((WLdataREL > 0) * 1))
+# rowSums((odd.sbys > 0) * 1)
+# WLdataREL.2 <- WLdataREL[c(abs(WL_pcoa$points[, 1]) < 0.3), ]
+# design2 <- design[c(abs(WL_pcoa$points[, 1]) < 0.3), ]
+# treatments <- design2$Treatment
+
+# Create Distance Matrix
+#sampleREL.dist2 <- vegdist(WLdataREL.2, method="bray")
+
+# Principal Coordinates Analysis
+#WL_pcoa <- cmdscale(sampleREL.dist2, k=2, eig=TRUE, add=FALSE)
+# Classical (Metric) Multidimensional Scaling; returns PCoA coordinates
+# eig=TRUE returns eigenvalues; k = # of dimensions to calculate
+
+explainvar1 <- round(WLplant_pcoa$eig[1] / sum(WLplant_pcoa$eig), 3) * 100
+explainvar2 <- round(WLplant_pcoa$eig[2] / sum(WLplant_pcoa$eig), 3) * 100
+sum.eig <- sum(explainvar1, explainvar2)
+
+# Plot
+points <- cbind(as.data.frame(WLplant_pcoa$points), treatments)
+L.centroids <- melt(points, id="treatments", measure.vars = c("V1", "V2"))
+centroids <- cast(L.centroids, variable ~ treatments, mean)
+centroids.se <- cast(L.centroids, variable ~ treatments, se)
+centroids.sd <- cast(L.centroids, variable ~ treatments, sd)
+
+cent.dataframe <- t(data.frame(rbind(centroids[1,-1], centroids[2,-1],
+                             centroids.sd[1,-1],centroids.sd[2,-1])))
+colnames(cent.dataframe) <- c("V1", "V2", "V1e", "V2e")
+cent.treats <- rownames(cent.dataframe)
+
+myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#000000", "#336633", "#FF9933") #pick new
+names(myColors) <- levels(cent.treats)
+colScale <- scale_colour_manual(values = myColors)
+
+# Define Plot Parameters
+par(mar = c(5, 5.5, 1, 1) + 0.1)
+layout(matrix(1:2, 1, 2), widths = c(4,2))
+
+plot(cent.dataframe[,1], cent.dataframe[,2], type = 'n', las = 1,
+     xlim = c(-0.8, 0.8), ylim = c(-0.8, 0.8),
+     xaxt = "n", xlab = "", yaxt = "n", ylab="")
+arrows(x0 = cent.dataframe[,1], 
+       y1 = cent.dataframe[,2] - cent.dataframe[,4], 
+       y0 = cent.dataframe[,2] + cent.dataframe[,4],
+       angle = 90,
+       length=0.1, lwd = 2, code = 3)
+arrows(y0 = cent.dataframe[,2], 
+       x1 = cent.dataframe[,1] - cent.dataframe[,3], 
+       x0 = cent.dataframe[,1] + cent.dataframe[,3],
+       angle = 90,
+       length=0.1, lwd = 2, code = 3)
+points(cent.dataframe[,1], cent.dataframe[,2], 
+       cex = 2.5, col = myColors, pch = 15)
+
+axis(side = 1, labels = T, las = 1, lwd.ticks = 2)
+axis(side = 2, labels = T, las = 1, lwd.ticks = 2)
+axis(side=1, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side=3, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side=1, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+axis(side=3, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+axis(side = 2, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side = 4, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side = 2, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+axis(side = 4, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+
+mtext(paste("PCoA 1 (", explainvar1, "%)", sep = ""), side = 1, line = 3, cex = 1.5)
+mtext(paste("PCoA 2 (", explainvar2, "%)", sep = ""), side = 2, line = 3.5, cex = 1.5)
+      
+box(lwd = 2)
+
+par(mar = c(5, 0, 1, 1) + 0.1)
+plot.new()
+
+legend(0, 1, legend = cent.treats, col = myColors, 
+       pch = 15, cex = 0.9, bty = 'n', inset = c(0.1, 0.05),
+       y.intersp = 1.25)
 
 
+# Close Plot Device
+dev.off()
+graphics.off()
+#```
+## Show Plot
+#```{r}
+img <- readPNG("../figures/WL.plant.PcoA.png")
+grid.raster(img)
+```
 
+
+# Similarity between microbe and plant communities
+```{r}
+rownames(WL.plant) <- rownames(WLdataREL)
+
+# Remove Odd Sites from Bac Community
+bac.comm <- WLdataREL[-which(rownames(WLdataREL) %in% odd.sites),]
+plant.comm <- WL.plant[-which(rownames(WL.plant) %in% odd.sites), ]
+
+# Remove Bare Treatment
+bare.sites <- rownames(design[design$Treatment == "Bareroot", ])
+bac.comm <- bac.comm[-which(rownames(bac.comm) %in% bare.sites),]
+plant.comm <- plant.comm[-which(rownames(plant.comm) %in% bare.sites), ]
+
+dist.bac <- vegdist(bac.comm, method = "bray")
+dist.plant <- vegdist(plant.comm, method = "bray")
+
+mantel.rtest(dist.bac, dist.plant)
+```
 
 
 
