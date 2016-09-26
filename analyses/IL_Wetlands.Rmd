@@ -29,6 +29,7 @@ require("reshape")
 require("ggplot2")
 require("ade4")
 require("grid"); require("png")
+require("ape"); require("picante")
 ```
 
 # Microbial Data
@@ -69,6 +70,53 @@ WL.plant <- read.csv("../data/IL_Wetlands_Plants/IL_Wetlands_HC_Plants.csv", row
 WL.plant.PA <- (WL.plant > 0) * 1
 ```
 
+# Phylogenetic Analysis
+```{sh}
+# The following was done outside of R
+
+python ../bin/name_change.py WL.final.0.03.rep.fasta WL.final.0.03.rep.rename.fasta
+
+FastTree -gtr -nt -gamma -fastest WL.final.0.03.rep.rename.fasta > WL.bac.tree 
+
+Output: 
+ML-NNI round 11: LogLk = -1017514.896 NNIs 4825 max delta 3.21 Time 626.69 (final)
+Optimize all lengths: LogLk = -1017490.876 Time 645.88 
+Gamma(20) LogLk = -1017848.611 alpha = 2.130 rescaling lengths by 1.471   
+Total time: 733.31 seconds Unique: 56413/56413 Bad splits: 16/56410 Worst delta-LogLk 3.347
+
+# Weighted UniFrac was done using Mothur
+
+This caused an error because of the names. Mothur actually crashed
+
+FastTree -gtr -nt -gamma -fastest WL.final.0.03.rep.fasta > WL.bac.tree
+
+ML-NNI round 12: LogLk = -1017096.874 NNIs 4848 max delta 3.23 Time 633.03 (final)x delta 3.226)   
+Optimize all lengths: LogLk = -1017090.230 Time 650.74 
+Gamma(20) LogLk = -1017412.647 alpha = 2.058 rescaling lengths by 1.484   
+Total time: 735.70 seconds Unique: 56413/56413 Bad splits: 13/56410 Worst delta-LogLk 1.738
+
+Mothur (v 1.38)
+unifrac.weighted(tree=WL.bac.tree, count=WL.final.rep.count_table, distance=square)
+
+Output File Names: 
+WL.bac.treewsummary
+WL.bac.tree1.weighted.phylip.dist
+```
+
+## Import Phylogenetic Tree and UniFrac Distance Matrix
+```{r}
+#WL.phylo <- read.tree("../data/WL.bac.renamed.tree")
+
+WL.unifrac.raw <- read.delim("../data/WL.bac.tree1.weighted.phylip.dist", header = F, skip = 1, row.names = 1)
+WL.unifrac <- WL.unifrac.dist.raw[which(row.names(WL.unifrac.raw) %in% row.names(WLdata)), which(row.names(WL.unifrac.raw) %in% row.names(WLdata))]
+WL.unifrac.dist <- as.dist(WL.unifrac, upper = T, diag = T)
+```
+
+# Soil Data
+```{r}
+WL.soil <- read.csv("../data/WL_plant_soil.csv")
+row.names(WL.soil) <- WL.soil$Sample_Code
+```
 
 # Environmental Data
 ```{r}
@@ -84,11 +132,17 @@ levels(treatments) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn",
 ```{r}
 # Check that Bac and Plant data have same structure as design
 row.names(WLdataREL) == row.names(design)
-row.names(WL.plant) == row.names(design) # Same info seem to be inside
+row.names(WL.unifrac) == row.names(design)
+row.names(WL.plant) == row.names(design) 
+  # Same info seem to be inside so I'm going to rename the plant data
+row.names(WL.plant) <- row.names(design) 
 
 # PERMANOVA
 WL.bac.adonis <- adonis(WLdataREL ~ treatments, method = "bray", perm=99)
 WL.bac.adonis
+
+WL.unifrac.adonis <- adonis(WL.unifrac.dist ~ treatments, perm = 99)
+WL.unifrac.adonis
 
 WL.plant.adonis <- adonis(WL.plant ~ treatments, method = "bray", perm=99)
 WL.plant.adonis
@@ -245,10 +299,105 @@ grid.raster(img)
 
 ## Microbial Phylogenetic Ordination 
 ```{r}
+png(filename="../figures/WL.unifrac.PCoA.png",
+    width = 1200, height = 800, res = 96*2)
+
+# Principal Coordinates Analysis
+WL_pcoa <- cmdscale(WL.unifrac.dist, k=3, eig=TRUE, add=FALSE)
+  # Classical (Metric) Multidimensional Scaling; returns PCoA coordinates
+  # eig=TRUE returns eigenvalues; k = # of dimensions to calculate
+
+# Remove Odd Sites
+odd.sites <- row.names(WL.unifrac[c(abs(WL_pcoa$points[, 1]) > 0.1), ])
 
 
+# Create Distance Matrix W/O Odd Sites
+WL.unifrac.2 <- WL.unifrac[which(row.names(WL.unifrac) != odd.sites),
+                           which(row.names(WL.unifrac) != odd.sites)]
+WL.unifrac.dist2 <- as.dist(WL.unifrac.2, upper = T, diag = T)
 
+treatments <- design[which(row.names(design) != odd.sites), ]$Treatment
+
+
+# Principal Coordinates Analysis
+WL_pcoa <- cmdscale(WL.unifrac.dist2, k=2, eig=TRUE, add=FALSE)
+# Classical (Metric) Multidimensional Scaling; returns PCoA coordinates
+# eig=TRUE returns eigenvalues; k = # of dimensions to calculate
+
+explainvar1 <- round(WL_pcoa$eig[1] / sum(WL_pcoa$eig), 3) * 100
+explainvar2 <- round(WL_pcoa$eig[2] / sum(WL_pcoa$eig), 3) * 100
+sum.eig <- sum(explainvar1, explainvar2)
+
+# Plot
+points <- cbind(as.data.frame(WL_pcoa$points), treatments)
+L.centroids <- melt(points, id="treatments", measure.vars = c("V1", "V2"))
+centroids <- cast(L.centroids, variable ~ treatments, mean)
+centroids.se <- cast(L.centroids, variable ~ treatments, se)
+centroids.sd <- cast(L.centroids, variable ~ treatments, sd)
+
+cent.dataframe <- t(data.frame(rbind(centroids[1,-1], centroids[2,-1],
+                             centroids.sd[1,-1],centroids.sd[2,-1])))
+colnames(cent.dataframe) <- c("V1", "V2", "V1e", "V2e")
+cent.treats <- rownames(cent.dataframe)
+
+myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#000000", "#336633", "#FF9933") #pick new
+names(myColors) <- levels(cent.treats)
+colScale <- scale_colour_manual(values = myColors)
+
+# Define Plot Parameters
+par(mar = c(5, 5.5, 1, 1) + 0.1)
+layout(matrix(1:2, 1, 2), widths = c(4,2))
+
+plot(cent.dataframe[,1], cent.dataframe[,2], type = 'n', las = 1,
+     xlim = c(-0.1, 0.15), ylim = c(-0.1, 0.1),
+     xaxt = "n", xlab = "", yaxt = "n", ylab="")
+arrows(x0 = cent.dataframe[,1], 
+       y1 = cent.dataframe[,2] - cent.dataframe[,4], 
+       y0 = cent.dataframe[,2] + cent.dataframe[,4],
+       angle = 90,
+       length=0.1, lwd = 2, code = 3)
+arrows(y0 = cent.dataframe[,2], 
+       x1 = cent.dataframe[,1] - cent.dataframe[,3], 
+       x0 = cent.dataframe[,1] + cent.dataframe[,3],
+       angle = 90,
+       length=0.1, lwd = 2, code = 3)
+points(cent.dataframe[,1], cent.dataframe[,2], 
+       cex = 2.5, col = myColors, pch = 15)
+
+axis(side = 1, labels = T, las = 1, lwd.ticks = 2)
+axis(side = 2, labels = T, las = 1, lwd.ticks = 2)
+axis(side=1, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side=3, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side=1, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+axis(side=3, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+axis(side = 2, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side = 4, lwd.ticks = 2, tck = -0.02, labels=F, cex.axis=1)
+axis(side = 2, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+axis(side = 4, lwd.ticks = 2, tck = 0.01, labels=F, cex.axis=1)
+
+mtext(paste("PCoA 1 (", explainvar1, "%)", sep = ""), side = 1, line = 3, cex = 1.5)
+mtext(paste("PCoA 2 (", explainvar2, "%)", sep = ""), side = 2, line = 3.5, cex = 1.5)
+      
+box(lwd = 2)
+
+par(mar = c(5, 0, 1, 1) + 0.1)
+plot.new()
+
+legend(0, 1, legend = cent.treats, col = myColors, 
+       pch = 15, cex = 0.9, bty = 'n', inset = c(0.1, 0.05),
+       y.intersp = 1.25)
+
+
+# Close Plot Device
+dev.off()
+graphics.off()
+#```
+## Show Plot
+#```{r}
+img <- readPNG("../figures/WL.unifrac.PcoA.png")
+grid.raster(img)
 ```
+
 
 # Plant Ordinations
 ## Principal Coordinates Ordination
@@ -359,7 +508,8 @@ grid.raster(img)
 
 # Similarity between microbe and plant communities
 ```{r}
-rownames(WL.plant) <- rownames(WLdataREL)
+# Name check
+rownames(WL.plant) == rownames(WLdataREL)
 
 # Remove Odd Sites from Bac Community
 bac.comm <- WLdataREL[-which(rownames(WLdataREL) %in% odd.sites),]
@@ -370,14 +520,70 @@ bare.sites <- rownames(design[design$Treatment == "Bareroot", ])
 bac.comm <- bac.comm[-which(rownames(bac.comm) %in% bare.sites),]
 plant.comm <- plant.comm[-which(rownames(plant.comm) %in% bare.sites), ]
 
+rownames(bac.comm) == rownames(plant.comm)
+
+rowSums(plant.comm)
+
 dist.bac <- vegdist(bac.comm, method = "bray")
 dist.plant <- vegdist(plant.comm, method = "bray")
 
 mantel.rtest(dist.bac, dist.plant)
+
+WL.plant_points <- cmdscale(dist.plant, k=3, eig=TRUE, add=FALSE)$points
+
+dbRDA <- dbrda(bac.comm ~ WL.plant_points[,1], distance = "bray")
+anova(dbRDA) # How to pull out the percent variation explained...not sure
+
+RsquareAdj(dbRDA)
+```
+
+# Soil Factors
+```{r}
+
+
+
+
+
+```
+
+
+# Invasive Species
+```{r}
+WL.rc <- data.frame(WL.soil$Treatment, WL.soil$RCGbiomass, WL.soil$Non.RCGbiomass)
+
+WL.rc$ratio <- WL.rc$WL.soil.RCGbiomass / (WL.rc$WL.soil.RCGbiomass + WL.rc$WL.soil.Non.RCGbiomass) 
+```
+
+
+```{r}
+myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#000000", "#336633", "#FF9933") #pick new
+names(myColors) <- levels(WL.rc$WL.soil.Treatment)
+colScale <- scale_colour_manual(values = myColors)
+
+par(mar = (c(6,5,1,1) + 0.1))
+
+boxplot(WL.rc$WL.soil.RCGbiomass ~ WL.rc$WL.soil.Treatment, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "")
+
+# x axis with ticks but without labels
+axis(1, labels = FALSE)
+axis(2, labels = TRUE, las = 1)
+
+# Lables
+mtext("Reed Canary Biomass (g)", side = 2, cex = 1.25, line = 3)
+
+# Plot x labs at default x position
+text(x = seq_along(levels(WL.rc$WL.soil.Treatment)), y = par("usr")[3] - 15, srt = 45, adj = 1, labels = levels(WL.rc$WL.soil.Treatment), xpd = TRUE)
+
 ```
 
 
 
+
+##############
+OLD CODE
+##############
 
 ## Responder Analysis Based on PCoA
 ```{r}

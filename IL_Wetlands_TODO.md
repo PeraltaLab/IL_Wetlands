@@ -5,8 +5,8 @@
 
 1. Plant community composition graph (need to standardize data) - data file: IL_Wetlands_HC_Plants.xlsx
 
-—Run PERMANOVA
-—Run PCoA
+—Run PERMANOVA (check)
+—Run PCoA (check)
 
 2.  Box plots of soil factors across treatment and ANOVA (most will be NS except temp maybe) - data file: WL_plant_soil.csv
 
