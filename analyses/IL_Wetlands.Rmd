@@ -30,6 +30,11 @@ require("ggplot2")
 require("ade4")
 require("grid"); require("png")
 require("ape"); require("picante")
+
+# Define Colors
+#myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#000000", "#336633", "#FF9933") #pick new
+myColors <- c("#448844", "#33CC33", "#CCFF00", "#FFF000", "#FF9933", "#A9A9A9")
+names(myColors) <- c("BalledBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
 ```
 
 # Microbial Data
@@ -108,7 +113,7 @@ WL.bac.tree1.weighted.phylip.dist
 #WL.phylo <- read.tree("../data/WL.bac.renamed.tree")
 
 WL.unifrac.raw <- read.delim("../data/WL.bac.tree1.weighted.phylip.dist", header = F, skip = 1, row.names = 1)
-WL.unifrac <- WL.unifrac.dist.raw[which(row.names(WL.unifrac.raw) %in% row.names(WLdata)), which(row.names(WL.unifrac.raw) %in% row.names(WLdata))]
+WL.unifrac <- WL.unifrac.raw[which(row.names(WL.unifrac.raw) %in% row.names(WLdata)), which(row.names(WL.unifrac.raw) %in% row.names(WLdata))]
 WL.unifrac.dist <- as.dist(WL.unifrac, upper = T, diag = T)
 ```
 
@@ -116,16 +121,22 @@ WL.unifrac.dist <- as.dist(WL.unifrac, upper = T, diag = T)
 ```{r}
 WL.soil <- read.csv("../data/WL_plant_soil.csv")
 row.names(WL.soil) <- WL.soil$Sample_Code
+
+WL.soil$Treatment <- factor(WL.soil$Treatment, 
+                           levels = c("BalledBurlapped", "Bareroot", 
+                           "Seedling", "Acorn", "Seedbank", "Reference"))
 ```
 
 # Environmental Data
 ```{r}
 # Import Environmental Data
-
 design <- read.csv("../data/WL.design.csv", row.names = 1)
-treatments <- design$Treatment
-levels(treatments) <- c("BallBurlapped", "Bareroot", "Seedling", "Acorn", 
-                        "Seedbank", "Reference")
+design$Treatment <- factor(design$Treatment, 
+                           levels = c("BalledBurlapped", "Bareroot", 
+                           "Seedling", "Acorn", "Seedbank", "Reference"))
+treatments <- design$Treatment 
+#levels(treatments) == c("BalledBurlapped", "Bareroot", "Seedling", "Acorn", 
+#                        "Seedbank", "Reference")
 ```
 
 # Simple Hypothesis Testing
@@ -138,7 +149,16 @@ row.names(WL.plant) == row.names(design)
 row.names(WL.plant) <- row.names(design) 
 
 # PERMANOVA
-WL.bac.adonis <- adonis(WLdataREL ~ treatments, method = "bray", perm=99)
+WL.bac.adonis <- adonis(WLdataREL ~ treatments, method = "bray", perm=999)
+WL.bac.adonis
+
+# Odd sites in bacterial composition data (explore more)
+odd.sites <- c("HC_A3_ss1_S11", "HC_A3_ss2_S12", "HC_A3_ss3_S13", "HC_C3_ss5_S45", "HC_D2_ss3_S53", "HC_E1_ss1_S61")
+
+WLdataREL.2 <- WLdataREL[setdiff(rownames(WLdataREL), odd.sites), ]
+treatments.2 <- design[setdiff(rownames(design), odd.sites), ]$Treatment
+
+WL.bac.adonis <- adonis(WLdataREL.2 ~ treatments.2, method = "bray", perm=99)
 WL.bac.adonis
 
 WL.unifrac.adonis <- adonis(WL.unifrac.dist ~ treatments, perm = 99)
@@ -147,54 +167,15 @@ WL.unifrac.adonis
 WL.plant.adonis <- adonis(WL.plant ~ treatments, method = "bray", perm=99)
 WL.plant.adonis
 
-# Is this really needed?
-#WL.simper <- simper(WLdataREL, group = treatments)
-#summary(WL.simper)
+# Simper Analysis for Species Responses
+#WL.bac.simper <- simper(WLdataREL, group = treatments, permutations = 99)
+#bac.sum <- summary(WL.bac.simper, ordered = T)
+
+WL.plant.simper <- simper(WL.plant, group = treatments, permutations = 99)
+plant.sum <- summary(WL.plant.simper, ordered = T)
 ```
 
-# Microbial Ordinations
-
-## nMDS Plot
-```{r}
-df.bac <- WLdataREL	# bacteria
-df.env <- design	# ENV
-df.mds <- metaMDS(df.bac, k=2, trymax=50, zerodist="add")
-
-# Remove Odd sites
-WLdataREL.log2 <- WLdataREL.log[c(df.mds$points[, 1] < 0.25), ]
-design2 <- design[c(df.mds$points[, 1] < 0.25), ]
-treatments <- design2$Treatment
-
-# Rerun
-df.bac <- WLdataREL.log2	# bacteria
-df.env <- design2	# ENV
-df.mds <- metaMDS(df.bac, k=2, trymax=50, zerodist="add")
-
-points <- cbind(as.data.frame(df.mds$points), treatments)
-L.centroids <- melt(points, id="treatments", measure.vars = c("MDS1", "MDS2"))
-centroids <- cast(L.centroids, variable ~ treatments, mean)
-
-
-df <- data.frame(design2[,2],design2[,1], df.mds$points[,1], df.mds$points[,2])
-str(df)
-names(df) <- c("Treatment", "Plot", "Axis1", "Axis2")
-df$Treatment <- factor(df$Treatment, levels=c("BallBurlapped", "Bareroot", 
-                       "Seedling", "Acorn", "Seedbank", "Reference"))
-myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#339933", "#336633", "#FF9933") #pick new
-names(myColors) <- levels(df$Treatment)
-colScale <- scale_colour_manual(values = myColors)
-p1<-ggplot(df,aes(x=Axis1,y=Axis2,label=TRUE))
-p2 <- p1+geom_point(aes(colour=treatments), size=5)
- p3 <-p2 + geom_text(aes(label=row.names(df)), size=4) #added labels
- p3 + colScale
-#p2 + colScale
-
-# Identify the outliers
-which(df$Axis1 > 0.05)
-#[1] 11 42 49 56
-```
-
-## Principal Coordinates Ordination
+# Microbial Bray Curtis Ordination (PCoA)
 ```{r}
 png(filename="../figures/WL.bac.PCoA.png",
     width = 1200, height = 800, res = 96*2)
@@ -239,10 +220,6 @@ cent.dataframe <- t(data.frame(rbind(centroids[1,-1], centroids[2,-1],
 colnames(cent.dataframe) <- c("V1", "V2", "V1e", "V2e")
 cent.treats <- rownames(cent.dataframe)
 
-myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#000000", "#336633", "#FF9933") #pick new
-names(myColors) <- levels(cent.treats)
-colScale <- scale_colour_manual(values = myColors)
-
 # Define Plot Parameters
 par(mar = c(5, 5.5, 1, 1) + 0.1)
 layout(matrix(1:2, 1, 2), widths = c(4,2))
@@ -250,6 +227,10 @@ layout(matrix(1:2, 1, 2), widths = c(4,2))
 plot(cent.dataframe[,1], cent.dataframe[,2], type = 'n', las = 1,
      xlim = c(-0.1, 0.1), ylim = c(-0.1, 0.1),
      xaxt = "n", xlab = "", yaxt = "n", ylab="")
+
+abline(h = 0, lty = 3, col = "gray")
+abline(v = 0, lty = 3, col = "gray")
+
 arrows(x0 = cent.dataframe[,1], 
        y1 = cent.dataframe[,2] - cent.dataframe[,4], 
        y0 = cent.dataframe[,2] + cent.dataframe[,4],
@@ -261,7 +242,9 @@ arrows(y0 = cent.dataframe[,2],
        angle = 90,
        length=0.1, lwd = 2, code = 3)
 points(cent.dataframe[,1], cent.dataframe[,2], 
-       cex = 2.5, col = myColors, pch = 15)
+       cex = 2.5, bg = myColors, col = "black", pch = 22, lwd = 2)
+
+# text(cent.dataframe[,1], cent.dataframe[,2], rownames(cent.dataframe))
 
 axis(side = 1, labels = T, las = 1, lwd.ticks = 2)
 axis(side = 2, labels = T, las = 1, lwd.ticks = 2)
@@ -282,8 +265,8 @@ box(lwd = 2)
 par(mar = c(5, 0, 1, 1) + 0.1)
 plot.new()
 
-legend(0, 1, legend = cent.treats, col = myColors, 
-       pch = 15, cex = 0.9, bty = 'n', inset = c(0.1, 0.05),
+legend(0, 1, legend = levels(treatments), pt.bg = myColors, col = "black",
+       pch = 22, cex = 0.9, bty = 'n', inset = c(0.1, 0.05),
        y.intersp = 1.25)
 
 
@@ -312,11 +295,11 @@ odd.sites <- row.names(WL.unifrac[c(abs(WL_pcoa$points[, 1]) > 0.1), ])
 
 
 # Create Distance Matrix W/O Odd Sites
-WL.unifrac.2 <- WL.unifrac[which(row.names(WL.unifrac) != odd.sites),
-                           which(row.names(WL.unifrac) != odd.sites)]
+WL.unifrac.2 <- WL.unifrac[-c(which(row.names(WL.unifrac) %in% odd.sites)),
+                           -c(which(row.names(WL.unifrac) %in% odd.sites))]
 WL.unifrac.dist2 <- as.dist(WL.unifrac.2, upper = T, diag = T)
 
-treatments <- design[which(row.names(design) != odd.sites), ]$Treatment
+treatments <- design[-c(which(row.names(design) %in% odd.sites)), ]$Treatment
 
 
 # Principal Coordinates Analysis
@@ -340,17 +323,17 @@ cent.dataframe <- t(data.frame(rbind(centroids[1,-1], centroids[2,-1],
 colnames(cent.dataframe) <- c("V1", "V2", "V1e", "V2e")
 cent.treats <- rownames(cent.dataframe)
 
-myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#000000", "#336633", "#FF9933") #pick new
-names(myColors) <- levels(cent.treats)
-colScale <- scale_colour_manual(values = myColors)
-
 # Define Plot Parameters
 par(mar = c(5, 5.5, 1, 1) + 0.1)
 layout(matrix(1:2, 1, 2), widths = c(4,2))
 
 plot(cent.dataframe[,1], cent.dataframe[,2], type = 'n', las = 1,
-     xlim = c(-0.1, 0.15), ylim = c(-0.1, 0.1),
+     xlim = c(-0.1, 0.1), ylim = c(-0.1, 0.1),
      xaxt = "n", xlab = "", yaxt = "n", ylab="")
+
+abline(h = 0, lty = 3, col = "gray")
+abline(v = 0, lty = 3, col = "gray")
+
 arrows(x0 = cent.dataframe[,1], 
        y1 = cent.dataframe[,2] - cent.dataframe[,4], 
        y0 = cent.dataframe[,2] + cent.dataframe[,4],
@@ -362,7 +345,9 @@ arrows(y0 = cent.dataframe[,2],
        angle = 90,
        length=0.1, lwd = 2, code = 3)
 points(cent.dataframe[,1], cent.dataframe[,2], 
-       cex = 2.5, col = myColors, pch = 15)
+       cex = 2.5, bg = myColors, col = "black", pch = 22, lwd = 2)
+
+#text(cent.dataframe[,1], cent.dataframe[,2], rownames(cent.dataframe))
 
 axis(side = 1, labels = T, las = 1, lwd.ticks = 2)
 axis(side = 2, labels = T, las = 1, lwd.ticks = 2)
@@ -383,8 +368,8 @@ box(lwd = 2)
 par(mar = c(5, 0, 1, 1) + 0.1)
 plot.new()
 
-legend(0, 1, legend = cent.treats, col = myColors, 
-       pch = 15, cex = 0.9, bty = 'n', inset = c(0.1, 0.05),
+legend(0, 1, legend = cent.treats, pt.bg = myColors, col = "black",
+       pch = 22, cex = 0.9, bty = 'n', inset = c(0.1, 0.05),
        y.intersp = 1.25)
 
 
@@ -405,9 +390,8 @@ grid.raster(img)
 png(filename="../figures/WL.plant.PCoA.png",
     width = 1200, height = 800, res = 96*2)
 # Create Distance Matrix
-WL.plant2 <- WL.plant[which(design$Treatment != "Bareroot"), ]
-treatments <- design$Treatment[design$Treatment != "Bareroot"]
-samplePlant.dist <- vegdist(WL.plant2, method="bray")
+treatments <- design$Treatment
+samplePlant.dist <- vegdist(WL.plant, method="bray")
 
 # Principal Coordinates Analysis
 WLplant_pcoa <- cmdscale(samplePlant.dist, k=3, eig=TRUE, add=FALSE)
@@ -447,10 +431,6 @@ cent.dataframe <- t(data.frame(rbind(centroids[1,-1], centroids[2,-1],
 colnames(cent.dataframe) <- c("V1", "V2", "V1e", "V2e")
 cent.treats <- rownames(cent.dataframe)
 
-myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#000000", "#336633", "#FF9933") #pick new
-names(myColors) <- levels(cent.treats)
-colScale <- scale_colour_manual(values = myColors)
-
 # Define Plot Parameters
 par(mar = c(5, 5.5, 1, 1) + 0.1)
 layout(matrix(1:2, 1, 2), widths = c(4,2))
@@ -458,6 +438,10 @@ layout(matrix(1:2, 1, 2), widths = c(4,2))
 plot(cent.dataframe[,1], cent.dataframe[,2], type = 'n', las = 1,
      xlim = c(-0.8, 0.8), ylim = c(-0.8, 0.8),
      xaxt = "n", xlab = "", yaxt = "n", ylab="")
+
+abline(h = 0, lty = 3, col = "gray")
+abline(v = 0, lty = 3, col = "gray")
+
 arrows(x0 = cent.dataframe[,1], 
        y1 = cent.dataframe[,2] - cent.dataframe[,4], 
        y0 = cent.dataframe[,2] + cent.dataframe[,4],
@@ -469,7 +453,7 @@ arrows(y0 = cent.dataframe[,2],
        angle = 90,
        length=0.1, lwd = 2, code = 3)
 points(cent.dataframe[,1], cent.dataframe[,2], 
-       cex = 2.5, col = myColors, pch = 15)
+       cex = 2.5, bg = myColors, col = "black", pch = 22, lwd = 2)
 
 axis(side = 1, labels = T, las = 1, lwd.ticks = 2)
 axis(side = 2, labels = T, las = 1, lwd.ticks = 2)
@@ -490,8 +474,8 @@ box(lwd = 2)
 par(mar = c(5, 0, 1, 1) + 0.1)
 plot.new()
 
-legend(0, 1, legend = cent.treats, col = myColors, 
-       pch = 15, cex = 0.9, bty = 'n', inset = c(0.1, 0.05),
+legend(0, 1, legend = cent.treats, pt.bg = myColors, col = "black", 
+       pch = 22, cex = 0.9, bty = 'n', inset = c(0.1, 0.05),
        y.intersp = 1.25)
 
 
@@ -531,8 +515,8 @@ mantel.rtest(dist.bac, dist.plant)
 
 WL.plant_points <- cmdscale(dist.plant, k=3, eig=TRUE, add=FALSE)$points
 
-dbRDA <- dbrda(bac.comm ~ WL.plant_points[,1], distance = "bray")
-anova(dbRDA) # How to pull out the percent variation explained...not sure
+dbRDA <- dbrda(bac.comm ~ WL.plant_points, distance = "bray")
+anova(dbRDA) 
 
 RsquareAdj(dbRDA)
 ```
@@ -540,14 +524,282 @@ RsquareAdj(dbRDA)
 # Soil Factors
 ```{r}
 
+head(WL.soil)
+# Impt Soil: Moisture, Temp, pH, TOC, TN, OM, NH4, NO3
+
+WL.trts <- WL.soil[, "Treatment"]
+WL.soil.phys <- WL.soil[, which(colnames(WL.soil) %in% c("Moisture", "Temp", "pH"))]
+WL.soil.nuts <- WL.soil[, which(colnames(WL.soil) %in% c("TOC", "TN", "OM", "NH4.N", "NO3.N"))]
+
+WL.phys.mean <- apply(WL.soil.phys, 2, 
+                      FUN = function(avg) aggregate(avg ~ WL.trts, WL.soil.phys, mean))
+WL.phys.sem <- apply(WL.soil.phys, 2, 
+                     FUN = function(sem) aggregate(sem ~ WL.trts, WL.soil.phys, se))
+WL.phys.95 <- apply(WL.soil.phys, 2, 
+                    FUN = function(ci_95) aggregate(ci_95 ~ WL.trts, WL.soil.phys, ci))
+
+WL.nuts.mean <- apply(WL.soil.nuts, 2, 
+                      FUN = function(avg) aggregate(avg ~ WL.trts, WL.soil.nuts, mean))
+WL.nuts.sem <- apply(WL.soil.nuts, 2, 
+                     FUN = function(sem) aggregate(sem ~ WL.trts, WL.soil.nuts, se))
+WL.nuts.95 <- apply(WL.soil.nuts, 2, 
+                    FUN = function(ci_95) aggregate(ci_95 ~ WL.trts, WL.soil.nuts, ci))
 
 
+phys.means.table <- data.frame(trt = WL.phys.mean$Moisture$WL.trts,
+                               moisture = WL.phys.mean$Moisture$avg,
+                               temp = WL.phys.mean$Temp$avg,
+                               pH = WL.phys.mean$pH$avg)
+phys.sem.table <- data.frame(trt = WL.phys.sem$Moisture$WL.trts,
+                               moisture = WL.phys.sem$Moisture$sem,
+                               temp = WL.phys.sem$Temp$sem,
+                               pH = WL.phys.sem$pH$sem)
+phys.ci.table <- data.frame(trt = WL.phys.95$Moisture$WL.trts,
+                               moisture = WL.phys.95$Moisture$ci_95,
+                               temp = WL.phys.95$Temp$ci_95,
+                               pH = WL.phys.95$pH$ci_95)
 
+nuts.means.table <- data.frame(trt = WL.nuts.mean$TOC$WL.trts,
+                               toc = WL.nuts.mean$TOC$avg,
+                               tn = WL.nuts.mean$TN$avg,
+                               om = WL.nuts.mean$OM$avg,
+                               nh4 = WL.nuts.mean$NH4.N$avg,
+                               no3 = WL.nuts.mean$NO3.N$avg)
+nuts.sem.table <- data.frame(trt = WL.nuts.sem$TOC$WL.trts,
+                               toc = WL.nuts.sem$TOC$sem,
+                               tn = WL.nuts.sem$TN$sem,
+                               om = WL.nuts.sem$OM$sem,
+                               nh4 = WL.nuts.sem$NH4.N$sem,
+                               no3 = WL.nuts.sem$NO3.N$sem)
+nuts.ci.table <- data.frame(trt = WL.nuts.95$TOC$WL.trts,
+                               toc = WL.nuts.95$TOC$ci_95,
+                               tn = WL.nuts.95$TN$ci_95,
+                               om = WL.nuts.95$OM$ci_95,
+                               nh4 = WL.nuts.95$NH4.N$ci_95,
+                               no3 = WL.nuts.95$NO3.N$ci_95)
+```
 
+# WL Soil Plots
+```{r}
+png(filename="../figures/soil.chem.png",
+    width = 800, height = 1200, res = 96*2)
+
+layout(matrix(1:3, 3, byrow = T))
+par(mar = (c(0.5, 5, 0, 1) + 0.1), oma = c(7, 1, 1.5, 1))
+
+# TOC
+boxplot(WL.soil.nuts$TOC ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(4,6))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+  
+  # Lables
+  mtext("Total Organic Carbon\n(?)", side = 2, cex = 1, line = 3.5)
+
+# # Total Nitrogen
+# boxplot(WL.soil.nuts$TN ~ WL.trts, 
+#         col = myColors, xaxt = "n",  yaxt = "n",
+#         xlab = "", ylab = "", ylim = c(0.25, 0.4))
+# 
+#   # Axes with Tick Marks
+#   axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+#   axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+#   axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+#   axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+#   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+#   box(lwd = 2)
+#   
+#   # Lables
+#   mtext("Total Nitrogen\n(?)", side = 2, cex = 1, line = 3.5)
+
+# # Organic Matter
+# boxplot(WL.soil.nuts$OM ~ WL.trts, 
+#         col = myColors, xaxt = "n",  yaxt = "n",
+#         xlab = "", ylab = "", ylim = c(7, 11))
+# 
+#   # Axes with Tick Marks
+#   axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+#   axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+#   axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+#   axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+#   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+#   box(lwd = 2)
+#   
+#   # Lables
+#   mtext("Organic Matter\n(?)", side = 2, cex = 1, line = 3.5)
+
+# Ammonium
+boxplot(WL.soil.nuts$NH4.N ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(6, 14))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+  
+  # Lables
+  mtext("Ammonium\n(?)", side = 2, cex = 1, line = 3.5)
+
+# Nitrate
+boxplot(WL.soil.nuts$NO3.N ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "")
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+  
+  # Lables
+  mtext("Nitrate\n(?)", side = 2, cex = 1, line = 3.5)
+
+# Plot X labs at default X position
+par(xpd = NA)
+text(x = seq_along(levels(WL.trts)), y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA)
+
+# Close Plot Device
+dev.off()
+graphics.off()
+
+# Show Plot
+img <- readPNG("../figures/soil.chem.png")
+grid.raster(img)
 ```
 
 
-# Invasive Species
+# WL Soil Plots
+```{r}
+png(filename="../figures/soil.phy.png",
+    width = 800, height = 1200, res = 96*2)
+
+
+layout(matrix(1:3, 3, byrow = T))
+par(mar = (c(0.5, 5, 0, 1) + 0.1), oma = c(7, 1, 1.5, 1))
+
+boxplot(WL.soil.phys$Moisture ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(20, 50))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+
+  # Lables
+  mtext("Moisture", side = 2, cex = 1, line = 3.5)
+
+boxplot(WL.soil.phys$Temp ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(18, 26))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+
+  # Lables
+  mtext("Temperature (ºC)", side = 2, cex = 1, line = 3.5)
+
+boxplot(WL.soil.phys$pH ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(7.2, 7.8))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+
+  # Lables
+  mtext("pH", side = 2, cex = 1, line = 3.5)
+
+
+# Plot x labs at default x position
+par(xpd = NA)
+text(x = seq_along(levels(WL.trts)), y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA)
+
+# Close Plot Device
+dev.off()
+graphics.off()
+
+# Show Plot
+img <- readPNG("../figures/soil.phy.png")
+grid.raster(img)
+```
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+
+
+
+phys.dist <- dist(WL.soil.phys, method = "euclidian")
+phys.pcoa <- cmdscale(phys.dist, k = 3, eig = T)
+
+explainvar1 <- round(phys.pcoa$eig[1] / sum(phys.pcoa$eig), 3) * 100
+explainvar2 <- round(phys.pcoa$eig[2] / sum(phys.pcoa$eig), 3) * 100
+
+chem.dist <- dist(WL.soil.nuts, method = "euclidian")
+chem.pcoa <- cmdscale(chem.dist, k = 3, eig = T)
+
+explainvar1 <- round(chem.pcoa$eig[1] / sum(chem.pcoa$eig), 3) * 100
+explainvar2 <- round(chem.pcoa$eig[2] / sum(chem.pcoa$eig), 3) * 100
+
+dbRDA <- dbrda(WLdataREL ~ phys.pcoa$points[,1] + chem.pcoa$points[,1], distance = "bray")
+anova(dbRDA) 
+str(dbRDA)
+
+RsquareAdj(dbRDA)
+
+
+dbRDA <- dbrda(WL.plant ~ phys.pcoa$points[,1] + chem.pcoa$points[,1], distance = "bray")
+anova(dbRDA) 
+
+phys.mod <- lm(phys.pcoa$points[,1] ~ WL.trts)
+chem.mod <- lm(chem.pcoa$points[,1] ~ WL.trts)
+anova(phys.mod)
+anova(chem.mod)
+
+TukeyHSD(aov(phys.mod))
+TukeyHSD(aov(chem.mod))
+
+boxplot(phys.pcoa$points[,1] ~ WL.trts)
+boxplot(chem.pcoa$points[,1] ~ WL.trts)
+```
+
+
+
+# Invasive Species Biomass
 ```{r}
 WL.rc <- data.frame(WL.soil$Treatment, WL.soil$RCGbiomass, WL.soil$Non.RCGbiomass)
 
@@ -556,26 +808,44 @@ WL.rc$ratio <- WL.rc$WL.soil.RCGbiomass / (WL.rc$WL.soil.RCGbiomass + WL.rc$WL.s
 
 
 ```{r}
-myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#000000", "#336633", "#FF9933") #pick new
-names(myColors) <- levels(WL.rc$WL.soil.Treatment)
-colScale <- scale_colour_manual(values = myColors)
+png(filename="../figures/reed.biomass.png",
+    width = 1200, height = 800, res = 96*2)
 
-par(mar = (c(6,5,1,1) + 0.1))
+
+par(mar = (c(6.5,5,1,1) + 0.1))
 
 boxplot(WL.rc$WL.soil.RCGbiomass ~ WL.rc$WL.soil.Treatment, 
         col = myColors, xaxt = "n",  yaxt = "n",
         xlab = "", ylab = "")
 
-# x axis with ticks but without labels
-axis(1, labels = FALSE)
-axis(2, labels = TRUE, las = 1)
-
 # Lables
 mtext("Reed Canary Biomass (g)", side = 2, cex = 1.25, line = 3)
 
 # Plot x labs at default x position
-text(x = seq_along(levels(WL.rc$WL.soil.Treatment)), y = par("usr")[3] - 15, srt = 45, adj = 1, labels = levels(WL.rc$WL.soil.Treatment), xpd = TRUE)
+text(x = seq_along(levels(WL.rc$WL.soil.Treatment)), 
+     y = par("usr")[3] - 10, srt = 45, adj = 1, 
+     labels = levels(WL.rc$WL.soil.Treatment), 
+     xpd = TRUE)
 
+# Axes with Tick Marks
+axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+#axis(side = 3, labels = F, tck = -0.02, lwd = 2)
+axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+#axis(side = 1, labels = F, tck = 0.01, lwd = 2)
+axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+#axis(side = 3, labels = F, tck = 0.01, lwd = 2)
+axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+
+box(lwd = 2)
+
+# Close Plot Device
+dev.off()
+graphics.off()
+
+# Show Plot
+img <- readPNG("../figures/reed.biomass.png")
+grid.raster(img)
 ```
 
 
@@ -753,114 +1023,6 @@ text(WL.pcoa$points[ ,1], WL.pcoa$points[ ,2], design2$Plot)
 
 
 ```
-
-# # Stripping PCoA Loadings out of cmdscale Output
-# pcoap <- as.data.frame(WL_pcoa$points)
-# site <- rep(NA,76)
-# site[c(1,3,5,7,9,11,13,15,17,19)] <- "AF1_DNA"
-# site[c(21,23,24,25,27,29,31,33,35)] <- "AF2_DNA"
-# site[c(37,39,41,43,45,47,49,51,53,55)] <- "EU1_DNA"
-# site[c(57,59,61,63,65,67,69,71,73,75)] <- "EU2_DNA"
-# site[c(2,4,6,8,10,12,14,16,18,20)] <- "AF1_RNA"
-# site[c(22,26,28,30,32,34,36)] <- "AF2_RNA"
-# site[c(38,40,42,44,46,48,50,52,54,56)] <- "EU1_RNA"
-# site[c(58,60,62,64,66,68,70,72,74,76)] <- "EU2_RNA"
-# pcoap <- cbind(pcoap, site)
-# 
-# #--> AF: Station 1 - DNA
-# AF1_DNA_1 <- pcoap[c(1,3,5,7,9,11,13,15,17,19),1]             #PCoA 1 scores
-# AF1_DNA_2 <- pcoap[c(1,3,5,7,9,11,13,15,17,19),2]             #PCoA 2 scores
-# #--> AF: Station 2 - DNA
-# AF2_DNA_1 <- pcoap[c(21,23,24,25,27,29,31,33,35),1]           #PCoA 1 scores
-# AF2_DNA_2 <- pcoap[c(21,23,24,25,27,29,31,33,35),2]           #PCoA 2 scores
-# #--> EU: Station 5 - DNA
-# EU1_DNA_1 <- pcoap[c(37,39,41,43,45,47,49,51,53,55),1]           #PCoA 1 scores
-# EU1_DNA_2 <- pcoap[c(37,39,41,43,45,47,49,51,53,55),2]           #PCoA 2 scores
-# #--> EU: Station 6 - DNA
-# EU2_DNA_1 <- pcoap[c(57,59,61,63,65,67,69,71,73,75),1]        #PCoA 1 scores
-# EU2_DNA_2 <- pcoap[c(57,59,61,63,65,67,69,71,73,75),2]        #PCoA 2 scores
-# #--> AF: Station 1 - RNA
-# AF1_RNA_1 <- pcoap[c(2,4,6,8,10,12,14,16,18,20),1]            #PCoA 1 scores
-# AF1_RNA_2 <- pcoap[c(2,4,6,8,10,12,14,16,18,20),2]            #PCoA 2 scores
-# #--> AF: Station 2 - RNA
-# AF2_RNA_1 <- pcoap[c(22,26,28,30,32,34,36),1]                 #PCoA 1 scores
-# AF2_RNA_2 <- pcoap[c(22,26,28,30,32,34,36),2]                 #PCoA 2 scores
-# #--> EU: Station 5 - RNA
-# EU1_RNA_1 <- pcoap[c(38,40,42,44,46,48,50,52,54,56),1]        #PCoA 1 scores
-# EU1_RNA_2 <- pcoap[c(38,40,42,44,46,48,50,52,54,56),2]        #PCoA 2 scores
-# #--> EU: Station 6 - RNA
-# EU2_RNA_1 <- pcoap[c(58,60,62,64,66,68,70,72,74,76),1]        #PCoA 1 scores
-# EU2_RNA_2 <- pcoap[c(58,60,62,64,66,68,70,72,74,76),2]        #PCoA 2 scores
-# 
-# # Plot Parameters
-# par(mfrow=c(1,1), mar=c(5,5,1,1))
-# x <- c(min(pcoap[,2])+min(pcoap[,2])*0.25,max(pcoap[,2])+max(pcoap[,2])*0.1)
-# y <- c(min(pcoap[,1])+min(pcoap[,1])*0.1,max(pcoap[,1])+max(pcoap[,1])*0.1)
-# 
-# # Initiate Plot
-# plot(pcoap[,2], pcoap[,1], xlab="PCoA Axis 2", ylab="PCoA Axis 1",
-#   xlim=rev(range(x)),ylim= y, pch=16, cex=2.0, type='n',xaxt="n",yaxt="n",
-#   cex.lab=1.5, cex.axis=1.2)
-#     # Creates PCoA byplot for PCoA axis 1 and PCoA axis 2; adds axes labels,
-#     # Adjusts axes lengths and size
-# 
-#   axis(side=1,at=c(-0.4,-0.2,0,0.2), las=1)    # adds x-axis ticks
-#   axis(side=2,at=c(-0.2,0,0.2,0.4), las=1)     # adds y-axis ticks
-#   segments(-1500, -0, 1500, 0, lty="dotted")   # adds horizontal reference line
-#   segments(0, -1500, 0, 1500, lty="dotted")    # adds vertical reference line
-# 
-#   points(AF1_DNA_2,AF1_DNA_1,pch=21,cex=2.0,col="black",bg="brown3",lwd=2)
-#   points(AF2_DNA_2,AF2_DNA_1,pch=21,cex=2.0,col="black",bg="brown3",lwd=2)
-#   points(EU1_DNA_2,EU1_DNA_1,pch=21,cex=2.0,col="black",bg="green3",lwd=2)
-#   points(EU2_DNA_2,EU2_DNA_1,pch=21,cex=2.0,col="black",bg="green3",lwd=2)
-#   points(AF1_RNA_2,AF1_RNA_1,pch=22,cex=2.0,col="black",bg="brown3",lwd=2)
-#   points(AF2_RNA_2,AF2_RNA_1,pch=22,cex=2.0,col="black",bg="brown3",lwd=2)
-#   points(EU1_RNA_2,EU1_RNA_1,pch=22,cex=2.0,col="black",bg="green3",lwd=2)
-#   points(EU2_RNA_2,EU2_RNA_1,pch=22,cex=2.0,col="black",bg="green3",lwd=2)
-#     # adds PCoA scores for each to existing graph
-# 
-#   ordiellipse(cbind(pcoap[,2], pcoap[,1]), pcoap$site, kind="sd", conf=0.95,
-#     lwd=2, lty=3, draw = "lines", col = "black", label=FALSE)
-#   #legend(-0.25, -0.08,"AF-1-DNA", cex=2.0,col="red",pch=16,bty="n")
-#   #legend(-0.25, -0.12,"AF-2-DNA", cex=2.0,col="pink",pch=16,bty="n")
-#   #legend(-0.25, -0.12,"EU-1-DNA", cex=1.5,col="darkgreen",pch=16,bty="n")
-#   #legend(-0.25, -0.12,"EU-2-DNA", cex=1,col="chartreuse4",pch=16,bty="n")
-#   #legend(-0.25, -0.12,"AF-1-RNA", cex=1,col="red",pch=16,bty="n")
-#   #legend(-0.25, -0.12,"AF-1-RNA", cex=1,col="pink",pch=16,bty="n")
-#   #legend(-0.25, -0.12,"AF-1-RNA", cex=1,col="red",pch=16,bty="n")
-#   #legend(-0.25, -0.12,"AF-1-RNA", cex=1,col="pink",pch=16,bty="n")
-#     # adds legends to existing graph
-#   box(lwd=2)
-# 
-# ## Hypothesis Testing ##########################################################
-# ################################################################################
-# 
-# site <- rep(NA,76)
-# site[c(1,3,5,7,9,11,13,15,17,19)] <- "AF1_DNA"
-# site[c(21,23,24,25,27,29,31,33,35)] <- "AF2_DNA"
-# site[c(37,39,41,43,45,47,49,51,53,55)] <- "EU1_DNA"
-# site[c(57,59,61,63,65,67,69,71,73,75)] <- "EU2_DNA"
-# site[c(2,4,6,8,10,12,14,16,18,20)] <- "AF1_RNA"
-# site[c(22,26,28,30,32,34,36)] <- "AF2_RNA"
-# site[c(38,40,42,44,46,48,50,52,54,56)] <- "EU1_RNA"
-# site[c(58,60,62,64,66,68,70,72,74,76)] <- "EU2_RNA"
-# 
-# station <- rep(NA, 76)
-# station[1:20] <- "AF1"
-# station[21:36] <- "AF2"
-# station[37:56] <- "EU1"
-# station[57:76] <- "EU2"
-# 
-# molecule <- rep(NA, 76)
-# molecule[c(1,3,5,7,9,11,13,15,17,19,21,23,24,25,27,29,31,33,35,
-#   37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75)] <- "DNA"
-# molecule[c(2,4,6,8,10,12,14,16,18,20,22,26,28,30,32,34,36,
-#   38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76)] <- "RNA"
-# 
-# slope <- rep(NA, 76)
-# slope[1:36] <- "AF"
-# slope[37:76] <- "EU"
-# 
 # #conduct an Analysis of Similarities (ANOSIM)
 # #if consulting dissimilarity ranks, use values from 50% column
 # Anosim <- anosim(sampleREL.dist, grouping = site, permutations = 1000, distance = "bray")
@@ -871,40 +1033,4 @@ text(WL.pcoa$points[ ,1], WL.pcoa$points[ ,2], design2$Plot)
 # #ratio is the average proportional contribution of the respective OTU divided by its SD
 # Simper <- simper(sampleREL.dist, group = site)
 # summary(Simper)
-# 
-# 
-# # anosim performs an analysis of simliarities on a distance matrix
-# # The default distance measure is bray-curtis, but other measures (Chao, Jaccard, Euclidean) can be used when specified
-# # Example specifying distance measure: anosim(lter3REL.dist, grouping=c(rep(1,3), rep(2,3)), distance="euclidean", permutations=1000)
-# # The grouping argument used here specifies what group (1 or 2) each sample belongs to (here the first 3 samples belong to group 1)
-# anosim(sampleREL.dist, grouping=site, permutations=1000)
-# 
-# 
-# # mrpp performs a multi-response permutation procedure to test for within vs. among group differences
-# # The default distance measure is euclidean, but other measures (Chao, Jaccard, Bray-Curtis) can be used when specified
-# mrpp(t(sampleREL.dist), grouping=site, distance="bray", permutations=1000)
-# 
-# # adonis runs a permanova (Created by Marti J. Anderson) this is very similar to ANOVA but for multivariate data. You can make very complex
-# # experimental designs with it.
-# # The default distance measure is bray-curtis, but other measures (Chao, Jaccard, Euclidean) can be used when specified
-# adonis(sampleREL.dist ~ molecule + site , method="bray", permutations=1000)
-# 
-# 
-# *******
-# data.bact<- read.csv("~/Documents/Projects_ACTIVE/Wetlands_Illinois/2013_HenryCountyMitigation/WLbact_only.csv", header=TRUE)
-# data.env<- read.csv("~/Documents/Projects_ACTIVE/Wetlands_Illinois/2013_HenryCountyMitigation/WL_soil.csv", header=TRUE)
-# 
-# data(data.bact)
-# data(data.env)
-# (sim <- with(data.env, simper(data.bact, Treatment)))
-# summary(sim, ordered=TRUE)
-# 
-# data(dune)
-# data(dune.env)
-# (sim <- with(dune.env, simper(dune, Management)))
-# summary(sim)
-# 
-# simper(comm, group,  ...)
-# ## S3 method for class 'simper'
-# summary(object, ordered = TRUE,
-#      digits = max(3, getOption("digits") - 3), ...)
+
