@@ -758,11 +758,8 @@ grid.raster(img)
 
 
 
-
+# Distance Based RDA Models
 ```{r}
-
-
-
 phys.dist <- dist(WL.soil.phys, method = "euclidian")
 phys.pcoa <- cmdscale(phys.dist, k = 3, eig = T)
 
@@ -775,16 +772,35 @@ chem.pcoa <- cmdscale(chem.dist, k = 3, eig = T)
 explainvar1 <- round(chem.pcoa$eig[1] / sum(chem.pcoa$eig), 3) * 100
 explainvar2 <- round(chem.pcoa$eig[2] / sum(chem.pcoa$eig), 3) * 100
 
-dbRDA <- dbrda(WLdataREL ~ phys.pcoa$points[,1] + chem.pcoa$points[,1], distance = "bray")
+dbRDA <- dbrda(WLdataREL ~ chem.pcoa$points[,1], distance = "bray")
 anova(dbRDA) 
-str(dbRDA)
 
+dbRDA <- dbrda(WLdataREL ~ phys.pcoa$points[,1], distance = "bray")
+anova(dbRDA)
 RsquareAdj(dbRDA)
 
+dbRDA <- dbrda(WLdataREL ~ phys.pcoa$points[,1] * chem.pcoa$points[,1], 
+               distance = "bray", add = T)
+anova(dbRDA, by = "terms", model = "direct")
+RsquareAdj(dbRDA)
+summary(dbRDA)
 
-dbRDA <- dbrda(WL.plant ~ phys.pcoa$points[,1] + chem.pcoa$points[,1], distance = "bray")
-anova(dbRDA) 
+dbRDA <- dbrda(WL.plant ~ phys.pcoa$points[,1] * chem.pcoa$points[,1], 
+               distance = "bray", add = T)
+anova(dbRDA, by = "terms", model = "direct") 
+RsquareAdj(dbRDA)
+```
 
+
+
+
+
+
+
+
+
+
+```{r}
 phys.mod <- lm(phys.pcoa$points[,1] ~ WL.trts)
 chem.mod <- lm(chem.pcoa$points[,1] ~ WL.trts)
 anova(phys.mod)
