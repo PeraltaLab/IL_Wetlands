@@ -20,13 +20,12 @@ se <- function(x, ...){sd(x, na.rm = TRUE)/sqrt(length(na.omit(x)))}
 ci <- function(x, ...){1.96 * sd(x,na.rm = TRUE)}
 
 # Code Dependencies
-# source("../bin/DiversityFunctions.R")
+source("../bin/DiversityFunctions.R")
 source("../bin/MothurTools.R")
 require("vegan")
 require("reshape")
-#require("BiodiversityR")
-# require("ecodist")
 require("ggplot2")
+require("nlme")
 require("ade4")
 require("grid"); require("png")
 require("ape"); require("picante")
@@ -158,21 +157,22 @@ odd.sites <- c("HC_A3_ss1_S11", "HC_A3_ss2_S12", "HC_A3_ss3_S13", "HC_C3_ss5_S45
 WLdataREL.2 <- WLdataREL[setdiff(rownames(WLdataREL), odd.sites), ]
 treatments.2 <- design[setdiff(rownames(design), odd.sites), ]$Treatment
 
-WL.bac.adonis <- adonis(WLdataREL.2 ~ treatments.2, method = "bray", perm=99)
+WL.bac.adonis <- adonis(WLdataREL.2 ~ treatments.2, method = "bray", perm=999)
 WL.bac.adonis
 
-WL.unifrac.adonis <- adonis(WL.unifrac.dist ~ treatments, perm = 99)
+WL.unifrac.adonis <- adonis(WL.unifrac.dist ~ treatments, perm = 999)
 WL.unifrac.adonis
 
-WL.plant.adonis <- adonis(WL.plant ~ treatments, method = "bray", perm=99)
+WL.plant.adonis <- adonis(WL.plant ~ treatments, method = "bray", perm=999)
 WL.plant.adonis
 
 # Simper Analysis for Species Responses
-#WL.bac.simper <- simper(WLdataREL, group = treatments, permutations = 99)
+#WL.bac.simper <- simper(WLdataREL, group = treatments, permutations = 999)
 #bac.sum <- summary(WL.bac.simper, ordered = T)
 
-WL.plant.simper <- simper(WL.plant, group = treatments, permutations = 99)
+WL.plant.simper <- simper(WL.plant, group = treatments, permutations = 999)
 plant.sum <- summary(WL.plant.simper, ordered = T)
+plant.sum
 ```
 
 # Microbial Bray Curtis Ordination (PCoA)
@@ -531,6 +531,37 @@ WL.trts <- WL.soil[, "Treatment"]
 WL.soil.phys <- WL.soil[, which(colnames(WL.soil) %in% c("Moisture", "Temp", "pH"))]
 WL.soil.nuts <- WL.soil[, which(colnames(WL.soil) %in% c("TOC", "TN", "OM", "NH4.N", "NO3.N"))]
 
+library(agricolae)
+
+moisture.lm <- lm(Moisture ~ Treatment, data=WL.soil)
+anova(moisture.lm)
+summary(moisture.lm)
+HSD <- HSD.test(moisture.lm,"Treatment", console=TRUE)
+
+pH.lm <- lm(pH ~ Treatment, data=WL.soil)
+anova(pH.lm)
+summary(pH.lm)
+HSD <- HSD.test(pH.lm,"Treatment", console=TRUE)
+
+temp.lm <- lm(Temp ~ Treatment, data=WL.soil)
+anova(temp.lm)
+summary(temp.lm)
+HSD <- HSD.test(temp.lm,"Treatment", console=TRUE)
+
+TOC.lm <- lm(TOC ~ Treatment, data=WL.soil)
+anova(TOC.lm)
+summary(TOC.lm)
+HSD <- HSD.test(TOC.lm,"Treatment", console=TRUE)
+
+NH4.lm <- lm(NH4.N ~ Treatment, data=WL.soil)
+anova(NH4.lm)
+summary(NH4.lm)
+
+NO3.lm <- lm(NO3.N ~ Treatment, data=WL.soil)
+anova(NO3.lm)
+summary(NO3.lm)
+HSD <- HSD.test(NO3.lm,"Treatment", console=TRUE)
+
 WL.phys.mean <- apply(WL.soil.phys, 2, 
                       FUN = function(avg) aggregate(avg ~ WL.trts, WL.soil.phys, mean))
 WL.phys.sem <- apply(WL.soil.phys, 2, 
@@ -601,7 +632,7 @@ boxplot(WL.soil.nuts$TOC ~ WL.trts,
   box(lwd = 2)
   
   # Lables
-  mtext("Total Organic Carbon\n(?)", side = 2, cex = 1, line = 3.5)
+  mtext("Total Organic Carbon\n(%)", side = 2, cex = 1, line = 3.5)
 
 # # Total Nitrogen
 # boxplot(WL.soil.nuts$TN ~ WL.trts, 
@@ -648,8 +679,8 @@ boxplot(WL.soil.nuts$NH4.N ~ WL.trts,
   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
   box(lwd = 2)
   
-  # Lables
-  mtext("Ammonium\n(?)", side = 2, cex = 1, line = 3.5)
+  # Labels
+  mtext("Ammonium\n(mg/kg)", side = 2, cex = 1, line = 3.5)
 
 # Nitrate
 boxplot(WL.soil.nuts$NO3.N ~ WL.trts, 
@@ -665,7 +696,7 @@ boxplot(WL.soil.nuts$NO3.N ~ WL.trts,
   box(lwd = 2)
   
   # Lables
-  mtext("Nitrate\n(?)", side = 2, cex = 1, line = 3.5)
+  mtext("Nitrate\n(mg/kg)", side = 2, cex = 1, line = 3.5)
 
 # Plot X labs at default X position
 par(xpd = NA)
@@ -703,7 +734,7 @@ boxplot(WL.soil.phys$Moisture ~ WL.trts,
   box(lwd = 2)
 
   # Lables
-  mtext("Moisture", side = 2, cex = 1, line = 3.5)
+  mtext("Moisture (%)", side = 2, cex = 1, line = 3.5)
 
 boxplot(WL.soil.phys$Temp ~ WL.trts, 
         col = myColors, xaxt = "n",  yaxt = "n",
