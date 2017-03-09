@@ -29,6 +29,8 @@ require("nlme")
 require("ade4")
 require("grid"); require("png")
 require("ape"); require("picante")
+library("agricolae")
+
 
 # Define Colors
 #myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#000000", "#336633", "#FF9933") #pick new
@@ -61,7 +63,8 @@ for(i in 1:dim(WLdata)[1]){
 WLdataREL.log <- decostand(WLdataREL, method="log")
 
 # Import Taxonomy File
-WL.tax <- read.tax(taxonomy = "../data/WL.final.0.03.taxonomy")
+WL.tax <- read.tax(taxonomy = "../data/WL.final.0.03.taxonomy", 
+                   format = "rdp", tax.levels = 6, col.tax = 3)
 ```
 
 # Plant Data
@@ -531,7 +534,6 @@ WL.trts <- WL.soil[, "Treatment"]
 WL.soil.phys <- WL.soil[, which(colnames(WL.soil) %in% c("Moisture", "Temp", "pH"))]
 WL.soil.nuts <- WL.soil[, which(colnames(WL.soil) %in% c("TOC", "TN", "OM", "NH4.N", "NO3.N"))]
 
-library(agricolae)
 
 moisture.lm <- lm(Moisture ~ Treatment, data=WL.soil)
 anova(moisture.lm)
@@ -619,7 +621,7 @@ layout(matrix(1:3, 3, byrow = T))
 par(mar = (c(0.5, 5, 0, 1) + 0.1), oma = c(7, 1, 1.5, 1))
 
 # TOC
-boxplot(WL.soil.nuts$TOC ~ WL.trts, 
+toc <- boxplot(WL.soil.nuts$TOC ~ WL.trts, 
         col = myColors, xaxt = "n",  yaxt = "n",
         xlab = "", ylab = "", ylim = c(4,6))
 
@@ -633,6 +635,15 @@ boxplot(WL.soil.nuts$TOC ~ WL.trts,
   
   # Lables
   mtext("Total Organic Carbon\n(%)", side = 2, cex = 1, line = 3.5)
+  
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.nuts$TOC ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = toc$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  par("usr")
+  #text(x = seq_along(levels(WL.trts)), y = 5.5, labels = grp$trt)
 
 # # Total Nitrogen
 # boxplot(WL.soil.nuts$TN ~ WL.trts, 
@@ -667,7 +678,7 @@ boxplot(WL.soil.nuts$TOC ~ WL.trts,
 #   mtext("Organic Matter\n(?)", side = 2, cex = 1, line = 3.5)
 
 # Ammonium
-boxplot(WL.soil.nuts$NH4.N ~ WL.trts, 
+nh4 <- boxplot(WL.soil.nuts$NH4.N ~ WL.trts, 
         col = myColors, xaxt = "n",  yaxt = "n",
         xlab = "", ylab = "", ylim = c(6, 14))
 
@@ -679,11 +690,18 @@ boxplot(WL.soil.nuts$NH4.N ~ WL.trts,
   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
   box(lwd = 2)
   
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.nuts$NH4.N ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = nh4$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
   # Labels
   mtext("Ammonium\n(mg/kg)", side = 2, cex = 1, line = 3.5)
 
 # Nitrate
-boxplot(WL.soil.nuts$NO3.N ~ WL.trts, 
+no3 <- boxplot(WL.soil.nuts$NO3.N ~ WL.trts, 
         col = myColors, xaxt = "n",  yaxt = "n",
         xlab = "", ylab = "")
 
@@ -694,6 +712,13 @@ boxplot(WL.soil.nuts$NO3.N ~ WL.trts,
   axis(side = 2, labels = F, tck = 0.01, lwd = 2)
   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
   box(lwd = 2)
+  
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.nuts$NO3.N ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = no3$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
   
   # Lables
   mtext("Nitrate\n(mg/kg)", side = 2, cex = 1, line = 3.5)
@@ -781,14 +806,6 @@ grid.raster(img)
 ```
 
 
-
-
-
-
-
-
-
-
 # Distance Based RDA Models
 ```{r}
 phys.dist <- dist(WL.soil.phys, method = "euclidian")
@@ -803,23 +820,22 @@ chem.pcoa <- cmdscale(chem.dist, k = 3, eig = T)
 explainvar1 <- round(chem.pcoa$eig[1] / sum(chem.pcoa$eig), 3) * 100
 explainvar2 <- round(chem.pcoa$eig[2] / sum(chem.pcoa$eig), 3) * 100
 
-dbRDA <- dbrda(WLdataREL ~ chem.pcoa$points[,1], distance = "bray")
-anova(dbRDA) 
+dbRDA.c <- dbrda(WLdataREL ~ chem.pcoa$points[,1], distance = "bray")
+anova(dbRDA.c) 
 
-dbRDA <- dbrda(WLdataREL ~ phys.pcoa$points[,1], distance = "bray")
-anova(dbRDA)
-RsquareAdj(dbRDA)
+dbRDA.p <- dbrda(WLdataREL ~ phys.pcoa$points[,1], distance = "bray")
+anova(dbRDA.p)
+RsquareAdj(dbRDA.p)
 
-dbRDA <- dbrda(WLdataREL ~ phys.pcoa$points[,1] * chem.pcoa$points[,1], 
+dbRDA.cp <- dbrda(WLdataREL ~ phys.pcoa$points[,1] * chem.pcoa$points[,1], 
                distance = "bray", add = T)
-anova(dbRDA, by = "terms", model = "direct")
-RsquareAdj(dbRDA)
-summary(dbRDA)
+anova(dbRDA.cp, by = "terms", model = "direct")
+RsquareAdj(dbRDA.cp)
 
-dbRDA <- dbrda(WL.plant ~ phys.pcoa$points[,1] * chem.pcoa$points[,1], 
+dbRDA.P.cp <- dbrda(WL.plant ~ phys.pcoa$points[,1] * chem.pcoa$points[,1], 
                distance = "bray", add = T)
-anova(dbRDA, by = "terms", model = "direct") 
-RsquareAdj(dbRDA)
+anova(dbRDA.P.cp, by = "terms", model = "direct") 
+RsquareAdj(dbRDA.P.cp)
 ```
 
 
@@ -828,9 +844,7 @@ RsquareAdj(dbRDA)
 
 
 
-
-
-
+# PostHoc Tests
 ```{r}
 phys.mod <- lm(phys.pcoa$points[,1] ~ WL.trts)
 chem.mod <- lm(chem.pcoa$points[,1] ~ WL.trts)
@@ -955,7 +969,7 @@ pcoaS <- wascores(WL_pcoa$points, WLdataREL, expand=T)
 
 
 # Other Stuff
-```{r}
+#```{r}
 ## PCoA Plots ##################################################################
 ################################################################################
 
