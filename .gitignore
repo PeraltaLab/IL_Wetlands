@@ -1,3 +1,7 @@
 .Rhistory
 ._.*
 .DS_Store
+data/WL.final.0.03.rep.fasta
+
+data/*.fasta
+data/*.logfile
