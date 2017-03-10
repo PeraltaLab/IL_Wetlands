@@ -18,8 +18,10 @@ rm(list=ls())
 setwd("~/GitHub/IL_Wetlands/analyses")
 se <- function(x, ...){sd(x, na.rm = TRUE)/sqrt(length(na.omit(x)))}
 ci <- function(x, ...){1.96 * sd(x,na.rm = TRUE)}
+```
 
 # Code Dependencies
+```{r}
 source("../bin/DiversityFunctions.R")
 source("../bin/MothurTools.R")
 require("vegan")
@@ -30,9 +32,10 @@ require("ade4")
 require("grid"); require("png")
 require("ape"); require("picante")
 library("agricolae")
-
+```
 
 # Define Colors
+```{r}
 #myColors <- c("#FFF000", "#CCFF00", "#33CC33", "#000000", "#336633", "#FF9933") #pick new
 myColors <- c("#448844", "#33CC33", "#CCFF00", "#FFF000", "#FF9933", "#A9A9A9")
 names(myColors) <- c("BalledBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
@@ -518,8 +521,8 @@ mantel.rtest(dist.bac, dist.plant)
 
 WL.plant_points <- cmdscale(dist.plant, k=3, eig=TRUE, add=FALSE)$points
 
-dbRDA <- dbrda(bac.comm ~ WL.plant_points, distance = "bray")
-anova(dbRDA) 
+dbRDA <- dbrda(bac.comm ~ WL.plant_points, distance = "bray") #does not work
+anova(dbRDA) #does not work
 
 RsquareAdj(dbRDA)
 ```
@@ -746,7 +749,8 @@ png(filename="../figures/soil.phy.png",
 layout(matrix(1:3, 3, byrow = T))
 par(mar = (c(0.5, 5, 0, 1) + 0.1), oma = c(7, 1, 1.5, 1))
 
-boxplot(WL.soil.phys$Moisture ~ WL.trts, 
+# Moisture
+moisture <- boxplot(WL.soil.phys$Moisture ~ WL.trts, 
         col = myColors, xaxt = "n",  yaxt = "n",
         xlab = "", ylab = "", ylim = c(20, 50))
 
@@ -758,10 +762,18 @@ boxplot(WL.soil.phys$Moisture ~ WL.trts,
   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
   box(lwd = 2)
 
-  # Lables
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.phys$Moisture ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = moisture$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
+  # Labels
   mtext("Moisture (%)", side = 2, cex = 1, line = 3.5)
 
-boxplot(WL.soil.phys$Temp ~ WL.trts, 
+# Temperature
+temp <- boxplot(WL.soil.phys$Temp ~ WL.trts, 
         col = myColors, xaxt = "n",  yaxt = "n",
         xlab = "", ylab = "", ylim = c(18, 26))
 
@@ -773,10 +785,19 @@ boxplot(WL.soil.phys$Temp ~ WL.trts,
   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
   box(lwd = 2)
 
+  
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.phys$Temp ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = temp$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
   # Lables
   mtext("Temperature (ºC)", side = 2, cex = 1, line = 3.5)
 
-boxplot(WL.soil.phys$pH ~ WL.trts, 
+# pH
+  pH <- boxplot(WL.soil.phys$pH ~ WL.trts, 
         col = myColors, xaxt = "n",  yaxt = "n",
         xlab = "", ylab = "", ylim = c(7.2, 7.8))
 
@@ -788,6 +809,13 @@ boxplot(WL.soil.phys$pH ~ WL.trts,
   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
   box(lwd = 2)
 
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.phys$pH ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = pH$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
   # Lables
   mtext("pH", side = 2, cex = 1, line = 3.5)
 
@@ -820,7 +848,7 @@ chem.pcoa <- cmdscale(chem.dist, k = 3, eig = T)
 explainvar1 <- round(chem.pcoa$eig[1] / sum(chem.pcoa$eig), 3) * 100
 explainvar2 <- round(chem.pcoa$eig[2] / sum(chem.pcoa$eig), 3) * 100
 
-dbRDA.c <- dbrda(WLdataREL ~ chem.pcoa$points[,1], distance = "bray")
+dbRDA.c <- dbrda(WLdataREL ~ chem.pcoa$points[,1], distance = "bray") #dbrda still doesn't work
 anova(dbRDA.c) 
 
 dbRDA.p <- dbrda(WLdataREL ~ phys.pcoa$points[,1], distance = "bray")
