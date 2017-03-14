@@ -5,7 +5,7 @@ date: "Last updated on `r format(Sys.time(), '%d %B, %Y')`"
 header-includes:
   - \usepackage{array}
   - \usepackage{graphics}
-  - \usepackage[utf8]{inputnc}
+  - \usepackage[utf8]{inputenc}
 output: 
   pdf_document:
   fig_caption: false
@@ -105,7 +105,7 @@ rownames(WL.unifrac) <- rownames(WLdata.in2)
 WL.unifrac.dist <- as.dist(WL.unifrac, upper = T, diag = T)
 ```
 
-### Notes: Phylogenetic Analysis
+## Notes: Phylogenetic Analysis
 ```{sh, eval = F}
 # The following was done outside of R
 
@@ -1342,7 +1342,7 @@ grid.raster(img)
 
 
 
-##############
+#############
 OLD CODE
 ##############
 
