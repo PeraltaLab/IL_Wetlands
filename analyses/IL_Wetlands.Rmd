@@ -8,13 +8,13 @@ header-includes:
   - \usepackage[utf8]{inputenc}
 output: 
   pdf_document:
-  fig_caption: false
+  fig_caption: true
 ---
 
 Project Description: 
 
 # Initial Setup
-```{r}
+```{r, results="hide", message=FALSE}
 rm(list=ls())
 setwd("~/GitHub/IL_Wetlands/analyses")
 se <- function(x, ...){sd(x, na.rm = TRUE)/sqrt(length(na.omit(x)))}
@@ -33,7 +33,8 @@ require("ape"); require("picante")
 library("agricolae")
 
 myColors <- c("#448844", "#33CC33", "#CCFF00", "#FFF000", "#FF9933", "#A9A9A9")
-names(myColors) <- c("BalledBurlapped", "Bareroot", "Seedling", "Acorn", "Seedbank", "Reference")
+names(myColors) <- c("BalledBurlapped", "Bareroot", "Seedling", 
+                     "Acorn", "Seedbank", "Reference")
 ```
 
 # Import Data Files
@@ -62,7 +63,7 @@ WLdata.in <- read.otu("../data/WL.final.shared")
 WLdata.in2 <- WLdata.in[which(rownames(WLdata.in) != "Mock"), ]
 
 # Correct Sample IDs
-rownames(WLdata.in2) == rownames(design)
+all.equal(rownames(WLdata.in2), rownames(design))
 rownames(WLdata.in2) <- rownames(design)
 
 # Remove OTUs with less than two occurences across all sites
@@ -87,7 +88,8 @@ WLdataREL.log <- decostand(WLdataREL, method="log")
 
 ## Plant Data
 ```{r}
-WL.plant <- read.csv("../data/IL_Wetlands_Plants/IL_Wetlands_HC_Plants.csv", row.names = 1)
+WL.plant <- read.csv("../data/IL_Wetlands_Plants/IL_Wetlands_HC_Plants.csv",
+                     row.names = 1)
 
 # The plant data is already relativized
 # But it might be useful to have it as PA
@@ -99,8 +101,12 @@ WL.plant.PA <- (WL.plant > 0) * 1
 ```{r}
 #WL.phylo <- read.tree("../data/WL.bac.renamed.tree")
 
-WL.unifrac.raw <- read.delim("../data/WL.bac.tree1.weighted.phylip.dist", header = F, skip = 1, row.names = 1)
-WL.unifrac <- WL.unifrac.raw[which(row.names(WL.unifrac.raw) %in% row.names(WLdata.in)), which(row.names(WL.unifrac.raw) %in% row.names(WLdata.in))]
+WL.unifrac.raw <- read.delim("../data/WL.bac.tree1.weighted.phylip.dist",
+                             header = F, skip = 1, row.names = 1)
+WL.unifrac <- WL.unifrac.raw[which(row.names(WL.unifrac.raw) %in%
+                                   row.names(WLdata.in)),
+                             which(row.names(WL.unifrac.raw) %in%
+                                   row.names(WLdata.in))]
 rownames(WL.unifrac) <- rownames(WLdata.in2)
 WL.unifrac.dist <- as.dist(WL.unifrac, upper = T, diag = T)
 ```
@@ -108,7 +114,6 @@ WL.unifrac.dist <- as.dist(WL.unifrac, upper = T, diag = T)
 ## Notes: Phylogenetic Analysis
 ```{sh, eval = F}
 # The following was done outside of R
-
 python ../bin/name_change.py WL.final.0.03.rep.fasta WL.final.0.03.rep.rename.fasta
 
 FastTree -gtr -nt -gamma -fastest WL.final.0.03.rep.rename.fasta > WL.bac.tree 
@@ -117,18 +122,20 @@ Output:
 ML-NNI round 11: LogLk = -1017514.896 NNIs 4825 max delta 3.21 Time 626.69 (final)
 Optimize all lengths: LogLk = -1017490.876 Time 645.88 
 Gamma(20) LogLk = -1017848.611 alpha = 2.130 rescaling lengths by 1.471   
-Total time: 733.31 seconds Unique: 56413/56413 Bad splits: 16/56410 Worst delta-LogLk 3.347
+Total time: 733.31 seconds Unique: 56413/56413 
+Bad splits: 16/56410 Worst delta-LogLk 3.347
 
 # Weighted UniFrac was done using Mothur
-
 This caused an error because of the names. Mothur actually crashed
 
 FastTree -gtr -nt -gamma -fastest WL.final.0.03.rep.fasta > WL.bac.tree
 
-ML-NNI round 12: LogLk = -1017096.874 NNIs 4848 max delta 3.23 Time 633.03 (final)x delta 3.226)   
+ML-NNI round 12: LogLk = -1017096.874 NNIs 4848 max delta 3.23 
+Time 633.03 (final)x delta 3.226)   
 Optimize all lengths: LogLk = -1017090.230 Time 650.74 
 Gamma(20) LogLk = -1017412.647 alpha = 2.058 rescaling lengths by 1.484   
-Total time: 735.70 seconds Unique: 56413/56413 Bad splits: 13/56410 Worst delta-LogLk 1.738
+Total time: 735.70 seconds Unique: 56413/56413 
+Bad splits: 13/56410 Worst delta-LogLk 1.738
 
 Mothur (v 1.38)
 unifrac.weighted(tree=WL.bac.tree, count=WL.final.rep.count_table, distance=square)
@@ -151,9 +158,9 @@ WL.soil$Treatment <- factor(WL.soil$Treatment,
 # Simple Hypothesis Testing
 ```{r}
 # Check that Bac and Plant data have same structure as design
-row.names(WLdataREL) == row.names(design)
-row.names(WL.unifrac) == row.names(design)
-row.names(WL.plant) == row.names(design) 
+all.equal(row.names(WLdataREL), row.names(design))
+all.equal(row.names(WL.unifrac), row.names(design))
+all.equal(row.names(WL.plant), row.names(design))
   # Same info seem to be inside so I'm going to rename the plant data
 row.names(WL.plant) <- row.names(design) 
 
@@ -162,7 +169,8 @@ WL.bac.adonis <- adonis(WLdataREL ~ treatments, method = "bray", perm=999)
 WL.bac.adonis
 
 # Odd sites in bacterial composition data (explore more)
-odd.sites <- c("HC_A3_ss1_S11", "HC_A3_ss2_S12", "HC_A3_ss3_S13", "HC_C3_ss5_S45", "HC_D2_ss3_S53", "HC_E1_ss1_S61")
+odd.sites <- c("HC_A3_ss1_S11", "HC_A3_ss2_S12", "HC_A3_ss3_S13",
+               "HC_C3_ss5_S45", "HC_D2_ss3_S53", "HC_E1_ss1_S61")
 
 WLdataREL.2 <- WLdataREL[setdiff(rownames(WLdataREL), odd.sites), ]
 treatments.2 <- design[setdiff(rownames(design), odd.sites), ]$Treatment
@@ -182,12 +190,12 @@ WL.plant.adonis
 
 WL.plant.simper <- simper(WL.plant, group = treatments, permutations = 999)
 plant.sum <- summary(WL.plant.simper, ordered = T)
-plant.sum
+#plant.sum
 ```
 
 # Beta Diversity Analysis
 ## Bray Curtis Ordination (PCoA)
-```{r}
+```{r, message=FALSE}
 png(filename="../figures/WL.bac.PCoA.png",
     width = 1200, height = 800, res = 96*2)
 # Create Distance Matrix
@@ -284,15 +292,16 @@ legend(0, 1, legend = levels(treatments), pt.bg = myColors, col = "black",
 # Close Plot Device
 dev.off()
 graphics.off()
-#```
+```
+
 ## Show Plot
-#```{r}
+```{r}
 img <- readPNG("../figures/WL.bac.PcoA.png")
 grid.raster(img)
 ```
 
 ## Plot: Microbial Phylogenetic Ordination 
-```{r}
+```{r, message=FALSE}
 png(filename="../figures/WL.unifrac.PCoA.png",
     width = 1200, height = 800, res = 96*2)
 
@@ -387,15 +396,16 @@ legend(0, 1, legend = cent.treats, pt.bg = myColors, col = "black",
 # Close Plot Device
 dev.off()
 graphics.off()
-#```
+```
+
 ## Show Plot
-#```{r}
+```{r, echo=FALSE}
 img <- readPNG("../figures/WL.unifrac.PcoA.png")
 grid.raster(img)
 ```
 
 ## Plot: Plant Principal Coordinates Ordination
-```{r}
+```{r, message=FALSE}
 png(filename="../figures/WL.plant.PCoA.png",
     width = 1200, height = 800, res = 96*2)
 # Create Distance Matrix
@@ -491,15 +501,16 @@ legend(0, 1, legend = cent.treats, pt.bg = myColors, col = "black",
 # Close Plot Device
 dev.off()
 graphics.off()
-#```
+```
+
 ## Show Plot
-#```{r}
+```{r, echo=FALSE}
 img <- readPNG("../figures/WL.plant.PcoA.png")
 grid.raster(img)
 ```
 
 ## Joint Plot: Microbial and Plant Bray Curtis Ordination (PCoA)
-```{r}
+```{r, message=FALSE}
 png(filename="../figures/WL.PCoA.png",
     width = 1800, height = 800, res = 96*2)
 
@@ -665,7 +676,8 @@ box(lwd = 2)
 par(mar = c(5, 0, 1, 0) + 0.5)
 plot.new()
 
-legend(0, 1, legend = c("Balled Burlapped", cent.treats[-1]), pt.bg = myColors, col = "black", 
+legend(0, 1, legend = c("Balled Burlapped", cent.treats[-1]), 
+       pt.bg = myColors, col = "black", 
        pch = 22, cex = 1, bty = 'n', inset = c(0.1, 0.05),
        y.intersp = 1.25)
 
@@ -673,11 +685,12 @@ legend(0, 1, legend = c("Balled Burlapped", cent.treats[-1]), pt.bg = myColors, 
 # Close Plot Device
 dev.off()
 graphics.off()
-#```
+```
+
 ## Show Plot
-#```{r}
-#img <- readPNG("../figures/WL.PcoA.png")
-#grid.raster(img)
+```{r, }
+img <- readPNG("../figures/WL.PcoA.png")
+grid.raster(img)
 ```
 
 
@@ -685,7 +698,7 @@ graphics.off()
 ## Similarity between microbe and plant communities
 ```{r}
 # Name check
-rownames(WL.plant) == rownames(WLdataREL)
+all.equal(rownames(WL.plant), rownames(WLdataREL))
 
 # Remove Odd Sites from Bac Community
 bac.comm <- WLdataREL[-which(rownames(WLdataREL) %in% odd.sites),]
@@ -696,9 +709,8 @@ bare.sites <- rownames(design[design$Treatment == "Bareroot", ])
 bac.comm <- bac.comm[-which(rownames(bac.comm) %in% bare.sites),]
 plant.comm <- plant.comm[-which(rownames(plant.comm) %in% bare.sites), ]
 
-rownames(bac.comm) == rownames(plant.comm)
-
-rowSums(plant.comm)
+all.equal(rownames(bac.comm), rownames(plant.comm))
+#rowSums(plant.comm)
 
 dist.bac <- vegdist(bac.comm, method = "bray")
 dist.plant <- vegdist(plant.comm, method = "bray")
@@ -719,9 +731,6 @@ RsquareAdj(dbRDA)
 bac.comm <- WLdataREL[-which(rownames(WLdataREL) %in% odd.sites),]
 plant.comm <- WL.plant[-which(rownames(WL.plant) %in% odd.sites), ]
 
-head(WL.soil)
-# Impt Soil: Moisture, Temp, pH, TOC, TN, OM, NH4, NO3
-
 # Remove Odd Sites from Soil
 WL.soil2 <- WL.soil[-which(rownames(WLdataREL) %in% odd.sites),]
 
@@ -733,7 +742,8 @@ WL.soil.all <- WL.soil2[, which(colnames(WL.soil2) %in%
                               c("Moisture", "Temp", "pH", "TOC", "TN", 
                                 "OM", "NH4.N", "NO3.N"))]
 
-grep("[0-9][0-9]$", rownames(WL.soil2)) == grep("S*$", rownames(bac.comm))
+all.equal(grep("[0-9][0-9]$", rownames(WL.soil2)), 
+          grep("S*$", rownames(bac.comm)))
 
 dist.bac <- vegdist(bac.comm, method = "bray") 
 dist.plant <- vegdist(plant.comm, method = "bray")
@@ -754,15 +764,14 @@ mantel.rtest(dist.plant, dist.soil)
 
 # Soil Factors
 ```{r}
-
-head(WL.soil)
-# Impt Soil: Moisture, Temp, pH, TOC, TN, OM, NH4, NO3
-
+# Organize Data
 WL.trts <- WL.soil[, "Treatment"]
-WL.soil.phys <- WL.soil[, which(colnames(WL.soil) %in% c("Moisture", "Temp", "pH"))]
-WL.soil.nuts <- WL.soil[, which(colnames(WL.soil) %in% c("TOC", "TN", "OM", "NH4.N", "NO3.N"))]
+WL.soil.phys <- WL.soil[, which(colnames(WL.soil) %in% c("Moisture", 
+                                                         "Temp", "pH"))]
+WL.soil.nuts <- WL.soil[, which(colnames(WL.soil) %in% c("TOC", "TN", 
+                                                         "OM", "NH4.N", "NO3.N"))]
 
-
+# Linear Models
 moisture.lm <- lm(Moisture ~ Treatment, data=WL.soil)
 anova(moisture.lm)
 summary(moisture.lm)
@@ -841,7 +850,7 @@ nuts.ci.table <- data.frame(trt = WL.nuts.95$TOC$WL.trts,
 ```
 
 ## Plot: WL Soil Nuts
-```{r}
+```{r, message=FALSE}
 png(filename="../figures/soil.chem.png",
     width = 800, height = 1200, res = 96*2)
 
@@ -953,19 +962,23 @@ no3 <- boxplot(WL.soil.nuts$NO3.N ~ WL.trts,
 
 # Plot X labs at default X position
 par(xpd = NA)
-text(x = seq_along(levels(WL.trts)), y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA)
+text(x = seq_along(levels(WL.trts)), 
+     y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), 
+     srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA)
 
 # Close Plot Device
 dev.off()
 graphics.off()
+```
 
-# Show Plot
+## Show Plot
+```{r, echo=FALSE}
 img <- readPNG("../figures/soil.chem.png")
 grid.raster(img)
 ```
 
 ## Plot: WL Soil Phys
-```{r}
+```{r, message=FALSE}
 png(filename="../figures/soil.phy.png",
     width = 800, height = 1200, res = 96*2)
 
@@ -1046,19 +1059,23 @@ temp <- boxplot(WL.soil.phys$Temp ~ WL.trts,
 
 # Plot x labs at default x position
 par(xpd = NA)
-text(x = seq_along(levels(WL.trts)), y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA)
+text(x = seq_along(levels(WL.trts)), 
+     y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), 
+     srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA)
 
 # Close Plot Device
 dev.off()
 graphics.off()
+```
 
-# Show Plot
+## Show Plot
+```{r, echo=FALSE}
 img <- readPNG("../figures/soil.phy.png")
 grid.raster(img)
 ```
 
 ## Joint Plot: Wetland Soil
-```{r}
+```{r, message=FALSE}
 png(filename="../figures/WL.soil.png",
     width = 1600, height = 1400, res = 96*2)
 
@@ -1219,10 +1236,12 @@ text(x = seq_along(levels(WL.trts)),
 # Close Plot Device
 dev.off()
 graphics.off()
+```
 
-# Show Plot
-#img <- readPNG("../figures/WL.soil.png")
-#grid.raster(img)
+## Show Plot
+```{r, echo=FALSE}
+img <- readPNG("../figures/WL.soil.png")
+grid.raster(img)
 ```
 
 # Distance Based RDA Models
@@ -1246,8 +1265,8 @@ dbRDA.p <- dbrda(WLdataREL ~ phys.pcoa$points[,1], distance = "bray")
 anova(dbRDA.p)
 RsquareAdj(dbRDA.p)
 
-dbRDA.cp <- dbrda(WLdataREL ~ phys.pcoa$points[,1] * chem.pcoa$points[,1], 
-               distance = "bray", add = T)
+dbRDA.cp <- dbrda(WLdataREL ~ points[,1] * points[,1], 
+               data = phys.pcoa, distance = "bray", add = T)
 anova(dbRDA.cp, by = "terms", model = "direct")
 RsquareAdj(dbRDA.cp)
 
@@ -1274,7 +1293,8 @@ WL.rc <- data.frame(WL.soil$Treatment, WL.soil$RCGbiomass, WL.soil$Non.RCGbiomas
 
 WL.rc <- na.omit(WL.rc)
 
-WL.rc$ratio <- WL.rc$WL.soil.RCGbiomass / (WL.rc$WL.soil.RCGbiomass + WL.rc$WL.soil.Non.RCGbiomass) 
+WL.rc$ratio <- WL.rc$WL.soil.RCGbiomass / 
+  (WL.rc$WL.soil.RCGbiomass + WL.rc$WL.soil.Non.RCGbiomass) 
 
 
 
@@ -1307,7 +1327,8 @@ mtext("Reed Canary Biomass (g)", side = 2, cex = 1.25, line = 3)
 # PostHoc Test
 tuk <- HSD.test(lm(WL.soil.RCGbiomass ~ WL.soil.Treatment, 
                    data = WL.rc), "WL.soil.Treatment")
-grp <- tuk$groups[c(match(gsub(" ", "", tuk$groups$trt), levels(WL.rc$WL.soil.Treatment))), ]
+grp <- tuk$groups[c(match(gsub(" ", "", tuk$groups$trt),
+                          levels(WL.rc$WL.soil.Treatment))), ]
 text(x = seq_along(levels(WL.rc$WL.soil.Treatment)), 
      y = rcg$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
      labels = grp$M)
@@ -1333,8 +1354,10 @@ box(lwd = 2)
 # Close Plot Device
 dev.off()
 graphics.off()
+```
 
-# Show Plot
+## Show Plot
+```{r, echo=FALSE}
 img <- readPNG("../figures/reed.biomass.png")
 grid.raster(img)
 ```
