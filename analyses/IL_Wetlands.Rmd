@@ -481,12 +481,12 @@ toc <- boxplot(WL.soil.nuts$TOC ~ WL.trts,
         xlab = "", ylab = "", ylim = c(4,6))
 
   # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
   
   # Lables
   mtext("Total Organic Carbon (%)", side = 2, cex = 1, line = 3)
@@ -504,12 +504,12 @@ nh4 <- boxplot(WL.soil.nuts$NH4.N ~ WL.trts,
         xlab = "", ylab = "", ylim = c(6, 14))
 
   # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
   
   # PostHoc Test
   tuk <- HSD.test(aov(WL.soil.nuts$NH4.N ~ WL.trts), "WL.trts")
@@ -527,12 +527,12 @@ no3 <- boxplot(WL.soil.nuts$NO3.N ~ WL.trts,
         xlab = "", ylab = "")
 
   # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
   
   # PostHoc Test
   tuk <- HSD.test(aov(WL.soil.nuts$NO3.N ~ WL.trts), "WL.trts")
@@ -556,12 +556,12 @@ moisture <- boxplot(WL.soil.phys$Moisture ~ WL.trts,
         xlab = "", ylab = "", ylim = c(20, 50))
 
   # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
 
   # PostHoc Test
   tuk <- HSD.test(aov(WL.soil.phys$Moisture ~ WL.trts), "WL.trts")
@@ -579,12 +579,12 @@ temp <- boxplot(WL.soil.phys$Temp ~ WL.trts,
         xlab = "", ylab = "", ylim = c(18, 26))
 
   # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
 
   
   # PostHoc Test
@@ -603,12 +603,12 @@ temp <- boxplot(WL.soil.phys$Temp ~ WL.trts,
         xlab = "", ylab = "", ylim = c(7.2, 7.8))
 
   # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
 
   # PostHoc Test
   tuk <- HSD.test(aov(WL.soil.phys$pH ~ WL.trts), "WL.trts")
@@ -660,10 +660,20 @@ odd.sites <- c("HC_A3_ss1_S11", "HC_A3_ss2_S12", "HC_A3_ss3_S13",
 WLdataREL.2 <- WLdataREL[setdiff(rownames(WLdataREL), odd.sites), ]
 treatments.2 <- design[setdiff(rownames(design), odd.sites), ]$Treatment
 
+odd.sites
+
 WL.bac.adonis <- adonis(WLdataREL.2 ~ treatments.2, method = "bray", perm=999)
 WL.bac.adonis
 
 WL.unifrac.adonis <- adonis(WL.unifrac.dist ~ treatments, perm = 999)
+WL.unifrac.adonis
+
+WL.unifrac.dist2 <- as.matrix(WL.unifrac.dist)[setdiff(labels(WL.unifrac.dist),
+                                                       odd.sites), 
+                                               setdiff(labels(WL.unifrac.dist),
+                                                       odd.sites)]
+
+WL.unifrac.adonis <- adonis(as.dist(WL.unifrac.dist2) ~ treatments.2, perm = 999)
 WL.unifrac.adonis
 
 WL.plant.adonis <- adonis(WL.plant ~ treatments, method = "bray", perm=999)
@@ -673,9 +683,54 @@ WL.plant.adonis
 #WL.bac.simper <- simper(WLdataREL, group = treatments, permutations = 999)
 #bac.sum <- summary(WL.bac.simper, ordered = T)
 
-WL.plant.simper <- simper(WL.plant, group = treatments, permutations = 999)
-plant.sum <- summary(WL.plant.simper, ordered = T)
+
+# Which plants influenced plant communities between trts
+#WL.plant.simper <- simper(WL.plant, group = treatments, permutations = 999)
+#plant.sum <- summary(WL.plant.simper, ordered = T)
 #plant.sum
+```
+
+# Indicator Species Analysis
+```{r}
+# Plant Communities
+library("labdsv")
+plant.ind <- indval(WL.plant, treatments)
+summary(plant.ind)
+plant.ind$indval
+levels(treatments)
+
+plant.groups <- rep(NA, length(treatments))
+for (i in 1:length(treatments)){
+  if (treatments[i] == "Reference" | 
+      treatments[i] == "Bareroot"){
+    plant.groups[i] <- "Group 1"
+  }
+  if (treatments[i] == "Seedling" | 
+      treatments[i] == "BalledBurlapped"){
+  plant.groups[i] <- "Group 2"
+  }
+  if (treatments[i] == "Seedbank" |
+      treatments[i]== "Acorn"){
+  plant.groups[i] <- "Group 3"
+  }
+}
+
+plant.ind2 <- indval(WL.plant, plant.groups)
+summary(plant.ind2)
+
+WLdataREL.2 <- WLdataREL.2[, colSums(WLdataREL.2) > 0]
+bac.ind <- indval(WLdataREL.2, treatments.2)
+summary(bac.ind)
+
+bac.ind
+
+WLdataREL.2 <- WLdataREL.2[, colSums(WLdataREL.2) > 0.05]
+bac.ind <- indval(WLdataREL.2, treatments.2)
+levels(treatments.2)
+summary(bac.ind)
+
+bac.ind
+
 ```
 
 # Beta Diversity Analysis
@@ -1191,22 +1246,24 @@ plant.comm <- WL.plant[-which(rownames(WL.plant) %in% odd.sites), ]
 
 # Remove Bare Treatment
 bare.sites <- rownames(design[design$Treatment == "Bareroot", ])
-bac.comm <- bac.comm[-which(rownames(bac.comm) %in% bare.sites),]
-plant.comm <- plant.comm[-which(rownames(plant.comm) %in% bare.sites), ]
+#bac.comm <- bac.comm[-which(rownames(bac.comm) %in% bare.sites),]
+#plant.comm <- plant.comm[-which(rownames(plant.comm) %in% bare.sites), ]
 
 all.equal(rownames(bac.comm), rownames(plant.comm))
 #rowSums(plant.comm)
 
+bac.comm <- bac.comm[, colSums(bac.comm) > 0]
+plant.comm <- plant.comm[, colSums(plant.comm) > 0]
+
 dist.bac <- vegdist(bac.comm, method = "bray")
 dist.plant <- vegdist(plant.comm, method = "bray")
 
-mantel.rtest(dist.bac, dist.plant)
+mantel.rtest(dist.bac, dist.plant, nrepet = 999)
 
 WL.plant_points <- cmdscale(dist.plant, k=3, eig=TRUE, add=FALSE)$points
 
-dbRDA <- dbrda(bac.comm ~ WL.plant_points, distance = "bray") #does not work
-anova(dbRDA) #does not work
-
+dbRDA <- dbrda(bac.comm ~ WL.plant_points[, 1], distance = "bray")
+anova(dbRDA)
 RsquareAdj(dbRDA)
 ```
 
@@ -1215,6 +1272,10 @@ RsquareAdj(dbRDA)
 # Remove Odd Sites from Bac Community
 bac.comm <- WLdataREL[-which(rownames(WLdataREL) %in% odd.sites),]
 plant.comm <- WL.plant[-which(rownames(WL.plant) %in% odd.sites), ]
+
+# Remove Zero Sum Columns
+bac.comm <- bac.comm[, colSums(bac.comm) > 0]
+plant.comm <- plant.comm[, colSums(plant.comm) > 0]
 
 # Remove Odd Sites from Soil
 WL.soil2 <- WL.soil[-which(rownames(WLdataREL) %in% odd.sites),]
@@ -1237,35 +1298,42 @@ dist.phys <- vegdist(WL.soil.phys, method = "euclidean")
 dist.soil <- vegdist(WL.soil.all, method = "euclidean")
 
 
-mantel.rtest(dist.bac, dist.plant)
-mantel.rtest(dist.bac, dist.nuts)
-mantel.rtest(dist.bac, dist.phys)
-mantel.rtest(dist.bac, dist.soil)
-mantel.rtest(dist.plant, dist.nuts)
-mantel.rtest(dist.plant, dist.phys)
-mantel.rtest(dist.plant, dist.soil)
+mantel.rtest(dist.bac, dist.plant, nrepet = 999)
+mantel.rtest(dist.bac, dist.nuts, nrepet = 999)
+mantel.rtest(dist.bac, dist.phys, nrepet = 999)
+mantel.rtest(dist.bac, dist.soil, nrepet = 999)
+mantel.rtest(dist.plant, dist.nuts, nrepet = 999)
+mantel.rtest(dist.plant, dist.phys, nrepet = 999)
+mantel.rtest(dist.plant, dist.soil, nrepet = 999)
 
 ```
 
 
 # Distance Based RDA Models
 ```{r}
-phys.dist <- dist(WL.soil.phys, method = "euclidian")
-phys.pcoa <- cmdscale(phys.dist, k = 3, eig = T)
-
-explainvar1 <- round(phys.pcoa$eig[1] / sum(phys.pcoa$eig), 3) * 100
-explainvar2 <- round(phys.pcoa$eig[2] / sum(phys.pcoa$eig), 3) * 100
-
-chem.dist <- dist(WL.soil.nuts, method = "euclidian")
+# Nutrients
+chem.dist <- dist(apply(WL.soil.nuts, 2, scale), 
+                  method = "euclidian")
 chem.pcoa <- cmdscale(chem.dist, k = 3, eig = T)
 
 explainvar1 <- round(chem.pcoa$eig[1] / sum(chem.pcoa$eig), 3) * 100
 explainvar2 <- round(chem.pcoa$eig[2] / sum(chem.pcoa$eig), 3) * 100
 
-dbRDA.c <- dbrda(WLdataREL ~ chem.pcoa$points[,1], distance = "bray") 
-anova(dbRDA.c) 
+# Physical Factors
+phys.dist <- dist(apply(WL.soil.phys, 2, scale), 
+                  method = "euclidian")
+phys.pcoa <- cmdscale(phys.dist, k = 3, eig = T)
 
-dbRDA.p <- dbrda(WLdataREL ~ phys.pcoa$points[,1], distance = "bray")
+explainvar1 <- round(phys.pcoa$eig[1] / sum(phys.pcoa$eig), 3) * 100
+explainvar2 <- round(phys.pcoa$eig[2] / sum(phys.pcoa$eig), 3) * 100
+
+# Bac dbRDA
+dbRDA.c <- dbrda(bac.comm ~ chem.pcoa$points[,1], distance = "bray") 
+anova(dbRDA.c, by = "terms", model = "direct") 
+RsquareAdj(dbRDA.c)
+
+
+dbRDA.p <- dbrda(bac.comm ~ phys.pcoa$points[,1], distance = "bray")
 anova(dbRDA.p)
 RsquareAdj(dbRDA.p)
 
