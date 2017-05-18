@@ -155,7 +155,492 @@ WL.soil$Treatment <- factor(WL.soil$Treatment,
                            "Seedling", "Acorn", "Seedbank", "Reference"))
 ```
 
-# Simple Hypothesis Testing
+# Soil Factors
+```{r}
+# Organize Data
+WL.trts <- WL.soil[, "Treatment"]
+WL.soil.phys <- WL.soil[, which(colnames(WL.soil) %in% c("Moisture", 
+                                                         "Temp", "pH"))]
+WL.soil.nuts <- WL.soil[, which(colnames(WL.soil) %in% c("TOC", "TN", 
+                                                         "OM", "NH4.N", "NO3.N"))]
+
+# Linear Models
+moisture.lm <- lm(Moisture ~ Treatment, data=WL.soil)
+anova(moisture.lm)
+summary(moisture.lm)
+HSD <- HSD.test(moisture.lm,"Treatment", console=TRUE)
+
+pH.lm <- lm(pH ~ Treatment, data=WL.soil)
+anova(pH.lm)
+summary(pH.lm)
+HSD <- HSD.test(pH.lm,"Treatment", console=TRUE)
+
+temp.lm <- lm(Temp ~ Treatment, data=WL.soil)
+anova(temp.lm)
+summary(temp.lm)
+HSD <- HSD.test(temp.lm,"Treatment", console=TRUE)
+
+TOC.lm <- lm(TOC ~ Treatment, data=WL.soil)
+anova(TOC.lm)
+summary(TOC.lm)
+HSD <- HSD.test(TOC.lm,"Treatment", console=TRUE)
+
+NH4.lm <- lm(NH4.N ~ Treatment, data=WL.soil)
+anova(NH4.lm)
+summary(NH4.lm)
+
+NO3.lm <- lm(NO3.N ~ Treatment, data=WL.soil)
+anova(NO3.lm)
+summary(NO3.lm)
+HSD <- HSD.test(NO3.lm,"Treatment", console=TRUE)
+
+WL.phys.mean <- apply(WL.soil.phys, 2, 
+                      FUN = function(avg) aggregate(avg ~ WL.trts, WL.soil.phys, mean))
+WL.phys.sem <- apply(WL.soil.phys, 2, 
+                     FUN = function(sem) aggregate(sem ~ WL.trts, WL.soil.phys, se))
+WL.phys.95 <- apply(WL.soil.phys, 2, 
+                    FUN = function(ci_95) aggregate(ci_95 ~ WL.trts, WL.soil.phys, ci))
+
+WL.nuts.mean <- apply(WL.soil.nuts, 2, 
+                      FUN = function(avg) aggregate(avg ~ WL.trts, WL.soil.nuts, mean))
+WL.nuts.sem <- apply(WL.soil.nuts, 2, 
+                     FUN = function(sem) aggregate(sem ~ WL.trts, WL.soil.nuts, se))
+WL.nuts.95 <- apply(WL.soil.nuts, 2, 
+                    FUN = function(ci_95) aggregate(ci_95 ~ WL.trts, WL.soil.nuts, ci))
+
+
+phys.means.table <- data.frame(trt = WL.phys.mean$Moisture$WL.trts,
+                               moisture = WL.phys.mean$Moisture$avg,
+                               temp = WL.phys.mean$Temp$avg,
+                               pH = WL.phys.mean$pH$avg)
+phys.sem.table <- data.frame(trt = WL.phys.sem$Moisture$WL.trts,
+                               moisture = WL.phys.sem$Moisture$sem,
+                               temp = WL.phys.sem$Temp$sem,
+                               pH = WL.phys.sem$pH$sem)
+phys.ci.table <- data.frame(trt = WL.phys.95$Moisture$WL.trts,
+                               moisture = WL.phys.95$Moisture$ci_95,
+                               temp = WL.phys.95$Temp$ci_95,
+                               pH = WL.phys.95$pH$ci_95)
+
+nuts.means.table <- data.frame(trt = WL.nuts.mean$TOC$WL.trts,
+                               toc = WL.nuts.mean$TOC$avg,
+                               tn = WL.nuts.mean$TN$avg,
+                               om = WL.nuts.mean$OM$avg,
+                               nh4 = WL.nuts.mean$NH4.N$avg,
+                               no3 = WL.nuts.mean$NO3.N$avg)
+nuts.sem.table <- data.frame(trt = WL.nuts.sem$TOC$WL.trts,
+                               toc = WL.nuts.sem$TOC$sem,
+                               tn = WL.nuts.sem$TN$sem,
+                               om = WL.nuts.sem$OM$sem,
+                               nh4 = WL.nuts.sem$NH4.N$sem,
+                               no3 = WL.nuts.sem$NO3.N$sem)
+nuts.ci.table <- data.frame(trt = WL.nuts.95$TOC$WL.trts,
+                               toc = WL.nuts.95$TOC$ci_95,
+                               tn = WL.nuts.95$TN$ci_95,
+                               om = WL.nuts.95$OM$ci_95,
+                               nh4 = WL.nuts.95$NH4.N$ci_95,
+                               no3 = WL.nuts.95$NO3.N$ci_95)
+```
+
+## Plot: WL Soil Nuts
+```{r, message=FALSE}
+png(filename="../figures/soil.chem.png",
+    width = 800, height = 1200, res = 96*2)
+
+layout(matrix(1:3, 3, byrow = T))
+par(mar = (c(0.5, 5, 0, 1) + 0.1), oma = c(7, 1, 1.5, 1))
+
+# TOC
+toc <- boxplot(WL.soil.nuts$TOC ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(4,6))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+  
+  # Lables
+  mtext("Total Organic Carbon\n(%)", side = 2, cex = 1, line = 3.5)
+  
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.nuts$TOC ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = toc$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  #par("usr")
+  #text(x = seq_along(levels(WL.trts)), y = 5.5, labels = grp$trt)
+
+# # Total Nitrogen
+# boxplot(WL.soil.nuts$TN ~ WL.trts, 
+#         col = myColors, xaxt = "n",  yaxt = "n",
+#         xlab = "", ylab = "", ylim = c(0.25, 0.4))
+# 
+#   # Axes with Tick Marks
+#   axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+#   axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+#   axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+#   axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+#   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+#   box(lwd = 2)
+#   
+#   # Lables
+#   mtext("Total Nitrogen\n(?)", side = 2, cex = 1, line = 3.5)
+
+# # Organic Matter
+# boxplot(WL.soil.nuts$OM ~ WL.trts, 
+#         col = myColors, xaxt = "n",  yaxt = "n",
+#         xlab = "", ylab = "", ylim = c(7, 11))
+# 
+#   # Axes with Tick Marks
+#   axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+#   axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+#   axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+#   axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+#   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+#   box(lwd = 2)
+#   
+#   # Lables
+#   mtext("Organic Matter\n(?)", side = 2, cex = 1, line = 3.5)
+
+# Ammonium
+nh4 <- boxplot(WL.soil.nuts$NH4.N ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(6, 14))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+  
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.nuts$NH4.N ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = nh4$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
+  # Labels
+  mtext("Ammonium\n(mg/kg)", side = 2, cex = 1, line = 3.5)
+
+# Nitrate
+no3 <- boxplot(WL.soil.nuts$NO3.N ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "")
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+  
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.nuts$NO3.N ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = no3$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
+  # Lables
+  mtext("Nitrate\n(mg/kg)", side = 2, cex = 1, line = 3.5)
+
+# Plot X labs at default X position
+par(xpd = NA)
+text(x = seq_along(levels(WL.trts)), 
+     y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), 
+     srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA)
+
+# Close Plot Device
+dev.off()
+graphics.off()
+```
+
+## Show Plot
+```{r, echo=FALSE}
+img <- readPNG("../figures/soil.chem.png")
+grid.raster(img)
+```
+
+## Plot: WL Soil Phys
+```{r, message=FALSE}
+png(filename="../figures/soil.phy.png",
+    width = 800, height = 1200, res = 96*2)
+
+
+layout(matrix(1:3, 3, byrow = T))
+par(mar = (c(0.5, 5, 0, 1) + 0.1), oma = c(7, 1, 1.5, 1))
+
+# Moisture
+moisture <- boxplot(WL.soil.phys$Moisture ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(20, 50))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.phys$Moisture ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = moisture$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
+  # Labels
+  mtext("Moisture (%)", side = 2, cex = 1, line = 3.5)
+
+# Temperature
+temp <- boxplot(WL.soil.phys$Temp ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(18, 26))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+
+  
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.phys$Temp ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = temp$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
+  # Lables
+  mtext("Temperature (ºC)", side = 2, cex = 1, line = 3.5)
+
+# pH
+  pH <- boxplot(WL.soil.phys$pH ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(7.2, 7.8))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
+  box(lwd = 2)
+
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.phys$pH ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = pH$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
+  # Lables
+  mtext("pH", side = 2, cex = 1, line = 3.5)
+
+
+# Plot x labs at default x position
+par(xpd = NA)
+text(x = seq_along(levels(WL.trts)), 
+     y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), 
+     srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA)
+
+# Close Plot Device
+dev.off()
+graphics.off()
+```
+
+## Show Plot
+```{r, echo=FALSE}
+img <- readPNG("../figures/soil.phy.png")
+grid.raster(img)
+```
+
+## Joint Plot: Wetland Soil
+```{r, message=FALSE}
+png(filename="../figures/WL.soil.png",
+    width = 1600, height = 1400, res = 96*2)
+
+layout(matrix(1:6, 3, byrow = F))
+par(mar = (c(1, 4, 0, 2) + 0.1), oma = c(8, 1, 2, 0))
+
+# TOC
+toc <- boxplot(WL.soil.nuts$TOC ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(4,6))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
+  
+  # Lables
+  mtext("Total Organic Carbon (%)", side = 2, cex = 1, line = 3)
+  
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.nuts$TOC ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = toc$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+
+# Ammonium
+nh4 <- boxplot(WL.soil.nuts$NH4.N ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(6, 14))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
+  
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.nuts$NH4.N ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = nh4$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
+  # Labels
+  mtext("Ammonium (mg/kg)", side = 2, cex = 1, line = 3)
+
+# Nitrate
+no3 <- boxplot(WL.soil.nuts$NO3.N ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "")
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
+  
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.nuts$NO3.N ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = no3$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
+  # Lables
+  mtext("Nitrate (mg/kg)", side = 2, cex = 1, line = 3)
+
+# Plot X labs at default X position
+par(xpd = NA)
+text(x = seq_along(levels(WL.trts)), 
+     y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), 
+     srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA, cex = 1.25)
+
+# Moisture
+moisture <- boxplot(WL.soil.phys$Moisture ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(20, 50))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
+
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.phys$Moisture ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = moisture$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
+  # Labels
+  mtext("Moisture (%)", side = 2, cex = 1, line = 3)
+
+# Temperature
+temp <- boxplot(WL.soil.phys$Temp ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(18, 26))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
+
+  
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.phys$Temp ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = temp$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
+  # Lables
+  mtext("Temperature (ºC)", side = 2, cex = 1, line = 3)
+
+# pH
+  pH <- boxplot(WL.soil.phys$pH ~ WL.trts, 
+        col = myColors, xaxt = "n",  yaxt = "n",
+        xlab = "", ylab = "", ylim = c(7.2, 7.8))
+
+  # Axes with Tick Marks
+  axis(side = 1, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = T, tck = -0.02, lwd = 1.5, las = 1)
+  axis(side = 4, labels = F, tck = -0.02, lwd = 1.5)
+  axis(side = 2, labels = F, tck = 0.01, lwd = 1.5)
+  axis(side = 4, labels = F, tck = 0.01, lwd = 1.5)
+  box(lwd = 1.5)
+
+  # PostHoc Test
+  tuk <- HSD.test(aov(WL.soil.phys$pH ~ WL.trts), "WL.trts")
+  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
+  text(x = seq_along(levels(WL.trts)), 
+       y = pH$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
+       labels = grp$M)
+  
+  # Lables
+  mtext("pH", side = 2, cex = 1, line = 3)
+
+# Plot X labs at default X position
+par(xpd = NA)
+text(x = seq_along(levels(WL.trts)), 
+     y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), 
+     srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA, cex = 1.25)
+
+# Close Plot Device
+dev.off()
+graphics.off()
+```
+
+## Show Plot
+```{r, echo=FALSE}
+img <- readPNG("../figures/WL.soil.png")
+grid.raster(img)
+```
+
+
+
+
+# Simple Community Hypothesis Testing
 ```{r}
 # Check that Bac and Plant data have same structure as design
 all.equal(row.names(WLdataREL), row.names(design))
@@ -175,10 +660,20 @@ odd.sites <- c("HC_A3_ss1_S11", "HC_A3_ss2_S12", "HC_A3_ss3_S13",
 WLdataREL.2 <- WLdataREL[setdiff(rownames(WLdataREL), odd.sites), ]
 treatments.2 <- design[setdiff(rownames(design), odd.sites), ]$Treatment
 
+odd.sites
+
 WL.bac.adonis <- adonis(WLdataREL.2 ~ treatments.2, method = "bray", perm=999)
 WL.bac.adonis
 
 WL.unifrac.adonis <- adonis(WL.unifrac.dist ~ treatments, perm = 999)
+WL.unifrac.adonis
+
+WL.unifrac.dist2 <- as.matrix(WL.unifrac.dist)[setdiff(labels(WL.unifrac.dist),
+                                                       odd.sites), 
+                                               setdiff(labels(WL.unifrac.dist),
+                                                       odd.sites)]
+
+WL.unifrac.adonis <- adonis(as.dist(WL.unifrac.dist2) ~ treatments.2, perm = 999)
 WL.unifrac.adonis
 
 WL.plant.adonis <- adonis(WL.plant ~ treatments, method = "bray", perm=999)
@@ -188,9 +683,54 @@ WL.plant.adonis
 #WL.bac.simper <- simper(WLdataREL, group = treatments, permutations = 999)
 #bac.sum <- summary(WL.bac.simper, ordered = T)
 
-WL.plant.simper <- simper(WL.plant, group = treatments, permutations = 999)
-plant.sum <- summary(WL.plant.simper, ordered = T)
+
+# Which plants influenced plant communities between trts
+#WL.plant.simper <- simper(WL.plant, group = treatments, permutations = 999)
+#plant.sum <- summary(WL.plant.simper, ordered = T)
 #plant.sum
+```
+
+# Indicator Species Analysis
+```{r}
+# Plant Communities
+library("labdsv")
+plant.ind <- indval(WL.plant, treatments)
+summary(plant.ind)
+plant.ind$indval
+levels(treatments)
+
+plant.groups <- rep(NA, length(treatments))
+for (i in 1:length(treatments)){
+  if (treatments[i] == "Reference" | 
+      treatments[i] == "Bareroot"){
+    plant.groups[i] <- "Group 1"
+  }
+  if (treatments[i] == "Seedling" | 
+      treatments[i] == "BalledBurlapped"){
+  plant.groups[i] <- "Group 2"
+  }
+  if (treatments[i] == "Seedbank" |
+      treatments[i]== "Acorn"){
+  plant.groups[i] <- "Group 3"
+  }
+}
+
+plant.ind2 <- indval(WL.plant, plant.groups)
+summary(plant.ind2)
+
+WLdataREL.2 <- WLdataREL.2[, colSums(WLdataREL.2) > 0]
+bac.ind <- indval(WLdataREL.2, treatments.2)
+summary(bac.ind)
+
+bac.ind
+
+WLdataREL.2 <- WLdataREL.2[, colSums(WLdataREL.2) > 0.05]
+bac.ind <- indval(WLdataREL.2, treatments.2)
+levels(treatments.2)
+summary(bac.ind)
+
+bac.ind
+
 ```
 
 # Beta Diversity Analysis
@@ -706,22 +1246,24 @@ plant.comm <- WL.plant[-which(rownames(WL.plant) %in% odd.sites), ]
 
 # Remove Bare Treatment
 bare.sites <- rownames(design[design$Treatment == "Bareroot", ])
-bac.comm <- bac.comm[-which(rownames(bac.comm) %in% bare.sites),]
-plant.comm <- plant.comm[-which(rownames(plant.comm) %in% bare.sites), ]
+#bac.comm <- bac.comm[-which(rownames(bac.comm) %in% bare.sites),]
+#plant.comm <- plant.comm[-which(rownames(plant.comm) %in% bare.sites), ]
 
 all.equal(rownames(bac.comm), rownames(plant.comm))
 #rowSums(plant.comm)
 
+bac.comm <- bac.comm[, colSums(bac.comm) > 0]
+plant.comm <- plant.comm[, colSums(plant.comm) > 0]
+
 dist.bac <- vegdist(bac.comm, method = "bray")
 dist.plant <- vegdist(plant.comm, method = "bray")
 
-mantel.rtest(dist.bac, dist.plant)
+mantel.rtest(dist.bac, dist.plant, nrepet = 999)
 
 WL.plant_points <- cmdscale(dist.plant, k=3, eig=TRUE, add=FALSE)$points
 
-dbRDA <- dbrda(bac.comm ~ WL.plant_points, distance = "bray") #does not work
-anova(dbRDA) #does not work
-
+dbRDA <- dbrda(bac.comm ~ WL.plant_points[, 1], distance = "bray")
+anova(dbRDA)
 RsquareAdj(dbRDA)
 ```
 
@@ -730,6 +1272,10 @@ RsquareAdj(dbRDA)
 # Remove Odd Sites from Bac Community
 bac.comm <- WLdataREL[-which(rownames(WLdataREL) %in% odd.sites),]
 plant.comm <- WL.plant[-which(rownames(WL.plant) %in% odd.sites), ]
+
+# Remove Zero Sum Columns
+bac.comm <- bac.comm[, colSums(bac.comm) > 0]
+plant.comm <- plant.comm[, colSums(plant.comm) > 0]
 
 # Remove Odd Sites from Soil
 WL.soil2 <- WL.soil[-which(rownames(WLdataREL) %in% odd.sites),]
@@ -752,516 +1298,42 @@ dist.phys <- vegdist(WL.soil.phys, method = "euclidean")
 dist.soil <- vegdist(WL.soil.all, method = "euclidean")
 
 
-mantel.rtest(dist.bac, dist.plant)
-mantel.rtest(dist.bac, dist.nuts)
-mantel.rtest(dist.bac, dist.phys)
-mantel.rtest(dist.bac, dist.soil)
-mantel.rtest(dist.plant, dist.nuts)
-mantel.rtest(dist.plant, dist.phys)
-mantel.rtest(dist.plant, dist.soil)
+mantel.rtest(dist.bac, dist.plant, nrepet = 999)
+mantel.rtest(dist.bac, dist.nuts, nrepet = 999)
+mantel.rtest(dist.bac, dist.phys, nrepet = 999)
+mantel.rtest(dist.bac, dist.soil, nrepet = 999)
+mantel.rtest(dist.plant, dist.nuts, nrepet = 999)
+mantel.rtest(dist.plant, dist.phys, nrepet = 999)
+mantel.rtest(dist.plant, dist.soil, nrepet = 999)
 
 ```
 
-# Soil Factors
-```{r}
-# Organize Data
-WL.trts <- WL.soil[, "Treatment"]
-WL.soil.phys <- WL.soil[, which(colnames(WL.soil) %in% c("Moisture", 
-                                                         "Temp", "pH"))]
-WL.soil.nuts <- WL.soil[, which(colnames(WL.soil) %in% c("TOC", "TN", 
-                                                         "OM", "NH4.N", "NO3.N"))]
-
-# Linear Models
-moisture.lm <- lm(Moisture ~ Treatment, data=WL.soil)
-anova(moisture.lm)
-summary(moisture.lm)
-HSD <- HSD.test(moisture.lm,"Treatment", console=TRUE)
-
-pH.lm <- lm(pH ~ Treatment, data=WL.soil)
-anova(pH.lm)
-summary(pH.lm)
-HSD <- HSD.test(pH.lm,"Treatment", console=TRUE)
-
-temp.lm <- lm(Temp ~ Treatment, data=WL.soil)
-anova(temp.lm)
-summary(temp.lm)
-HSD <- HSD.test(temp.lm,"Treatment", console=TRUE)
-
-TOC.lm <- lm(TOC ~ Treatment, data=WL.soil)
-anova(TOC.lm)
-summary(TOC.lm)
-HSD <- HSD.test(TOC.lm,"Treatment", console=TRUE)
-
-NH4.lm <- lm(NH4.N ~ Treatment, data=WL.soil)
-anova(NH4.lm)
-summary(NH4.lm)
-
-NO3.lm <- lm(NO3.N ~ Treatment, data=WL.soil)
-anova(NO3.lm)
-summary(NO3.lm)
-HSD <- HSD.test(NO3.lm,"Treatment", console=TRUE)
-
-WL.phys.mean <- apply(WL.soil.phys, 2, 
-                      FUN = function(avg) aggregate(avg ~ WL.trts, WL.soil.phys, mean))
-WL.phys.sem <- apply(WL.soil.phys, 2, 
-                     FUN = function(sem) aggregate(sem ~ WL.trts, WL.soil.phys, se))
-WL.phys.95 <- apply(WL.soil.phys, 2, 
-                    FUN = function(ci_95) aggregate(ci_95 ~ WL.trts, WL.soil.phys, ci))
-
-WL.nuts.mean <- apply(WL.soil.nuts, 2, 
-                      FUN = function(avg) aggregate(avg ~ WL.trts, WL.soil.nuts, mean))
-WL.nuts.sem <- apply(WL.soil.nuts, 2, 
-                     FUN = function(sem) aggregate(sem ~ WL.trts, WL.soil.nuts, se))
-WL.nuts.95 <- apply(WL.soil.nuts, 2, 
-                    FUN = function(ci_95) aggregate(ci_95 ~ WL.trts, WL.soil.nuts, ci))
-
-
-phys.means.table <- data.frame(trt = WL.phys.mean$Moisture$WL.trts,
-                               moisture = WL.phys.mean$Moisture$avg,
-                               temp = WL.phys.mean$Temp$avg,
-                               pH = WL.phys.mean$pH$avg)
-phys.sem.table <- data.frame(trt = WL.phys.sem$Moisture$WL.trts,
-                               moisture = WL.phys.sem$Moisture$sem,
-                               temp = WL.phys.sem$Temp$sem,
-                               pH = WL.phys.sem$pH$sem)
-phys.ci.table <- data.frame(trt = WL.phys.95$Moisture$WL.trts,
-                               moisture = WL.phys.95$Moisture$ci_95,
-                               temp = WL.phys.95$Temp$ci_95,
-                               pH = WL.phys.95$pH$ci_95)
-
-nuts.means.table <- data.frame(trt = WL.nuts.mean$TOC$WL.trts,
-                               toc = WL.nuts.mean$TOC$avg,
-                               tn = WL.nuts.mean$TN$avg,
-                               om = WL.nuts.mean$OM$avg,
-                               nh4 = WL.nuts.mean$NH4.N$avg,
-                               no3 = WL.nuts.mean$NO3.N$avg)
-nuts.sem.table <- data.frame(trt = WL.nuts.sem$TOC$WL.trts,
-                               toc = WL.nuts.sem$TOC$sem,
-                               tn = WL.nuts.sem$TN$sem,
-                               om = WL.nuts.sem$OM$sem,
-                               nh4 = WL.nuts.sem$NH4.N$sem,
-                               no3 = WL.nuts.sem$NO3.N$sem)
-nuts.ci.table <- data.frame(trt = WL.nuts.95$TOC$WL.trts,
-                               toc = WL.nuts.95$TOC$ci_95,
-                               tn = WL.nuts.95$TN$ci_95,
-                               om = WL.nuts.95$OM$ci_95,
-                               nh4 = WL.nuts.95$NH4.N$ci_95,
-                               no3 = WL.nuts.95$NO3.N$ci_95)
-```
-
-## Plot: WL Soil Nuts
-```{r, message=FALSE}
-png(filename="../figures/soil.chem.png",
-    width = 800, height = 1200, res = 96*2)
-
-layout(matrix(1:3, 3, byrow = T))
-par(mar = (c(0.5, 5, 0, 1) + 0.1), oma = c(7, 1, 1.5, 1))
-
-# TOC
-toc <- boxplot(WL.soil.nuts$TOC ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "", ylim = c(4,6))
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-  
-  # Lables
-  mtext("Total Organic Carbon\n(%)", side = 2, cex = 1, line = 3.5)
-  
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.nuts$TOC ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = toc$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-  #par("usr")
-  #text(x = seq_along(levels(WL.trts)), y = 5.5, labels = grp$trt)
-
-# # Total Nitrogen
-# boxplot(WL.soil.nuts$TN ~ WL.trts, 
-#         col = myColors, xaxt = "n",  yaxt = "n",
-#         xlab = "", ylab = "", ylim = c(0.25, 0.4))
-# 
-#   # Axes with Tick Marks
-#   axis(side = 1, labels = F, tck = -0.01, lwd = 2)
-#   axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-#   axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-#   axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-#   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-#   box(lwd = 2)
-#   
-#   # Lables
-#   mtext("Total Nitrogen\n(?)", side = 2, cex = 1, line = 3.5)
-
-# # Organic Matter
-# boxplot(WL.soil.nuts$OM ~ WL.trts, 
-#         col = myColors, xaxt = "n",  yaxt = "n",
-#         xlab = "", ylab = "", ylim = c(7, 11))
-# 
-#   # Axes with Tick Marks
-#   axis(side = 1, labels = F, tck = -0.01, lwd = 2)
-#   axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-#   axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-#   axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-#   axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-#   box(lwd = 2)
-#   
-#   # Lables
-#   mtext("Organic Matter\n(?)", side = 2, cex = 1, line = 3.5)
-
-# Ammonium
-nh4 <- boxplot(WL.soil.nuts$NH4.N ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "", ylim = c(6, 14))
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-  
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.nuts$NH4.N ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = nh4$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-  
-  # Labels
-  mtext("Ammonium\n(mg/kg)", side = 2, cex = 1, line = 3.5)
-
-# Nitrate
-no3 <- boxplot(WL.soil.nuts$NO3.N ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "")
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-  
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.nuts$NO3.N ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = no3$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-  
-  # Lables
-  mtext("Nitrate\n(mg/kg)", side = 2, cex = 1, line = 3.5)
-
-# Plot X labs at default X position
-par(xpd = NA)
-text(x = seq_along(levels(WL.trts)), 
-     y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), 
-     srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA)
-
-# Close Plot Device
-dev.off()
-graphics.off()
-```
-
-## Show Plot
-```{r, echo=FALSE}
-img <- readPNG("../figures/soil.chem.png")
-grid.raster(img)
-```
-
-## Plot: WL Soil Phys
-```{r, message=FALSE}
-png(filename="../figures/soil.phy.png",
-    width = 800, height = 1200, res = 96*2)
-
-
-layout(matrix(1:3, 3, byrow = T))
-par(mar = (c(0.5, 5, 0, 1) + 0.1), oma = c(7, 1, 1.5, 1))
-
-# Moisture
-moisture <- boxplot(WL.soil.phys$Moisture ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "", ylim = c(20, 50))
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.phys$Moisture ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = moisture$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-  
-  # Labels
-  mtext("Moisture (%)", side = 2, cex = 1, line = 3.5)
-
-# Temperature
-temp <- boxplot(WL.soil.phys$Temp ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "", ylim = c(18, 26))
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-
-  
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.phys$Temp ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = temp$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-  
-  # Lables
-  mtext("Temperature (ºC)", side = 2, cex = 1, line = 3.5)
-
-# pH
-  pH <- boxplot(WL.soil.phys$pH ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "", ylim = c(7.2, 7.8))
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.01, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.phys$pH ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = pH$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-  
-  # Lables
-  mtext("pH", side = 2, cex = 1, line = 3.5)
-
-
-# Plot x labs at default x position
-par(xpd = NA)
-text(x = seq_along(levels(WL.trts)), 
-     y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), 
-     srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA)
-
-# Close Plot Device
-dev.off()
-graphics.off()
-```
-
-## Show Plot
-```{r, echo=FALSE}
-img <- readPNG("../figures/soil.phy.png")
-grid.raster(img)
-```
-
-## Joint Plot: Wetland Soil
-```{r, message=FALSE}
-png(filename="../figures/WL.soil.png",
-    width = 1600, height = 1400, res = 96*2)
-
-layout(matrix(1:6, 3, byrow = F))
-par(mar = (c(1, 4, 0, 2) + 0.1), oma = c(8, 1, 2, 0))
-
-# TOC
-toc <- boxplot(WL.soil.nuts$TOC ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "", ylim = c(4,6))
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-  
-  # Lables
-  mtext("Total Organic Carbon (%)", side = 2, cex = 1, line = 3)
-  
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.nuts$TOC ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = toc$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-
-# Ammonium
-nh4 <- boxplot(WL.soil.nuts$NH4.N ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "", ylim = c(6, 14))
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-  
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.nuts$NH4.N ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = nh4$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-  
-  # Labels
-  mtext("Ammonium (mg/kg)", side = 2, cex = 1, line = 3)
-
-# Nitrate
-no3 <- boxplot(WL.soil.nuts$NO3.N ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "")
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-  
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.nuts$NO3.N ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = no3$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-  
-  # Lables
-  mtext("Nitrate (mg/kg)", side = 2, cex = 1, line = 3)
-
-# Plot X labs at default X position
-par(xpd = NA)
-text(x = seq_along(levels(WL.trts)), 
-     y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), 
-     srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA, cex = 1.25)
-
-# Moisture
-moisture <- boxplot(WL.soil.phys$Moisture ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "", ylim = c(20, 50))
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.phys$Moisture ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = moisture$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-  
-  # Labels
-  mtext("Moisture (%)", side = 2, cex = 1, line = 3)
-
-# Temperature
-temp <- boxplot(WL.soil.phys$Temp ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "", ylim = c(18, 26))
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-
-  
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.phys$Temp ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = temp$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-  
-  # Lables
-  mtext("Temperature (ºC)", side = 2, cex = 1, line = 3)
-
-# pH
-  pH <- boxplot(WL.soil.phys$pH ~ WL.trts, 
-        col = myColors, xaxt = "n",  yaxt = "n",
-        xlab = "", ylab = "", ylim = c(7.2, 7.8))
-
-  # Axes with Tick Marks
-  axis(side = 1, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = T, tck = -0.02, lwd = 2, las = 1)
-  axis(side = 4, labels = F, tck = -0.02, lwd = 2)
-  axis(side = 2, labels = F, tck = 0.01, lwd = 2)
-  axis(side = 4, labels = F, tck = 0.01, lwd = 2)
-  box(lwd = 2)
-
-  # PostHoc Test
-  tuk <- HSD.test(aov(WL.soil.phys$pH ~ WL.trts), "WL.trts")
-  grp <- tuk$groups[c(match(levels(WL.trts), gsub(" ", "", tuk$groups$trt))), ]
-  text(x = seq_along(levels(WL.trts)), 
-       y = pH$stats[5, ] + ((par("usr")[4] - par("usr")[3]) * 0.05), 
-       labels = grp$M)
-  
-  # Lables
-  mtext("pH", side = 2, cex = 1, line = 3)
-
-# Plot X labs at default X position
-par(xpd = NA)
-text(x = seq_along(levels(WL.trts)), 
-     y = par("usr")[3] - 0.1 * (par("usr")[4] - par("usr")[3]), 
-     srt = 45, adj = 1, labels = levels(WL.trts), xpd=NA, cex = 1.25)
-
-# Close Plot Device
-dev.off()
-graphics.off()
-```
-
-## Show Plot
-```{r, echo=FALSE}
-img <- readPNG("../figures/WL.soil.png")
-grid.raster(img)
-```
 
 # Distance Based RDA Models
 ```{r}
-phys.dist <- dist(WL.soil.phys, method = "euclidian")
-phys.pcoa <- cmdscale(phys.dist, k = 3, eig = T)
-
-explainvar1 <- round(phys.pcoa$eig[1] / sum(phys.pcoa$eig), 3) * 100
-explainvar2 <- round(phys.pcoa$eig[2] / sum(phys.pcoa$eig), 3) * 100
-
-chem.dist <- dist(WL.soil.nuts, method = "euclidian")
+# Nutrients
+chem.dist <- dist(apply(WL.soil.nuts, 2, scale), 
+                  method = "euclidian")
 chem.pcoa <- cmdscale(chem.dist, k = 3, eig = T)
 
 explainvar1 <- round(chem.pcoa$eig[1] / sum(chem.pcoa$eig), 3) * 100
 explainvar2 <- round(chem.pcoa$eig[2] / sum(chem.pcoa$eig), 3) * 100
 
-dbRDA.c <- dbrda(WLdataREL ~ chem.pcoa$points[,1], distance = "bray") 
-anova(dbRDA.c) 
+# Physical Factors
+phys.dist <- dist(apply(WL.soil.phys, 2, scale), 
+                  method = "euclidian")
+phys.pcoa <- cmdscale(phys.dist, k = 3, eig = T)
 
-dbRDA.p <- dbrda(WLdataREL ~ phys.pcoa$points[,1], distance = "bray")
+explainvar1 <- round(phys.pcoa$eig[1] / sum(phys.pcoa$eig), 3) * 100
+explainvar2 <- round(phys.pcoa$eig[2] / sum(phys.pcoa$eig), 3) * 100
+
+# Bac dbRDA
+dbRDA.c <- dbrda(bac.comm ~ chem.pcoa$points[,1], distance = "bray") 
+anova(dbRDA.c, by = "terms", model = "direct") 
+RsquareAdj(dbRDA.c)
+
+
+dbRDA.p <- dbrda(bac.comm ~ phys.pcoa$points[,1], distance = "bray")
 anova(dbRDA.p)
 RsquareAdj(dbRDA.p)
 
