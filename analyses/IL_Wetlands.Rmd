@@ -82,8 +82,8 @@ for(i in 1:dim(WLdata)[1]){
 WLdataREL.log <- decostand(WLdataREL, method="log")
 
 # Import Taxonomy File
-#WL.tax <- read.tax(taxonomy = "../data/WL.final.0.03.taxonomy", 
-#                   format = "rdp", tax.levels = 6, col.tax = 3)
+WL.tax <- read.tax(taxonomy = "../data/WL.final.0.03.taxonomy", 
+                   format = "rdp", tax.levels = 6, col.tax = 3)
 ```
 
 ## Plant Data
@@ -669,9 +669,8 @@ WL.unifrac.adonis <- adonis(WL.unifrac.dist ~ treatments, perm = 999)
 WL.unifrac.adonis
 
 WL.unifrac.dist2 <- as.matrix(WL.unifrac.dist)[setdiff(labels(WL.unifrac.dist),
-                                                       odd.sites), 
-                                               setdiff(labels(WL.unifrac.dist),
-                                                       odd.sites)]
+                              odd.sites), setdiff(labels(WL.unifrac.dist),
+                              odd.sites)]
 
 WL.unifrac.adonis <- adonis(as.dist(WL.unifrac.dist2) ~ treatments.2, perm = 999)
 WL.unifrac.adonis
@@ -729,7 +728,34 @@ bac.ind <- indval(WLdataREL.2, treatments.2)
 levels(treatments.2)
 summary(bac.ind)
 
-bac.ind
+inds <- which(bac.ind$pval <= 0.05)
+bac.indicators <- as.data.frame(matrix(NA, nrow = length(inds), ncol = 4))
+colnames(bac.indicators) <- c("OTU", "Cluster", "IndVal", "Prob")
+
+bac.indicators$OTU <- names(inds)
+bac.indicators$Cluster <- bac.ind$maxcls[inds]
+bac.indicators$IndVal <- bac.ind$indcls[inds]
+bac.indicators$Prob <- bac.ind$pval[inds]
+
+ind.tax <- WL.tax[which(as.character(WL.tax$OTU) %in% bac.indicators$OTU), ]
+ind.tax <- ind.tax[match(ind.tax$OTU, bac.indicators$OTU), ]
+
+indicator.bac <- cbind(bac.indicators, ind.tax[, -c(1)])
+
+indicator.bac <- indicator.bac[order(as.numeric(indicator.bac$Cluster)), ]
+
+table(indicator.bac$Phylum)
+table(indicator.bac$Cluster)
+levels(treatments.2)
+
+# Export Bacteria Indicator Table
+write.table(indicator.bac, "../data/BacterialIndicators.txt",
+            sep="\t")
+
+split(indicator.bac$Phylum, indicator.bac$Cluster)
+split(indicator.bac$Class, indicator.bac$Cluster)
+
+plot(as.factor(indicator.bac$Cluster), as.factor(indicator.bac$Phylum))
 
 ```
 
