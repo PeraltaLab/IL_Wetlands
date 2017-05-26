@@ -737,13 +737,25 @@ bac.indicators$Cluster <- bac.ind$maxcls[inds]
 bac.indicators$IndVal <- bac.ind$indcls[inds]
 bac.indicators$Prob <- bac.ind$pval[inds]
 
+ind.tax <- WL.tax[which(as.character(WL.tax$OTU) %in% bac.indicators$OTU), ]
+ind.tax <- ind.tax[match(ind.tax$OTU, bac.indicators$OTU), ]
 
+indicator.bac <- cbind(bac.indicators, ind.tax[, -c(1)])
 
-bac.indicators$
+indicator.bac <- indicator.bac[order(as.numeric(indicator.bac$Cluster)), ]
 
+table(indicator.bac$Phylum)
+table(indicator.bac$Cluster)
+levels(treatments.2)
 
-summary(bac.ind)
+# Export Bacteria Indicator Table
+write.table(indicator.bac, "../data/BacterialIndicators.txt",
+            sep="\t")
 
+split(indicator.bac$Phylum, indicator.bac$Cluster)
+split(indicator.bac$Class, indicator.bac$Cluster)
+
+plot(as.factor(indicator.bac$Cluster), as.factor(indicator.bac$Phylum))
 
 ```
 
