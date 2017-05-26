@@ -36,9 +36,9 @@ read.otu <- function(shared = " ", cutoff = "0.03"){
   }
 
 # Import Taxonomy Information
-read.tax <- function(taxonomy = " ", format = c("rdp", "gg"), 
+read.tax <- function(taxonomy = " ", format = c("rdp", "gg"),
                      col.tax = "3", tax.levels = "6"){
-  tax_raw <- read.delim(taxonomy, header = F)           # load genus-level data
+  tax_raw <- read.delim(taxonomy, header = F, skip = 1)       # load genus-level data
   if (format == "rdp"){
     tax.info <- data.frame(matrix(NA, dim(tax_raw)[1], tax.levels))
     colnames(tax.info) <- c("Domain","Phylum","Class","Order","Family",
@@ -67,7 +67,7 @@ read.tax <- function(taxonomy = " ", format = c("rdp", "gg"),
       temp <- gsub("[a-z]__", "", gsub("__;|__$", "__unknown;", tax_raw[, col.tax]))
       tax.split <- strsplit(as.character(temp), split="\\;")
       tax.split <- lapply(tax.split, trimws)
-      tax.info <- data.frame(matrix(unlist(tax.split), 
+      tax.info <- data.frame(matrix(unlist(tax.split),
                                    nrow = length(tax.split), byrow = T))
       colnames(tax.info) <- c("Domain","Phylum","Class","Order","Family",
                               "Genus", "Species")[1:tax.levels]
