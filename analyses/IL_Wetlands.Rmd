@@ -722,7 +722,7 @@ WLdataREL.2 <- WLdataREL.2[, colSums(WLdataREL.2) > 0]
 bac.ind <- indval(WLdataREL.2, treatments.2)
 summary(bac.ind)
 
-bac.ind
+#bac.ind
 
 WLdataREL.2 <- WLdataREL.2[, colSums(WLdataREL.2) > 0.05]
 bac.ind <- indval(WLdataREL.2, treatments.2)
