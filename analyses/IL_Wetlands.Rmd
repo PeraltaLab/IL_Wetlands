@@ -863,7 +863,7 @@ graphics.off()
 ```
 
 ## Show Plot
-```{r}
+```{r, echo=FALSE, fig.width = 2, fig.height = 2}
 img <- readPNG("../figures/WL.bac.PcoA.png")
 grid.raster(img)
 ```
@@ -967,7 +967,7 @@ graphics.off()
 ```
 
 ## Show Plot
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.width = 2, fig.height = 2}
 img <- readPNG("../figures/WL.unifrac.PcoA.png")
 grid.raster(img)
 ```
@@ -1072,7 +1072,7 @@ graphics.off()
 ```
 
 ## Show Plot
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.width = 2, fig.height = 2}
 img <- readPNG("../figures/WL.plant.PcoA.png")
 grid.raster(img)
 ```
@@ -1255,7 +1255,7 @@ graphics.off()
 ```
 
 ## Show Plot
-```{r, }
+```{r, echo=FALSE, fig.width = 2, fig.height = 2}
 img <- readPNG("../figures/WL.PcoA.png")
 grid.raster(img)
 ```
@@ -1365,12 +1365,13 @@ anova(dbRDA.p)
 RsquareAdj(dbRDA.p)
 
 #error here ???
-dbRDA.cp <- dbrda(WLdataREL ~ points[,1] * points[,1], 
-               data = phys.pcoa, distance = "bray", add = T)
+dbRDA.cp <- dbrda(bac.comm ~ chem.pcoa$points[,1] * phys.pcoa$points[,], 
+               distance = "bray", add = T)
 anova(dbRDA.cp, by = "terms", model = "direct")
 RsquareAdj(dbRDA.cp)
 
-dbRDA.P.cp <- dbrda(WL.plant ~ phys.pcoa$points[,1] * chem.pcoa$points[,1], 
+
+dbRDA.P.cp <- dbrda(plant.comm ~ phys.pcoa$points[,1] * chem.pcoa$points[,1], 
                distance = "bray", add = T)
 anova(dbRDA.P.cp, by = "terms", model = "direct") 
 RsquareAdj(dbRDA.P.cp)
@@ -1378,8 +1379,8 @@ RsquareAdj(dbRDA.P.cp)
 
 # PostHoc Tests
 ```{r}
-phys.mod <- lm(phys.pcoa$points[,1] ~ WL.trts)
-chem.mod <- lm(chem.pcoa$points[,1] ~ WL.trts)
+phys.mod <- lm(phys.pcoa$points[,1] ~ WL.soil2$Treatment)
+chem.mod <- lm(chem.pcoa$points[,1] ~ WL.soil2$Treatment)
 anova(phys.mod)
 anova(chem.mod)
 
@@ -1403,7 +1404,6 @@ RC.mod <- lm(RCGbiomass ~ Treatment,
 summary(RC.mod)
 anova(RC.mod)
 TukeyHSD(aov(RC.mod))
-tuk <- HSD.test(aov(WL.soil.nuts$TOC ~ WL.trts), "WL.trts")
 
 tuk <- HSD.test(lm(WL.soil.RCGbiomass ~ WL.soil.Treatment, 
                    data = WL.rc), "WL.soil.Treatment")
@@ -1457,7 +1457,7 @@ graphics.off()
 ```
 
 ## Show Plot
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.width = 2, fig.height = 2}
 img <- readPNG("../figures/reed.biomass.png")
 grid.raster(img)
 ```
