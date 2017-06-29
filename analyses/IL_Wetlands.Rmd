@@ -1,5 +1,5 @@
 ---
-title: "Henry County Mitigation Project 2013: Microbial Community Charactorization"
+title: "Lingering land use legacies after different wetland restoration strategies"
 author: "Ariane L. Peralta, Mario E. Muscarella, Jeffrey W. Matthews"
 date: "Last updated on `r format(Sys.time(), '%d %B, %Y')`"
 header-includes:
@@ -11,7 +11,8 @@ output:
   fig_caption: true
 ---
 
-Project Description: 
+Project Description: Anthropogenic legacy effects often occur as a consequence of land use change and can leave behind long-lasting changes to ecosystem structure and function. These physical, chemical, and biological changes can linger and interact with contemporary management to impact restoration outcomes. In the present study, we evaluated how restoration strategy can overcome the lingering effects of land-use in wetlands. 
+
 
 # Initial Setup
 ```{r, results="hide", message=FALSE}
@@ -1339,7 +1340,7 @@ mantel.rtest(dist.plant, dist.soil, nrepet = 999)
 ```{r}
 # Nutrients
 chem.dist <- dist(apply(WL.soil.nuts, 2, scale), 
-                  method = "euclidian")
+                  method = "euclidean")
 chem.pcoa <- cmdscale(chem.dist, k = 3, eig = T)
 
 explainvar1 <- round(chem.pcoa$eig[1] / sum(chem.pcoa$eig), 3) * 100
@@ -1347,7 +1348,7 @@ explainvar2 <- round(chem.pcoa$eig[2] / sum(chem.pcoa$eig), 3) * 100
 
 # Physical Factors
 phys.dist <- dist(apply(WL.soil.phys, 2, scale), 
-                  method = "euclidian")
+                  method = "euclidean")
 phys.pcoa <- cmdscale(phys.dist, k = 3, eig = T)
 
 explainvar1 <- round(phys.pcoa$eig[1] / sum(phys.pcoa$eig), 3) * 100
@@ -1363,6 +1364,7 @@ dbRDA.p <- dbrda(bac.comm ~ phys.pcoa$points[,1], distance = "bray")
 anova(dbRDA.p)
 RsquareAdj(dbRDA.p)
 
+#error here ???
 dbRDA.cp <- dbrda(WLdataREL ~ points[,1] * points[,1], 
                data = phys.pcoa, distance = "bray", add = T)
 anova(dbRDA.cp, by = "terms", model = "direct")
