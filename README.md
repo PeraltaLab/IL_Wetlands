@@ -4,7 +4,6 @@ This repository contains open-source code, data, & text files for
 
 For information regarding the project, please visit: (update when manuscript is published)
 
-1. 
 
 ## We address the following questions
 
@@ -14,18 +13,19 @@ For information regarding the project, please visit: (update when manuscript is 
 
 ### Repo Contents
 
-* **analyses:**
+* **analyses:**: An R Markdown file that includes R script written by Mario Muscarella and Ariane Peralta containing functions used in analysis of plant, soil, and microbial sequence data.
 
 * **bin:** 
 	* *MothurTools.R*: An R script written by Mario Muscarella (Indiana University, now at University of Illinois) containing functions used in the analysis of community sequence data.
-* **data:**
 
-* **figures:**
+* **data:**: Files associated with plant, soil, and microbial data sets. 
 
+* **figures:**: Figures (of plant, soil, microbes) generated according to R script located in R Markdown file.
 
+* **mothur:**: Files containing script for bioinformatic analysis of 16S rRNA gene sequences (Illumina MiSeq platform) using mothur pipeline.
 
 ## Contributors
 
-[Dr. Ariane Peralta]( ): Principle Investigator, Assistant Professor, Department of Biology, East Carolina University. Principal Investigator of the [Peralta Lab]()
+[Dr. Ariane Peralta]( ): Principle Investigator, Assistant Professor, Department of Biology, East Carolina University. Principal Investigator of the [Peralta Lab](www.peraltalab.com)
 
 [Mario Muscarella](http://mmuscarella.github.io/): Postdoc in the [O'Dwyer Lab](https://publish.illinois.edu/odwyerlab/) at the University of Illinois at Urbana-Champaign
