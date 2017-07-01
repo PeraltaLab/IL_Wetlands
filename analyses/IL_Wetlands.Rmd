@@ -1364,8 +1364,7 @@ dbRDA.p <- dbrda(bac.comm ~ phys.pcoa$points[,1], distance = "bray")
 anova(dbRDA.p)
 RsquareAdj(dbRDA.p)
 
-#error here ???
-dbRDA.cp <- dbrda(bac.comm ~ chem.pcoa$points[,1] * phys.pcoa$points[,], 
+dbRDA.cp <- dbrda(bac.comm ~ chem.pcoa$points[,1] + phys.pcoa$points[, 1], 
                distance = "bray", add = T)
 anova(dbRDA.cp, by = "terms", model = "direct")
 RsquareAdj(dbRDA.cp)
