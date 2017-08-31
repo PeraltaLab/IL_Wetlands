@@ -1441,7 +1441,10 @@ plot(cent.dataframe[,1], cent.dataframe[,2], type = 'n', las = 1,
 abline(h = 0, lty = 3, col = "gray")
 abline(v = 0, lty = 3, col = "gray")
 
-plot(fit, p.max = 0.01)
+par(lwd = 2)
+#plot(fit, p.max = 0.01, lwd = 1.5)
+plot(fit, p.max = 0.01, labels = c("Moisutre", "Temp", "pH", "TOC", "OM", expression("NH"[4]), expression("NO"[3])), cex = 1.5)
+par(lwd = 1)
 
 arrows(x0 = cent.dataframe[,1], 
        y1 = cent.dataframe[,2] - cent.dataframe[,4], 
@@ -1541,7 +1544,10 @@ plot(cent.dataframe[,1], cent.dataframe[,2], type = 'n', las = 1,
 abline(h = 0, lty = 3, col = "gray")
 abline(v = 0, lty = 3, col = "gray")
 
-plot(fit, p.max = 0.1)
+par(lwd = 2)
+#plot(fit, p.max = 0.01)
+plot(fit, p.max = 0.01, labels = c("Moisutre", "Temp", "pH", "OM", expression("NH"[4]), expression("NO"[3])), cex = 1.5)
+par(lwd = 1)
 
 arrows(x0 = cent.dataframe[,1], 
        y1 = cent.dataframe[,2] - cent.dataframe[,4], 
@@ -1581,12 +1587,12 @@ mtext(paste("PCoA 2 (", explainvar2, "%)", sep = ""), side = 2,
       
 box(lwd = 2)
 
-par(mar = c(0, 6.5, 1, 0))
+par(mar = c(0, 6, 1, 0))
 plot.new()
 
-legend("top", legend = c("Balled Burlapped", cent.treats[-1]), 
+legend("top", legend = c("Burlapped", cent.treats[-1]), 
        pt.bg = myColors, col = "black",
-       pch = 22, cex = 1.5, bty = 'n', ncol = 2, pt.cex = 2)
+       pch = 22, cex = 1.5, bty = 'n', ncol = 3, pt.cex = 2)
 
 
 # Close Plot Device
