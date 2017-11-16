@@ -474,8 +474,8 @@ grid.raster(img)
 
 ## Joint Plot: Wetland Soil
 ```{r, message=FALSE}
-png(filename="../figures/WL.soil.png",
-    width = 1600, height = 1400, res = 96*2)
+pdf(file="../figures/WL.soil.pdf",
+    width = 9, height = 8)
 
 layout(matrix(1:6, 3, byrow = F))
 par(mar = (c(1, 4, 0, 2) + 0.1), oma = c(8, 1, 2, 0))
@@ -1385,8 +1385,8 @@ RsquareAdj(dbRDA.P.cp)
 
 # Microbial and Plant Bray Curtis Ordination (PCoA)
 ```{r, message=FALSE}
-png(filename="../figures/WL.PCoA_Env.png",
-    width = 800, height = 1800, res = 96*2)
+pdf(file="../figures/WL.PCoA_Env.pdf",
+    width = 4.5, height = 9)
 
 layout(matrix(c(1, 2, 3), 3, 1, byrow = T), 
        heights = c(5, 5, 1))
@@ -1435,15 +1435,14 @@ cent.treats <- rownames(cent.dataframe)
 
 # Initiate Plot
 plot(cent.dataframe[,1], cent.dataframe[,2], type = 'n', las = 1,
-     xlim = c(-0.8, 0.8), ylim = c(-0.8, 0.8),
+     xlim = c(-0.8, 0.85), ylim = c(-0.8, 0.8),
      xaxt = "n", xlab = "", yaxt = "n", ylab="")
 
 abline(h = 0, lty = 3, col = "gray")
 abline(v = 0, lty = 3, col = "gray")
 
 par(lwd = 2)
-#plot(fit, p.max = 0.01, lwd = 1.5)
-plot(fit, p.max = 0.01, labels = c("Moisutre", "Temp", "pH", "TOC", "OM", expression("NH"[4]), expression("NO"[3])), cex = 1.5)
+plot(fit, p.max = 0.008, labels = c("Moisture", "Temp", "pH", "TOC", "OM", expression("NH"[4]), expression("NO"[3])), cex = 1.5)
 par(lwd = 1)
 
 arrows(x0 = cent.dataframe[,1], 
@@ -1546,7 +1545,7 @@ abline(v = 0, lty = 3, col = "gray")
 
 par(lwd = 2)
 #plot(fit, p.max = 0.01)
-plot(fit, p.max = 0.01, labels = c("Moisutre", "Temp", "pH", "OM", expression("NH"[4]), expression("NO"[3])), cex = 1.5)
+plot(fit, p.max = 0.01, labels = c("Moisture", "Temp", "pH", "OM", expression("NH"[4]), expression("NO"[3])), cex = 1.5)
 par(lwd = 1)
 
 arrows(x0 = cent.dataframe[,1], 
@@ -1602,8 +1601,8 @@ graphics.off()
 
 ## Show Plot
 #```{r, echo=FALSE, fig.width = 2, fig.height = 2}
-img <- readPNG("../figures/WL.PcoA_Env.png")
-grid.raster(img)
+#img <- readPNG("../figures/WL.PcoA_Env.png")
+#grid.raster(img)
 ```
 
 # PostHoc Tests
@@ -1641,8 +1640,8 @@ tuk <- HSD.test(lm(WL.soil.RCGbiomass ~ WL.soil.Treatment,
 
 ## Plot: Invasive Species
 ```{r}
-png(filename="../figures/reed.biomass.png",
-    width = 1200, height = 800, res = 96*2)
+pdf(file="../figures/reed.biomass.pdf",
+    width = 5, height = 4)
 
 par(mar = (c(6.5,5,1,1) + 0.1))
 
