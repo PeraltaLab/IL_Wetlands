@@ -2,8 +2,8 @@
 
 This repository contains open-source code, data, & text files for 
 
-For information regarding the project, please visit: (update when manuscript is published)
-
+For information regarding the project, please visit:
+Peralta, A.L., Muscarella, M.E. and Matthews, J.W., 2017. Wetland management strategies lead to tradeoffs in ecological structure and function. Elem Sci Anth, 5, p.74. DOI: http://doi.org/10.1525/elementa.253
 
 ## We address the following questions
 
@@ -26,6 +26,6 @@ For information regarding the project, please visit: (update when manuscript is 
 
 ## Contributors
 
-[Dr. Ariane Peralta]( ): Principle Investigator, Assistant Professor, Department of Biology, East Carolina University. Principal Investigator of the [Peralta Lab](www.peraltalab.com)
+[Dr. Ariane Peralta]( ): Principle Investigator, Assistant Professor, Department of Biology, East Carolina University. Principal Investigator of the [Peralta Lab](http://www.peraltalab.com)
 
 [Mario Muscarella](http://mmuscarella.github.io/): Postdoc in the [O'Dwyer Lab](https://publish.illinois.edu/odwyerlab/) at the University of Illinois at Urbana-Champaign
