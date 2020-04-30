@@ -5,7 +5,7 @@ This repository contains open-source code, data, & text files for
 For information regarding the project, please visit:
 Peralta, A.L., Muscarella, M.E. and Matthews, J.W., 2017. Wetland management strategies lead to tradeoffs in ecological structure and function. Elem Sci Anth, 5, p.74. DOI: http://doi.org/10.1525/elementa.253
 
-Raw sequences files can be found at NCBI SRA BioProject ID PRJNA393844.
+Raw sequences files can be found at NCBI SRA [BioProject ID PRJNA393844](https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA393844).
 
 ## We address the following questions
 
